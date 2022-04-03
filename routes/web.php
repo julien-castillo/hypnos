@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\DetailController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HotelController;
+use App\Http\Controllers\PublicController;
 use App\Http\Controllers\SuiteController;
 use Illuminate\Support\Facades\Route;
 
@@ -16,23 +18,40 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name("home");
-
-Route::get('/admin', [HotelController::class, "index"])->name('admin');
-
-Route::get('/admin/create', [HotelController::class, "create"])->name("hotel.create");
-Route::post('/admin/create', [HotelController::class, "store"])->name("hotel.add");
-Route::get('/admin/{hotel}', [HotelController::class, "edit"])->name("hotel.edit");
-Route::put('/admin/{hotel}', [HotelController::class, "update"])->name("hotel.update");
-Route::delete('/admin/{hotel}', [HotelController::class, "delete"])->name("hotel.delete");
+Route::get('/', [HomeController::class, "index"])->name('home');
 
 
-Route::get('/suites', [SuiteController::class, "index"])->name('suites');
-Route::get('/details', [DetailController::class, "index"])->name('details');
+Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
+    Route::get('', [HotelController::class, "index"])->name('index');
+
+    Route::name('hotel.')->prefix('hotel')->group(function () {
+        Route::get('create', [HotelController::class, "create"])->name("create");
+        Route::post('create', [HotelController::class, "store"])->name("store");
+        Route::get('{hotel}', [HotelController::class, "edit"])->name("edit");
+        Route::put('{hotel}', [HotelController::class, "update"])->name("update");
+        Route::delete('{hotel}', [HotelController::class, "delete"])->name("delete");
+    });
+
+});
+
+Route::name('manager.')->prefix('manager')->middleware('auth')->group(function () {
+    Route::get('', [SuiteController::class, "index"])->name('index');
+
+    Route::name('suite.')->prefix('suite')->group(function () {
+        Route::get('create', [SuiteController::class, "create"])->name("create");
+        Route::post('create', [SuiteController::class, "store"])->name("store");
+        Route::get('{suite}', [SuiteController::class, "edit"])->name("edit");
+        Route::put('{suite}', [SuiteController::class, "update"])->name("update");
+        Route::delete('{suite}', [SuiteController::class, "delete"])->name("delete");
+    });
+
+});
+
+
+
+
+Route::get('/hotel/{hotel}/suites', [PublicController::class, "suites"])->name('suites');
+Route::get('/hotel/{hotel}/suites/{suite}', [PublicController::class, "suite"])->name('details');
 
 
 Auth::routes();
-
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

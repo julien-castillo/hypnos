@@ -20,40 +20,40 @@
                     </ul>
                 </div>
             @endif
-            <form style="width: 65%;" method="post" action="{{ route('hotel.update', ['hotel'=>$hotel->id]) }}">
+            <form style="width: 65%;" method="post" action="{{ route('admin.hotel.update', ['hotel'=>$hotel->id]) }}">
 
                 @csrf
                 <input type="hidden" name="_method" value="put">
 
                 <div class="mb-3">
                     <label for="name" class="form-label">Nom de l'établissement</label>
-                    <input type="text" class="form-control" placeholder="{{ $hotel->name }}" name="name" required>
+                    <input type="text" class="form-control" value="{{ $hotel->name }}" name="name" required>
 
                 </div>
                 <div class="mb-3">
                     <label for="city" class="form-label">Ville</label>
-                    <input type="text" class="form-control" placeholder="{{ $hotel->city }}" name="city" required>
+                    <input type="text" class="form-control" value="{{ $hotel->city }}" name="city" required>
                 </div>
                 <div class="mb-3">
                     <label for="address" class="form-label">Adresse</label>
-                    <input type="text" class="form-control" placeholder="{{ $hotel->address }}" name="address" required>
+                    <input type="text" class="form-control" value="{{ $hotel->address }}" name="address" required>
                 </div>
                 <div class="mb-3">
                     <label for="description" class="form-label">Description</label>
-                    <input type="text" class="form-control" placeholder="{{ $hotel->description }}" name="description" required>
+                    <input type="text" class="form-control" value="{{ $hotel->description }}" name="description" required>
                 </div>
-                {{--                <div class="mb-3">--}}
-                {{--                    <label for="user_id" class="form-label">Manager</label>--}}
-                {{--                    <select class="form-control" name="user_id" required>--}}
-                {{--                        <option value=""></option>--}}
-                {{--                        @foreach($users as $user)--}}
-                {{--                            <option value="{{ $user->id }}">{{ $user->name }}</option>--}}
-                {{--                        @endforeach--}}
-                {{--                    </select>--}}
-                {{--                </div>--}}
+                                <div class="mb-3">
+                                    <label for="user_id" class="form-label">Manager</label>
+                                    <select class="form-select" name="user_id">
+                                        <option value="">Aucun manager</option>
+                                        @foreach($users as $user)
+                                            <option value="{{ $user->id }}" {{ $hotel->user && $user->id === $hotel->user->id ? 'selected' : '' }}>{{ $user->displayFullName() }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
 
                 <button type="submit" class="btn btn-primary">Modifier</button>
-                <a href="{{ route('admin') }}" class="btn btn-danger">Annuler / Retour</a>
+                <a href="{{ route('admin.index') }}" class="btn btn-danger">Annuler / Retour</a>
             </form>
 
         </div>

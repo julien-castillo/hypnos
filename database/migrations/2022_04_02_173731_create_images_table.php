@@ -16,8 +16,8 @@ class CreateImagesTable extends Migration
         Schema::create('images', function (Blueprint $table) {
             $table->id();
             $table->string('path');
-            $table->boolean('isHighlighted');
-            $table->foreignId("suite_id")->constrained("suites");
+            $table->boolean('isHighlighted')->default(0);
+            $table->foreignId("suite_id")->constrained()->onDelete('cascade');
         });
     }
 

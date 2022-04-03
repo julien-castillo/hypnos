@@ -2,7 +2,7 @@
 
 @section("addHotel")
     <div class="my-3 p-3 bg-body rounded shadow-sm">
-        <h3 class="border-bottom pb-2 mb-4">Ajout d'un nouvel établissement</h3>
+        <h3 class="border-bottom pb-2 mb-4">Ajout d'une nouvelle suite</h3>
 
         <div class="mt-4">
             @if(session()->has("success"))
@@ -20,38 +20,25 @@
                     </ul>
                 </div>
             @endif
-            <form style="width: 65%;" method="post" action="{{ route('admin.hotel.store') }}">
+            <form style="width: 65%;" method="post" action="{{ route('manager.suite.store') }}">
 
                 @csrf
 
                 <div class="mb-3">
-                    <label for="name" class="form-label">Nom de l'établissement</label>
+                    <label for="name" class="form-label">Nom de la suite</label>
                     <input type="text" class="form-control" name="name" required>
                 </div>
                 <div class="mb-3">
-                    <label for="city" class="form-label">Ville</label>
-                    <input type="text" class="form-control" name="city" required>
-                </div>
-                <div class="mb-3">
-                    <label for="address" class="form-label">Adresse</label>
-                    <input type="text" class="form-control" name="address" required>
+                    <label for="price" class="form-label">Prix</label>
+                    <input type="number" class="form-control" name="price" required>
                 </div>
                 <div class="mb-3">
                     <label for="description" class="form-label">Description</label>
                     <input type="text" class="form-control" name="description" required>
                 </div>
-                <div class="mb-3">
-                    <label for="user_id" class="form-label">Manager</label>
-                    <select class="form-select" name="user_id">
-                        <option value="">Aucun manager</option>
-                        @foreach($users as $user)
-                            <option value="{{ $user->id }}">{{ $user->displayFullName() }}</option>
-                        @endforeach
-                    </select>
-                </div>
 
                 <button type="submit" class="btn btn-primary">Enregistrer</button>
-                <a href="{{ route('admin.index') }}" class="btn btn-danger">Annuler</a>
+                <a href="{{ route('manager.index') }}" class="btn btn-danger">Annuler</a>
             </form>
 
         </div>

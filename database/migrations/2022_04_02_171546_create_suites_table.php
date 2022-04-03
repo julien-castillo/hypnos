@@ -15,9 +15,10 @@ class CreateSuitesTable extends Migration
     {
         Schema::create('suites', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->integer('price');
-            $table->text('description');
+            $table->string('name');
+            $table->unsignedFloat('price')->default('0');
+            $table->longText('description');
+            $table->foreignId('hotel_id')->nullable()->constrained();
             $table->timestamps();
         });
     }

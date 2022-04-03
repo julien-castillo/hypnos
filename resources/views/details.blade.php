@@ -2,7 +2,7 @@
 
 @section("details-title")
     <div class="my-3 p-3 bg-body rounded shadow-sm">
-        <h3 class="border-bottom pb-2 mb-4">Détails de cette suite</h3>
+        <h3 class="border-bottom pb-2 mb-4">Détails de la suite : {{ $suite->name }}</h3>
     </div>
 @endsection
 
@@ -38,17 +38,12 @@
         </div>
 {{--        <img src="..." class="card-img-top" alt="...">--}}
         <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <h5 class="card-title">{{ $suite->name }}</h5>
+            <p class="card-text">{{ $suite->description }}</p>
         </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item">An item</li>
-            <li class="list-group-item">A second item</li>
-            <li class="list-group-item">A third item</li>
-        </ul>
         <div class="card-body">
             <a href="#" class="btn btn-success m-2">Réserver</a>
-            <a href="{{ route('suites') }}" class="btn btn-primary m-2">Voir les autres suites</a>
+            <a href="{{ route('suites', ['hotel' => $hotel]) }}" class="btn btn-primary m-2">Voir les autres suites</a>
         </div>
     </div>
 
