@@ -16,6 +16,10 @@ class SuiteController extends Controller {
 
         $user = Auth::user();
         $hotel = $user->hotel;
+        if(!$hotel) {
+            return back()->withErrors("Vous n'avez accès à aucun hôtel");
+        }
+
         $suites = $hotel->suites()->orderBy("name", "asc")->paginate(10);
         return view('manager', compact("suites", "hotel"));
     }
