@@ -165,6 +165,7 @@
 </nav>
 
 <main class="container">
+    @include('notifications')
     @yield("home-title")
     @yield("cards-hotel")
     @yield("suites-title")
