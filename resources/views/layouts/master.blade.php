@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
-    <title>Headers · Bootstrap v5.1</title>
+    <title>Hypnos groupe hôtelier</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/headers/">
 
@@ -45,6 +45,7 @@
 
     <!-- Custom styles for this template -->
     <link href="{{ asset('css/headers.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
 
@@ -138,6 +139,11 @@
     @yield("cards-suites")
     @yield("details-title")
     @yield("cards-details")
+    @yield("admin")
+    @yield("addHotel")
+    @yield("editHotel")
+    @yield("login")
+    @yield("register")
 </main>
 
 
