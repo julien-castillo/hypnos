@@ -18,9 +18,9 @@
             <table class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nom</th>
+{{--                    <th scope="col">#</th>--}}
                     <th scope="col">Ville</th>
+                    <th scope="col">Nom</th>
                     <th scope="col">Adresse</th>
                     <th scope="col">Description</th>
                     <th scope="col">Manager</th>
@@ -30,9 +30,9 @@
                 <tbody>
                 @foreach($hotels as $hotel)
                     <tr>
-                        <th scope="row">{{ $loop->index +1 }}</th>
-                        <td>{{ $hotel->name }}</td>
+{{--                        <th scope="row">{{ $loop->index +1 }}</th>--}}
                         <td>{{ $hotel->city }}</td>
+                        <td>{{ $hotel->name }}</td>
                         <td>{{ $hotel->address }}</td>
                         <td>{{ $hotel->description }}</td>
                         <td>{{ $hotel->user ? $hotel->user->displayFullName() : 'Non défini' }}</td>

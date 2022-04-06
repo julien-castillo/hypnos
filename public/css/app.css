@@ -1,3 +1,37 @@
+body{
+    background-image: url("/img/wallpaper-beach-2.jpg ");
+    background-size: cover;
+}
+
+.bg-body {
+    --bs-bg-opacity: 0.1
+}
+
+main .container {
+    margin: 0;
+    padding: 0;
+}
+
+h3 {
+    text-align: center;
+}
+
+.card {
+    width: 90%;
+    max-width: 400px;
+    padding: 2rem 2rem 0.5rem 2rem;
+    backdrop-filter: blur(1rem);
+    box-shadow: 1.3rem 1.3rem 1.3rem rgba(0,0,0,0.5);
+    background-color: rgba(225,225,225,0.05);
+    border: 1px solid rgba(225, 225, 225, 0.5);
+    border-right-color: rgba(225, 225, 225, 0.1);
+    border-bottom-color: rgba(225, 225, 225, 0.1);
+}
+
+.card-body {
+    padding: 1rem 1rem 0.5rem 1rem;
+}
+
 .update {
     color: orangered;
 }

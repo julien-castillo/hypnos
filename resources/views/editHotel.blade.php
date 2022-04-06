@@ -40,17 +40,24 @@
                 </div>
                 <div class="mb-3">
                     <label for="description" class="form-label">Description</label>
-                    <input type="text" class="form-control" value="{{ $hotel->description }}" name="description" required>
+                    <input type="text" class="form-control" value="{{ $hotel->description }}" name="description"
+                           required>
                 </div>
-                                <div class="mb-3">
-                                    <label for="user_id" class="form-label">Manager</label>
-                                    <select class="form-select" name="user_id">
-                                        <option value="">Aucun manager</option>
-                                        @foreach($users as $user)
-                                            <option value="{{ $user->id }}" {{ $hotel->user && $user->id === $hotel->user->id ? 'selected' : '' }}>{{ $user->displayFullName() }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                <div class="mb-3">
+                    <label for="user_id" class="form-label">Manager</label>
+                    <select class="form-select" name="user_id">
+                        <option value="">Aucun manager</option>
+                        @foreach($users as $user)
+                            <option
+                                value="{{ $user->id }}" {{ $hotel->user && $user->id === $hotel->user->id ? 'selected' : '' }}>{{ $user->displayFullName() }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Image</label>
+                    <input type="file" accept="image/png, image/jpg, image/jpeg" class="form-control" value="{{ $hotel->image }}" name="image"
+                           required>
+                </div>
 
                 <button type="submit" class="btn btn-primary">Modifier</button>
                 <a href="{{ route('admin.index') }}" class="btn btn-danger">Annuler / Retour</a>

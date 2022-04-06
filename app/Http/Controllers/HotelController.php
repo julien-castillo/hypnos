@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Hotel;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class HotelController extends Controller {
 
@@ -25,12 +26,14 @@ class HotelController extends Controller {
     }
 
     public function store(Request $request) {
+
         $request->validate([
             "name" => "required",
             "city" => "required",
             "address" => "required",
             "description" => "required",
         ]);
+
 
         $user = User::find($request->user_id);
 

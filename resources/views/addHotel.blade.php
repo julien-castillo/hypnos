@@ -20,7 +20,7 @@
                     </ul>
                 </div>
             @endif
-            <form style="width: 65%;" method="post" action="{{ route('admin.hotel.store') }}">
+            <form style="width: 55%;" method="post" action="{{ route('admin.hotel.store') }}">
 
                 @csrf
 
@@ -48,6 +48,10 @@
                             <option value="{{ $user->id }}">{{ $user->displayFullName() }}</option>
                         @endforeach
                     </select>
+                </div>
+                <div class="mb-3">
+                    <label for="photo" class="form-label">Photo</label>
+                    <input type="file" accept="image/png, image/jpeg, image/jpg" class="form-control" name="photo">
                 </div>
 
                 <button type="submit" class="btn btn-primary">Enregistrer</button>
