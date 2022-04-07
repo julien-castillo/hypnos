@@ -55,7 +55,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="photo" class="form-label">Modifier la photo</label>
-                    <input type="file" accept="image/png, image/jpeg, image/jpg" class="form-control" name="photo">
+                    <input type="file" accept="image/png, image/jpeg, image/jpg" class="form-control" name="photo" ">
                 </div>
 
                 <button type="submit" class="btn btn-primary">Modifier</button>

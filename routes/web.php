@@ -3,6 +3,7 @@
 use App\Http\Controllers\DetailController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HotelController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\SuiteController;
 use Illuminate\Support\Facades\Route;
@@ -46,8 +47,6 @@ Route::name('manager.')->prefix('manager')->middleware('auth')->group(function (
     });
 
 });
-
-
 
 
 Route::get('/hotel/{hotel}/suites', [PublicController::class, "suites"])->name('suites');
