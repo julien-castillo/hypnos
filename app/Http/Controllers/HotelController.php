@@ -39,7 +39,7 @@ class HotelController extends Controller {
         $newImageName = time() . '-' . $request->city . '.' . $request->photo->extension();
         $request->photo->move(public_path('images'), $newImageName);
 
-        $image = Image::make(public_path("images/{$newImageName}"))->fit(300, 300);
+        $image = Image::make(public_path("images/{$newImageName}"))->fit(150, 150);
         $image->save();
 
 
@@ -80,7 +80,7 @@ class HotelController extends Controller {
         $newImageName = time() . '-' . $request->city . '.' . $request->photo->extension();
         $request->photo->move(public_path('images'), $newImageName);
 
-        $image = Image::make(public_path("images/{$newImageName}"))->fit(300, 300);
+        $image = Image::make(public_path("images/{$newImageName}"))->fit(150, 150);
         $image->save();
 
         $hotel->update([

@@ -9,7 +9,7 @@ class Suite extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["name", "price", "description", "hotel_id"];
+    protected $fillable = ["name", "price", "description", "hotel_id", "image_path1", "image_path2", "image_path3", "image_path4"];
 
     /**
      * Get the hotel that owns the suite.

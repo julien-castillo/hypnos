@@ -18,19 +18,36 @@
             <table class="table table-bordered table-hover">
                 <thead>
                 <tr>
-                    <th scope="col">#</th>
+{{--                    <th scope="col">#</th>--}}
                     <th scope="col">Nom</th>
                     <th scope="col">Prix</th>
                     <th scope="col">Description</th>
+                    <th scope="col">Photo n°1 mise en avant</th>
+                    <th scope="col">Photo n°2</th>
+                    <th scope="col">Photo n°3</th>
+                    <th scope="col">Photo n°4</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($suites as $suite)
                     <tr>
-                        <th scope="row">{{ $loop->index +1 }}</th>
+{{--                        <th scope="row">{{ $loop->index +1 }}</th>--}}
                         <td>{{ $suite->name }}</td>
-                        <td>{{ $suite->price }}</td>
+                        <td>{{ $suite->price . ' '. '€' }}</td>
                         <td>{{ $suite->description }}</td>
+                        <td>
+                            <img src="{{ asset('images/' .  $hotel->image_path) }}"  alt="Photo de l'hôtel">
+                        </td>
+                        <td>
+                            <img src="{{ asset('images/' .  $hotel->image_path) }}"  alt="Photo de l'hôtel">
+                        </td>
+                        <td>
+                            <img src="{{ asset('images/' .  $hotel->image_path) }}"  alt="Photo de l'hôtel">
+                        </td>
+                        <td>
+                            <img src="{{ asset('images/' .  $hotel->image_path) }}"  alt="Photo de l'hôtel">
+                        </td>
+
                         <td>
                             <a href="{{ route('manager.suite.edit', ['suite' => $suite->id]) }}" class="btn btn-warning">Editer</a>
                             <a href="#" class="btn btn-danger" onclick="if(confirm('Voulez-vous vraiment supprimer cette suite ?')){document.getElementById('form-{{$suite->id}}').submit() }">Supprimer</a>

@@ -18,6 +18,10 @@ class CreateSuitesTable extends Migration
             $table->string('name');
             $table->unsignedFloat('price')->default('0');
             $table->longText('description');
+            $table->string('image_path1')->nullable();
+            $table->string('image_path2')->nullable();
+            $table->string('image_path3')->nullable();
+            $table->string('image_path4')->nullable();
             $table->foreignId('hotel_id')->nullable()->constrained();
             $table->timestamps();
         });
