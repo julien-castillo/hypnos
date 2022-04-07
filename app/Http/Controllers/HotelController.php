@@ -6,6 +6,7 @@ use App\Models\Hotel;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class HotelController extends Controller {
 
@@ -37,6 +38,10 @@ class HotelController extends Controller {
 
         $newImageName = time() . '-' . $request->city . '.' . $request->photo->extension();
         $request->photo->move(public_path('images'), $newImageName);
+
+        $image = Image::make(public_path("images/{$newImageName}"))->fit(300, 300);
+        $image->save();
+
 
 
         $user = User::find($request->user_id);
@@ -74,6 +79,9 @@ class HotelController extends Controller {
 
         $newImageName = time() . '-' . $request->city . '.' . $request->photo->extension();
         $request->photo->move(public_path('images'), $newImageName);
+
+        $image = Image::make(public_path("images/{$newImageName}"))->fit(300, 300);
+        $image->save();
 
         $hotel->update([
             "name" => $request->name,

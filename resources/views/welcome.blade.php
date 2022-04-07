@@ -28,7 +28,7 @@
     </div>
 @endsection
 @section("footer")
-    <div class="b-example-divider"></div>
+{{--    <div class="b-example-divider"></div>--}}
 
     <div class="footer bg-body">
         <footer class="py-3 my-4">
