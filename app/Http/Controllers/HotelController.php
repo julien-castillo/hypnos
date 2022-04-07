@@ -32,7 +32,11 @@ class HotelController extends Controller {
             "city" => "required",
             "address" => "required",
             "description" => "required",
+            "photo" => "required|mimes:jpg,png,jpeg|max:5048"
         ]);
+
+        $newImageName = time() . '-' . $request->city . '.' . $request->photo->extension();
+        $request->photo->move(public_path('images'), $newImageName);
 
 
         $user = User::find($request->user_id);
@@ -40,10 +44,11 @@ class HotelController extends Controller {
         // Hotel::create($request->all()); avec fillable dans model
 
         $hotel = Hotel::create([
-            "name" => $request->name,
-            "city" => $request->city,
-            "address" => $request->address,
-            "description" => $request->description,
+            "name" => $request->input('name'),
+            "city" => $request->input('city'),
+            "address" => $request->input('address'),
+            "description" => $request->input('description'),
+            "image_path" => $newImageName,
         ]);
         $hotel->user()->associate($user);
         $hotel->save();
@@ -64,14 +69,23 @@ class HotelController extends Controller {
             "city" => "required",
             "address" => "required",
             "description" => "required",
+            "photo" => "mimes:jpg,png,jpeg|max:5048"
         ]);
+
+        $newImageName = time() . '-' . $request->city . '.' . $request->photo->extension();
+        $request->photo->move(public_path('images'), $newImageName);
 
         $hotel->update([
             "name" => $request->name,
             "city" => $request->city,
             "address" => $request->address,
             "description" => $request->description,
+            "image_path" => $newImageName,
         ]);
+        $user = User::find($request->user_id);
+        $hotel->user()->associate($user);
+        $hotel->save();
+
         return back()->with("success", "Etablissement modifié avec succès !");
 
     }

@@ -24,6 +24,7 @@
                     <th scope="col">Adresse</th>
                     <th scope="col">Description</th>
                     <th scope="col">Manager</th>
+                    <th scope="col">Photo</th>
                     <th scope="col">Action</th>
                 </tr>
                 </thead>
@@ -36,6 +37,9 @@
                         <td>{{ $hotel->address }}</td>
                         <td>{{ $hotel->description }}</td>
                         <td>{{ $hotel->user ? $hotel->user->displayFullName() : 'Non défini' }}</td>
+                        <td>
+                            <img src="{{ asset('images/' .  $hotel->image_path) }}" class="w-25 mb-1 shadow-lg " alt="Photo de l'hôtel">
+                        </td>
                         <td>
                             <a href="{{ route('admin.hotel.edit', ['hotel' => $hotel->id]) }}" class="btn btn-warning">Editer</a>
                             <a href="#" class="btn btn-danger" onclick="if(confirm('Voulez-vous vraiment supprimer cet établissement ?')){document.getElementById('form-{{$hotel->id}}').submit() }">Supprimer</a>

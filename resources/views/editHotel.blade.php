@@ -20,7 +20,7 @@
                     </ul>
                 </div>
             @endif
-            <form style="width: 65%;" method="post" action="{{ route('admin.hotel.update', ['hotel'=>$hotel->id]) }}">
+            <form style="width: 65%;" method="post" action="{{ route('admin.hotel.update', ['hotel'=>$hotel->id]) }}" enctype="multipart/form-data">
 
                 @csrf
                 <input type="hidden" name="_method" value="put">
@@ -54,9 +54,8 @@
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="image" class="form-label">Image</label>
-                    <input type="file" accept="image/png, image/jpg, image/jpeg" class="form-control" value="{{ $hotel->image }}" name="image"
-                           required>
+                    <label for="photo" class="form-label">Modifier la photo</label>
+                    <input type="file" accept="image/png, image/jpeg, image/jpg" class="form-control" name="photo">
                 </div>
 
                 <button type="submit" class="btn btn-primary">Modifier</button>

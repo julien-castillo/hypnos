@@ -16,7 +16,7 @@ class CreateHotelsTable extends Migration {
             $table->string('name');
             $table->string('city');
             $table->string('address');
-            $table->string('photo_hotel')->nullable();
+            $table->string('image_path')->nullable();
             $table->text('description');
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null');
             $table->timestamps();

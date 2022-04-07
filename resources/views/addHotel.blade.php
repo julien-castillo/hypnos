@@ -20,7 +20,7 @@
                     </ul>
                 </div>
             @endif
-            <form style="width: 55%;" method="post" action="{{ route('admin.hotel.store') }}">
+            <form style="width: 55%;" method="post" action="{{ route('admin.hotel.store') }}" enctype="multipart/form-data">
 
                 @csrf
 
