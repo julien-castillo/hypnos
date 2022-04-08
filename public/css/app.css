@@ -7,14 +7,25 @@ body{
     background-size: cover;
 }
 
-.bg-body {
-    --bs-bg-opacity: 0.1
+.container {
+    padding-left: 0;
+    margin-left: 0;
+    display: inline;
 }
 
-main .container {
-    margin: 0;
-    padding: 0;
+.bg-body {
+    --bs-bg-opacity: 0.1;
 }
+
+.block {
+    display: flex;
+}
+
+.mt-4 {
+    display: flex;
+    justify-content: center;
+}
+
 
 h3 {
     text-align: center;
@@ -38,5 +49,15 @@ h3 {
 
 .update {
     color: orangered;
+}
+
+.suites-images {
+    margin-right: 5px;
+    max-width: 200px;
+    max-height: 200px;
+}
+.cover {
+    max-width: 200px;
+    max-height: 200px;
 }
 

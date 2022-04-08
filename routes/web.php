@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\DetailController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\ImageController;
@@ -44,6 +44,8 @@ Route::name('manager.')->prefix('manager')->middleware('auth')->group(function (
         Route::get('{suite}', [SuiteController::class, "edit"])->name("edit");
         Route::put('{suite}', [SuiteController::class, "update"])->name("update");
         Route::delete('{suite}', [SuiteController::class, "delete"])->name("delete");
+//        Route::delete('deleteimage/{id}', [SuiteController::class, "deleteimage"])->name("destroyimage");
+//        Route::delete('{suite}', [SuiteController::class, "destroy"])->name("destroy");
     });
 
 });
@@ -51,6 +53,7 @@ Route::name('manager.')->prefix('manager')->middleware('auth')->group(function (
 
 Route::get('/hotel/{hotel}/suites', [PublicController::class, "suites"])->name('suites');
 Route::get('/hotel/{hotel}/suites/{suite}', [PublicController::class, "suite"])->name('details');
+Route::get('/contact', [ContactController::class, "index"])->name('contact');
 
 
 Auth::routes();

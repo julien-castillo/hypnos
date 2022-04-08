@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Suite;
+use App\Models\Image;
+use Illuminate\Http\File;
+use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Intervention\Image\Facades\Image;
+
+//use Intervention\Image\Facades\Image;
 
 class SuiteController extends Controller {
 
@@ -14,10 +18,9 @@ class SuiteController extends Controller {
      * List of suites
      */
     public function index() {
-
         $user = Auth::user();
         $hotel = $user->hotel;
-        if(!$hotel) {
+        if (!$hotel) {
             return back()->withErrors("Vous n'avez accès à aucun hôtel");
         }
 
@@ -37,38 +40,17 @@ class SuiteController extends Controller {
             "name" => "required",
             "price" => "required",
             "description" => "required",
-//            "photo1" => "required|mimes:jpg,png,jpeg|max:5048",
-//            "photo2" => "required|mimes:jpg,png,jpeg|max:5048",
-//            "photo3" => "required|mimes:jpg,png,jpeg|max:5048",
-//            "photo4" => "required|mimes:jpg,png,jpeg|max:5048",
+            "cover" => "required",
         ]);
 
-//        $newImageName1 = time() . '-' . $request->name . '.' . $request->photo1->extension();
-//        $request->photo1->move(public_path('images'), $newImageName1);
-//        $image150 = Image::make(public_path("images/{$newImageName1}"))->fit(150, 150);
-//        $image150->save();
-//
-//        $newImageName2 = time() . '-' . $request->name . '.' . $request->photo2->extension();
-//        $request->photo2->move(public_path('images'), $newImageName2);
-//        $image150 = Image::make(public_path("images/{$newImageName2}"))->fit(150, 150);
-//        $image150->save();
-//
-//        $newImageName3 = time() . '-' . $request->name . '.' . $request->photo3->extension();
-//        $request->photo3->move(public_path('images'), $newImageName3);
-//        $image150 = Image::make(public_path("images/{$newImageName3}"))->fit(150, 150);
-//        $image150->save();
-//
-//        $newImageName4 = time() . '-' . $request->name . '.' . $request->photo4->extension();
-//        $request->photo4->move(public_path('images'), $newImageName4);
-//        $image150 = Image::make(public_path("images/{$newImageName4}"))->fit(150, 150);
-//        $image150->save();
+        if ($request->hasFile("cover")) {
+            $file = $request->file("cover");
+            $newImageName = time() . '-' . $file->getClientOriginalName();
+            $file->move(public_path('cover/'), $newImageName);
 
-
-
-
-
-//        $image300 = Image::make(public_path("images/{$newImageName}"))->fit(300, 300);
-//        $image300->save();
+//            $image = Image::make(public_path("cover/{$newImageName}"))->fit(300, 300);
+//            $image->save();
+        }
 
 
         // Suite::create($request->all()); avec fillable dans model
@@ -77,10 +59,7 @@ class SuiteController extends Controller {
             "name" => $request->name,
             "price" => $request->price,
             "description" => $request->description,
-//            "image_path1" => $newImageName1,
-//            "image_path2" => $newImageName2,
-//            "image_path3" => $newImageName3,
-//            "image_path4" => $newImageName4,
+            "cover" => $newImageName,
         ]);
 
         $user = Auth::user();
@@ -88,7 +67,22 @@ class SuiteController extends Controller {
         $suite->hotel()->associate($hotel);
         $suite->save();
 
-        return back()->with("success", "La suite a été ajoutée avec succès !");
+        if ($request->hasFile("images")) {
+            $files = $request->file("images");
+            foreach ($files as $file) {
+                $newImageName = time() . '-' . $file->getClientOriginalName();
+                $file->move(public_path('images/'), $newImageName);
+                $request['image'] = $newImageName;
+                $request['suite_id'] = $suite->id;
+
+//                $image = Image::make(public_path("images/{$newImageName}"))->fit(300, 300);
+//                $image->save();
+
+                Image::create($request->all());
+            }
+        }
+
+        return redirect('/manager')->with("success", "La suite a été ajoutée avec succès !");
 
     }
 
@@ -98,19 +92,51 @@ class SuiteController extends Controller {
 
     public function update(Request $request, Suite $suite) {
 
+//        $suite = Suite::findOrFail($suite);
+//        if ($request->hasFile("cover")) {
+//            if (File::exists("cover/".$suite->cover)) {
+//                File::delete("/cover".$suite->cover);
+//            }
+        if ($request->hasFile("cover")) {
+            $file = $request->file("cover");
+            $newImageName = time() . '-' . $file->getClientOriginalName();
+            $file->move(public_path('cover/'), $newImageName);
+            $request['cover'] = $suite->cover;
+//            $image = Image::make(public_path("cover/{$newImageName}"))->fit(300, 300);
+//            $image->save();
+        }
+
         $request->validate([
             "name" => "required",
             "price" => "required",
             "description" => "required",
+            "cover" => "required",
         ]);
 
         $suite->update([
             "name" => $request->name,
             "price" => $request->price,
             "description" => $request->description,
+            "cover" => $suite->cover,
         ]);
-        return back()->with("success", "La suite a été modifiée avec succès !");
 
+        if ($request->hasFile("images")) {
+            $files = $request->file("images");
+            foreach ($files as $file) {
+                $newImageName = time() . '-' . $file->getClientOriginalName();
+                $file->move(public_path('images/'), $newImageName);
+                $request['image'] = $newImageName;
+                $request['suite_id'] = $suite->id;
+
+//                $image = Image::make(public_path("images/{$newImageName}"))->fit(300, 300);
+//                $image->save();
+
+                Image::create($request->all());
+            }
+        }
+
+
+        return redirect('/manager')->with("success", "La suite a été modifiée avec succès !");
     }
 
     public function delete(Suite $suite) {
@@ -120,6 +146,5 @@ class SuiteController extends Controller {
         return back()->with("successDelete", "La suite {$name} a été supprimée avec succès !");
 
     }
-
 
 }

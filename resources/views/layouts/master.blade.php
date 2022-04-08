@@ -15,31 +15,22 @@
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-    <!-- Favicons -->
-    {{--    <link rel="apple-touch-icon" href="/docs/5.1/assets/img/favicons/apple-touch-icon.png" sizes="180x180">--}}
-    {{--    <link rel="icon" href="/docs/5.1/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">--}}
-    {{--    <link rel="icon" href="/docs/5.1/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">--}}
-    {{--    <link rel="manifest" href="/docs/5.1/assets/img/favicons/manifest.json">--}}
-    {{--    <link rel="mask-icon" href="/docs/5.1/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">--}}
-    {{--    <link rel="icon" href="/docs/5.1/assets/img/favicons/favicon.ico">--}}
-    {{--    <meta name="theme-color" content="#7952b3">--}}
 
+{{--    <style>--}}
+{{--        .bd-placeholder-img {--}}
+{{--            font-size: 1.125rem;--}}
+{{--            text-anchor: middle;--}}
+{{--            -webkit-user-select: none;--}}
+{{--            -moz-user-select: none;--}}
+{{--            user-select: none;--}}
+{{--        }--}}
 
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-    </style>
+{{--        @media (min-width: 768px) {--}}
+{{--            .bd-placeholder-img-lg {--}}
+{{--                font-size: 3.5rem;--}}
+{{--            }--}}
+{{--        }--}}
+{{--    </style>--}}
 
 
     <!-- Custom styles for this template -->
@@ -76,6 +67,9 @@
         <path
             d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5h-3z"/>
     </symbol>
+    <symbol id="email" viewBox="0 0 16 16">
+        <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+    </symbol>
 </svg>
 
 <nav>
@@ -106,6 +100,14 @@
                                     <use xlink:href="#table"/>
                                 </svg>
                                 Réserver
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('contact') }}" class="nav-link text-white">
+                                <svg class="bi d-block mx-auto mb-1" width="24" height="24">
+                                    <use xlink:href="#email"/>
+                                </svg>
+                                Contactez-nous
                             </a>
                         </li>
                         {{--                        <li>--}}
@@ -228,6 +230,7 @@
     @yield("editHotel")
     @yield("login")
     @yield("register")
+    @yield("contact")
 </main>
 
 <footer>

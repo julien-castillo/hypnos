@@ -20,8 +20,6 @@
                 </div>
                 <div class="carousel-item">
                     <img src="{{ asset('img/H1-S1-2.jpg') }}" class="d-block w-100" alt="..." >
-
-
                 </div>
                 <div class="carousel-item">
                     <img src="..." class="d-block w-100" alt="...">

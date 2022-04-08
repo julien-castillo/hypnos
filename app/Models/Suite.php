@@ -9,7 +9,7 @@ class Suite extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["name", "price", "description", "hotel_id", "image_path1", "image_path2", "image_path3", "image_path4"];
+    protected $fillable = ["name", "price", "description", "cover", "hotel_id",];
 
     /**
      * Get the hotel that owns the suite.
@@ -19,4 +19,15 @@ class Suite extends Model
     public function hotel() {
         return $this->belongsTo(Hotel::class);
     }
+
+    /**
+     * Get the images.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function images() {
+        return $this->hasMany(Image::class);
+    }
+
+
 }

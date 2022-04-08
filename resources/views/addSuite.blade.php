@@ -36,22 +36,14 @@
                     <label for="description" class="form-label">Description</label>
                     <input type="text" class="form-control" name="description" required>
                 </div>
-{{--                <div class="mb-3">--}}
-{{--                    <label for="photo1" class="form-label">Photo n°1 (mise en avant)</label>--}}
-{{--                    <input type="file" accept="image/png, image/jpeg, image/jpg" class="form-control" name="photo1">--}}
-{{--                </div>--}}
-{{--                <div class="mb-3">--}}
-{{--                    <label for="photo2" class="form-label">Photo n°2</label>--}}
-{{--                    <input type="file" accept="image/png, image/jpeg, image/jpg" class="form-control" name="photo2">--}}
-{{--                </div>--}}
-{{--                <div class="mb-3">--}}
-{{--                    <label for="photo3" class="form-label">Photo n°3</label>--}}
-{{--                    <input type="file" accept="image/png, image/jpeg, image/jpg" class="form-control" name="photo3">--}}
-{{--                </div>--}}
-{{--                <div class="mb-3">--}}
-{{--                    <label for="photo4" class="form-label">Photo n°4</label>--}}
-{{--                    <input type="file" accept="image/png, image/jpeg, image/jpg" class="form-control" name="photo4">--}}
-{{--                </div>--}}
+                <div class="mb-3">
+                    <label for="cover" class="form-label">Cover</label>
+                    <input type="file" accept="image/png, image/jpeg, image/jpg" class="form-control" name="cover">
+                </div>
+                <div class="mb-3">
+                    <label for="Images" class="form-label">Images</label>
+                    <input type="file" accept="image/png, image/jpeg, image/jpg" class="form-control" name="images[]" multiple>
+                </div>
 
                 <button type="submit" class="btn btn-primary">Enregistrer</button>
                 <a href="{{ route('manager.index') }}" class="btn btn-danger">Annuler</a>

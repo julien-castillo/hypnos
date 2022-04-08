@@ -2,7 +2,7 @@
 
 @section("admin")
     <div class="my-3 p-3 bg-body rounded shadow-sm">
-        <h3 class="border-bottom pb-2 mb-4">Liste des suites de l'hotel {{ $hotel->name }}</h3>
+        <h3 class="border-bottom pb-2 mb-4">Liste des suites de l'hotel : {{ $hotel->name }}</h3>
         <div class="mt-4">
             <div class="d-flex justify-content-end mb-2">
                 {{ $suites->links() }}
@@ -22,10 +22,7 @@
                     <th scope="col">Nom</th>
                     <th scope="col">Prix</th>
                     <th scope="col">Description</th>
-                    <th scope="col">Photo n°1 mise en avant</th>
-                    <th scope="col">Photo n°2</th>
-                    <th scope="col">Photo n°3</th>
-                    <th scope="col">Photo n°4</th>
+                    <th scope="col">Cover</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -36,18 +33,8 @@
                         <td>{{ $suite->price . ' '. '€' }}</td>
                         <td>{{ $suite->description }}</td>
                         <td>
-                            <img src="{{ asset('images/' .  $hotel->image_path) }}"  alt="Photo de l'hôtel">
+                            <img src="cover/{{ $suite->cover }}" class="cover" alt="Photo de la suite">
                         </td>
-                        <td>
-                            <img src="{{ asset('images/' .  $hotel->image_path) }}"  alt="Photo de l'hôtel">
-                        </td>
-                        <td>
-                            <img src="{{ asset('images/' .  $hotel->image_path) }}"  alt="Photo de l'hôtel">
-                        </td>
-                        <td>
-                            <img src="{{ asset('images/' .  $hotel->image_path) }}"  alt="Photo de l'hôtel">
-                        </td>
-
                         <td>
                             <a href="{{ route('manager.suite.edit', ['suite' => $suite->id]) }}" class="btn btn-warning">Editer</a>
                             <a href="#" class="btn btn-danger" onclick="if(confirm('Voulez-vous vraiment supprimer cette suite ?')){document.getElementById('form-{{$suite->id}}').submit() }">Supprimer</a>
