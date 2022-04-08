@@ -21,6 +21,11 @@ body{
     display: flex;
 }
 
+.sidebar {
+    width: 200px;
+    height: 100vh;
+}
+
 .mt-4 {
     display: flex;
     justify-content: center;
