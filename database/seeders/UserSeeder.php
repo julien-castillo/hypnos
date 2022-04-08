@@ -35,11 +35,18 @@ class UserSeeder extends Seeder {
             "role" => "manager"
         ]);
         User::create([
-            "firstname" => "manager",
-            "lastname" => "manager",
+            "firstname" => "Manager",
+            "lastname" => "Manager",
             "email" => "manager@manager.fr",
             "password" => Hash::make("manager"),
             "role" => "manager"
+        ]);
+        User::create([
+            "firstname" => "User",
+            "lastname" => "User",
+            "email" => "user@user.fr",
+            "password" => Hash::make("user"),
+            "role" => "user"
         ]);
     }
 }
