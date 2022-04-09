@@ -21,10 +21,10 @@
                     </ul>
                 </div>
             @endif
-            <form style="width: 65%;" method="post" action="" enctype="multipart/form-data">
+            <form style="width: 45%;" method="post" action="{{ route('contact.store') }}" enctype="multipart/form-data">
 
                 @csrf
-                <input type="hidden" name="_method" value="put">
+{{--                <input type="hidden" name="_method" value="put">--}}
 
                 <div class="mb-3">
                     <label for="lastname" class="form-label">Nom</label>
@@ -40,12 +40,13 @@
                     <input type="email" class="form-control" value="" name="email" required>
                 </div>
                 <div class="mb-3">
-                    <label for="object" class="form-label">Sujet :</label>
-                    <select class="form-select" name="object">
-                        <option value="1">Je souhaite poser une réclamation</option>
-                        <option value="2">Je souhaite commander un service supplémentaire</option>
-                        <option value="3">Je souhaite en savoir plus sur une suite</option>
-                        <option value="4">J'ai un souci avec cette application</option>
+                    <label for="subject" class="form-label">Objet :</label>
+                    <select class="form-select" name="subject" required>
+                        <option value="">Merci de selectionner un sujet</option>
+                        <option value="Claim">Je souhaite poser une réclamation</option>
+                        <option value="Order">Je souhaite commander un service supplémentaire</option>
+                        <option value="More Info">Je souhaite en savoir plus sur une suite</option>
+                        <option value="Problem">J'ai un souci avec cette application</option>
                     </select>
                 </div>
                 <div class="mb-3">

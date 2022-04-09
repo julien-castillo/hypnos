@@ -16,4 +16,8 @@ class PublicController extends Controller {
     public function suite(Hotel $hotel, Suite $suite) {
         return view('details', compact("suite", "hotel"));
     }
+
+    public function contact() {
+        return view('contact');
+    }
 }

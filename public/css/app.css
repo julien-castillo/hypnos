@@ -13,6 +13,10 @@ body{
     display: inline;
 }
 
+.row {
+    --bs-gutter-x: 0;
+}
+
 .bg-body {
     --bs-bg-opacity: 0.1;
 }
@@ -24,6 +28,16 @@ body{
 .sidebar {
     width: 200px;
     height: 100vh;
+}
+
+.py-3 {
+    padding-top: 0!important;
+    padding-bottom: 0!important;
+}
+
+.my-4 {
+    margin-top: 0!important;
+    margin-bottom: 0!important;
 }
 
 .mt-4 {

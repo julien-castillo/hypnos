@@ -33,6 +33,9 @@ Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
         Route::delete('{hotel}', [HotelController::class, "delete"])->name("delete");
     });
 
+    Route::get('contact', [ContactController::class, "index"])->name('index');
+
+
 });
 
 Route::name('manager.')->prefix('manager')->middleware('auth')->group(function () {
@@ -53,7 +56,15 @@ Route::name('manager.')->prefix('manager')->middleware('auth')->group(function (
 
 Route::get('/hotel/{hotel}/suites', [PublicController::class, "suites"])->name('suites');
 Route::get('/hotel/{hotel}/suites/{suite}', [PublicController::class, "suite"])->name('details');
-Route::get('/contact', [ContactController::class, "index"])->name('contact');
+
+Route::get('/contact', [PublicController::class, "contact"])->name('contact');
+
+Route::name('contact.')->prefix('contact')->group(function() {
+//Route::get('/contact/create', [ContactController::class, "create"])->name('create');
+Route::post('store', [ContactController::class, "store"])->name('store');
+//Route::get('/adminContact', [ContactController::class, "index"])->name('contact');
+
+});
 
 
 Auth::routes();
