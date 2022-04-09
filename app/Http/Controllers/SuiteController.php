@@ -92,6 +92,12 @@ class SuiteController extends Controller {
 
     public function update(Request $request, Suite $suite) {
 
+        $request->validate([
+            "name" => "required",
+            "price" => "required",
+            "description" => "required",
+            "cover" => "required",
+        ]);
 //        $suite = Suite::findOrFail($suite);
 //        if ($request->hasFile("cover")) {
 //            if (File::exists("cover/".$suite->cover)) {
@@ -101,17 +107,12 @@ class SuiteController extends Controller {
             $file = $request->file("cover");
             $newImageName = time() . '-' . $file->getClientOriginalName();
             $file->move(public_path('cover/'), $newImageName);
-            $request['cover'] = $suite->cover;
+            $suite->cover = $newImageName;
+            echo $newImageName . '<br> <br> ';
 //            $image = Image::make(public_path("cover/{$newImageName}"))->fit(300, 300);
 //            $image->save();
         }
 
-        $request->validate([
-            "name" => "required",
-            "price" => "required",
-            "description" => "required",
-            "cover" => "required",
-        ]);
 
         $suite->update([
             "name" => $request->name,
@@ -121,6 +122,9 @@ class SuiteController extends Controller {
         ]);
 
         if ($request->hasFile("images")) {
+//            virer les images existentes
+//            get images all
+//            delete() fichier  + delete()) DB
             $files = $request->file("images");
             foreach ($files as $file) {
                 $newImageName = time() . '-' . $file->getClientOriginalName();
@@ -135,7 +139,8 @@ class SuiteController extends Controller {
             }
         }
 
-
+        $suite->save();
+        var_export($suite);
         return redirect('/manager')->with("success", "La suite a été modifiée avec succès !");
     }
 

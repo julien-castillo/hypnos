@@ -21,7 +21,7 @@
                 </div>
             @endif
 
-            <form style="width: 65%;" method="post" action="{{ route('manager.suite.update', ['suite'=>$suite->id]) }}">
+            <form style="width: 65%;" method="post" action="{{ route('manager.suite.update', ['suite'=>$suite->id]) }}" enctype="multipart/form-data">
 
                 @csrf
                 <input type="hidden" name="_method" value="put">
