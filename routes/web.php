@@ -25,13 +25,10 @@ Route::get('/', [HomeController::class, "index"])->name('home');
 Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
     Route::get('', [HotelController::class, "index"])->name('index');
 
-    Route::name('adminContact.')->prefix('adminContact')->group(function() {
+    Route::name('adminContact.')->prefix('adminContact')->group(function () {
         Route::get('', [ContactController::class, "index"])->name('index');
         Route::delete('{contact}', [ContactController::class, "delete"])->name('delete');
     });
-
-
-
 
     Route::name('hotel.')->prefix('hotel')->group(function () {
         Route::get('create', [HotelController::class, "create"])->name("create");
@@ -40,7 +37,6 @@ Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
         Route::put('{hotel}', [HotelController::class, "update"])->name("update");
         Route::delete('{hotel}', [HotelController::class, "delete"])->name("delete");
     });
-
 });
 
 Route::name('manager.')->prefix('manager')->middleware('auth')->group(function () {
@@ -58,14 +54,16 @@ Route::name('manager.')->prefix('manager')->middleware('auth')->group(function (
 
 });
 
+Route::get('/booking', [PublicController::class, "booking"])->name('booking');
+
 
 Route::get('/hotel/{hotel}/suites', [PublicController::class, "suites"])->name('suites');
 Route::get('/hotel/{hotel}/suites/{suite}', [PublicController::class, "suite"])->name('details');
 
 Route::get('/contact', [PublicController::class, "contact"])->name('contact');
 
-Route::name('contact.')->prefix('contact')->group(function() {
-Route::post('store', [ContactController::class, "store"])->name('store');
+Route::name('contact.')->prefix('contact')->group(function () {
+    Route::post('store', [ContactController::class, "store"])->name('store');
 
 });
 

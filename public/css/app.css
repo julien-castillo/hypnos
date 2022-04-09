@@ -26,10 +26,17 @@ body{
 }
 
 .sidebar {
+    /*position: fixed;*/
     width: 200px;
     height: 100vh;
 }
 
+.border-bottom {
+    /*display: none!important;*/
+}
+ .py-2 {
+     padding-bottom: 0!important;
+ }
 .py-3 {
     padding-top: 0!important;
     padding-bottom: 0!important;

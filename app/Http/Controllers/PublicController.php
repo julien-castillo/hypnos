@@ -20,4 +20,10 @@ class PublicController extends Controller {
     public function contact() {
         return view('contact');
     }
+
+    public function booking() {
+        $hotels = Hotel::all();
+        $suites = Suite::all();
+        return view('booking', compact('hotels', 'suites'));
+    }
 }

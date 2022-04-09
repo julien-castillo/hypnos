@@ -78,12 +78,13 @@
 
         <div class="block1">
             <div class="my-3 p-3 bg-body rounded shadow-sm">
-                <h3 class="border-bottom pb-2 mb-4">Liste des messages reçus</h3>
-                <div class="mt-4">
-                    <div class="d-flex justify-content-end mb-2">
-{{--                        {{ $hotels->links() }}--}}
+                <h3 class="border-bottom pb-2 mb-4">Liste des messages reçus ( {{ $contacts->count() }} )</h3>
 
-                    </div>
+                @if($contacts->count() > 1)
+                <div class="mt-4">
+{{--                    <div class="d-flex justify-content-end mb-2">--}}
+
+{{--                    </div>--}}
                     @if(session()->has("successDelete"))
                         <div class="alert alert-success">
                             <h3>{{ session()->get('successDelete') }}</h3>
@@ -133,6 +134,11 @@
                     </table>
 
                 </div>
+                @else
+                    <div class="my-3 p-3 bg-body rounded shadow-sm">
+                        <h4 class="border-bottom pb-2 mb-4">Vous n'avez reçu aucun message</h4>
+                    </div>
+                @endif
 
             </div>
         </div>

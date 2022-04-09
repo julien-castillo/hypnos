@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use App\Models\Hotel;
+use App\Models\Suite;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -15,7 +17,11 @@ class HotelController extends Controller {
      */
     public function index() {
         $hotels = Hotel::orderBy("name", "asc")->paginate(10);
-        return view('admin', compact("hotels"));
+        $suites = Suite::all();
+        $contacts = Contact::all();
+        $managers = User::where('role', 'manager');
+        $users = User::where('role', 'user');
+        return view('admin', compact("hotels", "suites", "contacts", "users", "managers"));
     }
 
     /**

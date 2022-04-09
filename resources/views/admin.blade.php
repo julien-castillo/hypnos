@@ -19,7 +19,7 @@
                             <svg class="bi me-2" width="16" height="16">
                                 <use xlink:href="#home"/>
                             </svg>
-                            Home
+                            Hôtels ({{ $hotels->count() }})
                         </a>
                     </li>
                     <li>
@@ -27,7 +27,7 @@
                             <svg class="bi me-2" width="16" height="16">
                                 <use xlink:href="#speedometer2"/>
                             </svg>
-                            Dashboard
+                            Suites ({{ $suites->count() }})
                         </a>
                     </li>
                     <li>
@@ -35,15 +35,15 @@
                             <svg class="bi me-2" width="16" height="16">
                                 <use xlink:href="#table"/>
                             </svg>
-                            Orders
+                            Managers ({{ $managers->count() }})
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link text-white">
+                        <a href="{{ route('admin.adminContact.index') }}" class="nav-link text-white">
                             <svg class="bi me-2" width="16" height="16">
                                 <use xlink:href="#grid"/>
                             </svg>
-                            Products
+                            Messages ({{ $contacts->count() }})
                         </a>
                     </li>
                     <li>
@@ -51,11 +51,10 @@
                             <svg class="bi me-2" width="16" height="16">
                                 <use xlink:href="#people-circle"/>
                             </svg>
-                            Customers
+                            Clients ({{ $users->count() }})
                         </a>
                     </li>
                 </ul>
-                <hr>
 {{--                <div class="dropdown">--}}
 {{--                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"--}}
 {{--                       id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">--}}
