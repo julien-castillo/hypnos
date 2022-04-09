@@ -98,6 +98,7 @@
                             <th scope="col">email</th>
                             <th scope="col">Object</th>
                             <th scope="col">Message</th>
+                            <th scope="col">Reçu le :</th>
                             <th scope="col">Action</th>
                         </tr>
                         </thead>
@@ -110,13 +111,14 @@
                                 <td>{{ $contact->email }}</td>
                                 <td>{{ $contact->subject }}</td>
                                 <td>{{ $contact->message }}</td>
+                                <td>{{ $contact->created_at->format('d/m/Y à H:i:s') }}</td>
 {{--                                <td>{{ $contact->user ? $hotel->user->displayFullName() : 'Non défini' }}</td>--}}
 
                                 <td>
                                     <a href="#" class="btn btn-danger"
                                        onclick="if(confirm('Voulez-vous vraiment supprimer ce message ?')){document.getElementById('form-{{$contact->id}}').submit() }">Supprimer</a>
                                     <form id="form-{{ $contact->id }}"
-                                          action="{{ route('adminContact.delete', ['contact'=>$contact->id]) }}"
+                                          action="{{ route('admin.adminContact.delete', ['contact'=>$contact->id]) }}"
                                           method="post">
                                         @csrf
                                         <input type="hidden" name="_method" value="delete">

@@ -6,7 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 
-class ContactController {
+class ContactController extends Controller {
 
     /**
      * List of contact messages
@@ -47,18 +47,18 @@ class ContactController {
         ]);
         $contact->save();
 
-        return back()->with("success", "Votre message a été correctement envoyé.");
+        return redirect('/contact')->with("success", "Votre message a été correctement envoyé.");
 
     }
 
 
 
     public function delete(Contact $contact) {
-        $lastname = $contact->lastname;
         $firstname = $contact->firstname;
+        $lastname = $contact->lastname;
         $contact->delete();
 
-        return back()->with("successDelete", "Le message de '$firstname' . ' ' . '$lastname' . a été supprimé avec succès !");
+        return redirect('/admin/adminContact')->with("success", "Le message de {$firstname} {$lastname} a été supprimé avec succès !");
 
     }
 
