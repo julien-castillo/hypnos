@@ -9,6 +9,7 @@
 @section("cards-hotel")
 
     <div class="row">
+        @if($hotels->count() > 1)
         @foreach($hotels as $hotel)
 
             <div class="col-md-3 d-flex justify-content-center mb-2">
@@ -25,6 +26,11 @@
                 </div>
             </div>
         @endforeach
+        @else
+            <div class="my-3 p-3 bg-body rounded shadow-sm">
+                <h4 class="border-bottom pb-2 mb-4">Tous les hôtels de notre groupe Hypnos sont en maintenance. Nous nous excusons pour la gêne occasionnée.</h4>
+            </div>
+        @endif
     </div>
 @endsection
 @section("footer")

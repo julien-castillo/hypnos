@@ -8,6 +8,7 @@
 
 @section("cards-suites")
     <div class="row">
+        @if($suites->count() > 1)
         @foreach($suites as $suite)
             <div class="col-md-3 d-flex justify-content-center mb-2">
                 <div class="card" style="width: 18rem;">
@@ -22,6 +23,11 @@
                 </div>
             </div>
         @endforeach
+        @else
+            <div class="my-3 p-3 bg-body rounded shadow-sm">
+                <h4 class="border-bottom pb-2 mb-4">Toutes les suites de cet hôtel sont en travaux, nous vous présentons nos excuses.</h4>
+            </div>
+            @endif
     </div>
 
 

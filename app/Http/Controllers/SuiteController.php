@@ -123,8 +123,13 @@ class SuiteController extends Controller {
 
         if ($request->hasFile("images")) {
 //            todo virer les images existentes (Cover + Images) => fichiers + BDD
-//            $images = Image::where('suite_id', '$suite_id');
-//            $images->delete();
+//                $images = Image::where('suite_id', '$images->suite_id');
+            $images = Image::where('suite_id', '5');
+            foreach ($images as $image) {
+                var_export($image);
+//                $image->delete();
+            }
+            die();
 
             $files = $request->file("images");
             foreach ($files as $file) {
@@ -141,7 +146,6 @@ class SuiteController extends Controller {
         }
 
         $suite->save();
-        var_export($suite);
         return redirect('/manager')->with("success", "La suite a été modifiée avec succès !");
     }
 

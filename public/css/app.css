@@ -23,12 +23,15 @@ body{
 
 .block {
     display: flex;
+    justify-content: center;
 }
 
 .sidebar {
-    /*position: fixed;*/
+    position: fixed;
     width: 200px;
     height: 100vh;
+    left: 0;
+    top: 0;
 }
 
 .border-bottom {
@@ -82,6 +85,15 @@ h3 {
     max-width: 200px;
     max-height: 200px;
 }
+
+.add-suite, .add-hotel {
+    text-align: center;
+}
+
+h4.border-bottom.pb-2.mb-4 {
+    text-align: center;
+}
+
 .cover {
     max-width: 200px;
     max-height: 200px;

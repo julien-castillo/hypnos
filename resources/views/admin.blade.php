@@ -78,13 +78,14 @@
         <div class="block1">
             <div class="my-3 p-3 bg-body rounded shadow-sm">
                 <h3 class="border-bottom pb-2 mb-4">Liste des établissements</h3>
+                <div class="add-hotel">
+                    <a href="{{ route('admin.hotel.create') }}" class="btn btn-primary">Ajouter un
+                        établissement</a>
+                </div>
                 <div class="mt-4">
                     <div class="d-flex justify-content-end mb-2">
                         {{ $hotels->links() }}
-                        <div>
-                            <a href="{{ route('admin.hotel.create') }}" class="btn btn-primary">Ajouter un
-                                établissement</a>
-                        </div>
+
                     </div>
                     @if(session()->has("successDelete"))
                         <div class="alert alert-success">
