@@ -43,7 +43,7 @@
                             <svg class="bi me-2" width="16" height="16">
                                 <use xlink:href="#grid"/>
                             </svg>
-                            Messages ({{ $contacts->count() }})
+                            Messages <span class="message">({{ $contacts->count() }})</span>
                         </a>
                     </li>
                     <li>

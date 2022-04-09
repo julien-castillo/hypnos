@@ -122,9 +122,10 @@ class SuiteController extends Controller {
         ]);
 
         if ($request->hasFile("images")) {
-//            virer les images existentes
-//            get images all
-//            delete() fichier  + delete()) DB
+//            todo virer les images existentes (Cover + Images) => fichiers + BDD
+//            $images = Image::where('suite_id', '$suite_id');
+//            $images->delete();
+
             $files = $request->file("images");
             foreach ($files as $file) {
                 $newImageName = time() . '-' . $file->getClientOriginalName();

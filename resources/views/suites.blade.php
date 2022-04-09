@@ -7,18 +7,22 @@
 @endsection
 
 @section("cards-suites")
-    @foreach($suites as $suite)
-        <div class="card" style="width: 18rem;">
-            <img src="/cover/{{ $suite->cover }}" class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">{{ $suite->name }}</h5>
-                <p class="card-text">{{ $suite->description }}</p>
-                            <a href="{{ route('details',['hotel' => $hotel, 'suite' => $suite]) }}" class="btn btn-primary">Détails de la suite</a>
-                <a href="#" class="btn btn-success">Réserver</a>
+    <div class="row">
+        @foreach($suites as $suite)
+            <div class="col-md-3 d-flex justify-content-center mb-2">
+                <div class="card" style="width: 18rem;">
+                    <img src="/cover/{{ $suite->cover }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $suite->name }}</h5>
+                        <p class="card-text">{{ $suite->description }}</p>
+                        <a href="{{ route('details',['hotel' => $hotel, 'suite' => $suite]) }}" class="btn btn-primary">Détails
+                            de la suite</a>
+                        <a href="#" class="btn btn-success">Réserver</a>
+                    </div>
+                </div>
             </div>
-        </div>
-
-    @endforeach
+        @endforeach
+    </div>
 
 
 @endsection
