@@ -13,10 +13,10 @@ class Booking extends Model
     /**
      * Get the suite that owns the booking.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function suite() {
-        return $this->belongsTo(Suite::class);
+        return $this->hasOne(Suite::class);
     }
 
     /**
