@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HotelController;
@@ -19,9 +20,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/*
+|--------------------------------------------------------------------------
+| Routes publiques
+|--------------------------------------------------------------------------
+ */
 Route::get('/', [HomeController::class, "index"])->name('home');
 
+Route::get('/addBooking', [PublicController::class, "booking"])->name('addBooking');
 
+
+Route::get('/hotel/{hotel}/suites', [PublicController::class, "suites"])->name('suites');
+Route::get('/hotel/{hotel}/suites/{suite}', [PublicController::class, "suite"])->name('details');
+
+Route::get('/contact', [PublicController::class, "contact"])->name('contact');
+
+Route::name('contact.')->prefix('contact')->group(function () {
+    Route::post('store', [ContactController::class, "store"])->name('store');
+
+});
+
+/*
+|--------------------------------------------------------------------------
+| Routes Admin
+|--------------------------------------------------------------------------
+ */
 Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
     Route::get('', [HotelController::class, "index"])->name('index');
 
@@ -39,6 +62,11 @@ Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
     });
 });
 
+/*
+|--------------------------------------------------------------------------
+| Routes Manager
+|--------------------------------------------------------------------------
+ */
 Route::name('manager.')->prefix('manager')->middleware('auth')->group(function () {
     Route::get('', [SuiteController::class, "index"])->name('index');
 
@@ -51,21 +79,25 @@ Route::name('manager.')->prefix('manager')->middleware('auth')->group(function (
 //        Route::delete('deleteimage/{id}', [SuiteController::class, "deleteimage"])->name("destroyimage");
 //        Route::delete('{suite}', [SuiteController::class, "destroy"])->name("destroy");
     });
-
 });
 
-Route::get('/booking', [PublicController::class, "booking"])->name('booking');
+/*
+|--------------------------------------------------------------------------
+| Routes User
+|--------------------------------------------------------------------------
+ */
+Route::name('booking.')->prefix('booking')->middleware('auth')->group(function () {
+    Route::get('', [BookingController::class, 'index'])->name('index');
+    Route::get('create', [BookingController::class, "create"])->name("create");
+    Route::post('create', [BookingController::class, 'store'])->name('store');
+    Route::delete('{booking}', [BookingController::class, 'delete'])->name('delete');
 
-
-Route::get('/hotel/{hotel}/suites', [PublicController::class, "suites"])->name('suites');
-Route::get('/hotel/{hotel}/suites/{suite}', [PublicController::class, "suite"])->name('details');
-
-Route::get('/contact', [PublicController::class, "contact"])->name('contact');
-
-Route::name('contact.')->prefix('contact')->group(function () {
-    Route::post('store', [ContactController::class, "store"])->name('store');
-
+//    Route::name('booking.')->prefix('booking')->group(function () {
+//        Route::get('', [BookingController::class, "index"])->name('index');
+//        Route::get('create', [BookingController::class, "create"])->name("create");
+//        Route::post('create', [BookingController::class, "store"])->name("store");
+//
+//    });
 });
-
 
 Auth::routes();

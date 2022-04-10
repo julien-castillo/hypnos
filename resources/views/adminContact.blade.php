@@ -1,5 +1,5 @@
 @extends("layouts.master")
-@section("admin")
+@section("admin-contact")
     <div class="block">
         {{-- Sidebar Admin --}}
         <div>

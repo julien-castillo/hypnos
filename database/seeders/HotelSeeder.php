@@ -18,7 +18,7 @@ class HotelSeeder extends Seeder {
                 "city" => "Arcachon",
                 "address" => "9, route de la plage",
                 "description" => "Lorem ipsum dolor sit amet",
-                "image_path" => "1649396490-chat.jpg"
+                "image_path" => "chaton-seed.jpg"
             ]);
         }
     }

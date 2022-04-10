@@ -6,6 +6,9 @@ body{
     background-image: url("/img/wallpaper-beach-2.jpg ");
     background-size: cover;
 }
+.body-admin {
+background-image: url("/img/bg-admin1.jpg");
+}
 
 .container {
     padding-left: 0;
@@ -35,7 +38,7 @@ body{
 }
 
 .border-bottom {
-    /*display: none!important;*/
+    border-bottom: 0!important;
 }
  .py-2 {
      padding-bottom: 0!important;

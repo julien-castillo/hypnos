@@ -108,7 +108,6 @@ class SuiteController extends Controller {
             $newImageName = time() . '-' . $file->getClientOriginalName();
             $file->move(public_path('cover/'), $newImageName);
             $suite->cover = $newImageName;
-            echo $newImageName . '<br> <br> ';
 //            $image = Image::make(public_path("cover/{$newImageName}"))->fit(300, 300);
 //            $image->save();
         }
@@ -124,12 +123,10 @@ class SuiteController extends Controller {
         if ($request->hasFile("images")) {
 //            todo virer les images existentes (Cover + Images) => fichiers + BDD
 //                $images = Image::where('suite_id', '$images->suite_id');
-            $images = Image::where('suite_id', '5');
+            $images = Image::where('suite_id', '$suite_id');
             foreach ($images as $image) {
-                var_export($image);
-//                $image->delete();
+                $image->delete();
             }
-            die();
 
             $files = $request->file("images");
             foreach ($files as $file) {
