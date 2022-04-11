@@ -21,24 +21,30 @@
                 </div>
             @endif
 
-            <form style="width: 65%;" method="post" action="{{ route('manager.suite.update', ['suite'=>$suite->id]) }}" enctype="multipart/form-data">
+            <form style="width: 65%;" method="post" action="{{ route('manager.suite.update', ['suite'=>$suite->id]) }}"
+                  enctype="multipart/form-data">
 
                 @csrf
                 <input type="hidden" name="_method" value="put">
 
                 <div class="mb-3">
                     <p>Cover :</p>
-                        @csrf
+                    @csrf
 
-                    <img src="/cover/{{ $suite->cover }}" class="cover" alt="Photo mise en avant de la suite">
+                    <img src="{{ $suite->getCoverImageUrl() }}" class="cover" alt="Photo mise en avant de la suite">
                     <br>
                 </div>
                 <div>
                     <p>Images: </p>
                     @foreach($suite->images as $img)
-                        <img src="/images/{{ $img->image }}" class="suites-images" alt="Photo de la suite">
-
+                        <div class="old-suite-image" id="image-{{ $img->id }}" style="display: inline-block">
+                            <img src="{{ $img->getUrl() }}" class="suites-images" alt="Photo de la suite">
+                            <span class="croix" data-image-id="{{ $img->id }}">x</span>
+                            <input type="hidden" name="oldImages[]" value="{{ $img->id }}"/>
+                        </div>
                     @endforeach
+
+                    <input type="hidden" id="oldImagesDeletedClone" name="oldImagesDeleted[]" value="clone"/>
                 </div>
 
                 <div class="mb-3">
@@ -65,7 +71,6 @@
                            multiple>
                 </div>
 
-
                 <button type="submit" class="btn btn-primary">Modifier</button>
                 <a href="{{ route('manager.index') }}" class="btn btn-danger">Annuler / Retour</a>
             </form>
@@ -74,3 +79,23 @@
 
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        (function ($) {
+
+            $('span.croix').on('click', function () {
+                var imageId = $(this).attr('data-image-id');
+                var clone = $('#oldImagesDeletedClone');
+                var clonedElement = clone.clone();
+
+                $('#image-' + imageId).fadeOut(400, function () {
+                    $(this).remove();
+                });
+                // console.log(clonedElement);
+                clonedElement.removeAttr('id').attr('value', imageId).insertAfter(clone);
+            })
+
+        }(jQuery));
+    </script>
+@endpush

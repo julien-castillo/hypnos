@@ -34,7 +34,7 @@
                         <td>{{ $suite->price . ' '. '€' }}</td>
                         <td>{{ $suite->description }}</td>
                         <td>
-                            <img src="cover/{{ $suite->cover }}" class="cover" alt="Photo de la suite">
+                            <img src="{{ $suite->getCoverImageUrl() }}" class="cover" alt="Photo de la suite">
                         </td>
                         <td>
                             <a href="{{ route('manager.suite.edit', ['suite' => $suite->id]) }}" class="btn btn-warning">Editer</a>

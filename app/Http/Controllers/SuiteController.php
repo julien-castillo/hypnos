@@ -9,6 +9,7 @@ use Illuminate\Http\File;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 //use Intervention\Image\Facades\Image;
 
@@ -45,21 +46,19 @@ class SuiteController extends Controller {
 
         if ($request->hasFile("cover")) {
             $file = $request->file("cover");
+            $filename = $file->getRealPath();
             $newImageName = time() . '-' . $file->getClientOriginalName();
-            $file->move(public_path('cover/'), $newImageName);
+            $storage_path = "cover/{$newImageName}";
 
-//            $image = Image::make(public_path("cover/{$newImageName}"))->fit(300, 300);
-//            $image->save();
+            Storage::disk('public')->put($storage_path, file_get_contents($filename));
         }
 
-
-        // Suite::create($request->all()); avec fillable dans model
 
         $suite = Suite::create([
             "name" => $request->name,
             "price" => $request->price,
             "description" => $request->description,
-            "cover" => $newImageName,
+            "cover" => $storage_path,
         ]);
 
         $user = Auth::user();
@@ -70,15 +69,17 @@ class SuiteController extends Controller {
         if ($request->hasFile("images")) {
             $files = $request->file("images");
             foreach ($files as $file) {
+
+                $filename = $file->getRealPath();
                 $newImageName = time() . '-' . $file->getClientOriginalName();
-                $file->move(public_path('images/'), $newImageName);
-                $request['image'] = $newImageName;
-                $request['suite_id'] = $suite->id;
+                $storage_path = "suites/{$suite->id}/{$newImageName}";
 
-//                $image = Image::make(public_path("images/{$newImageName}"))->fit(300, 300);
-//                $image->save();
+                Storage::disk('public')->put($storage_path, file_get_contents($filename));
 
-                Image::create($request->all());
+                $data['storage_path'] = $storage_path;
+                $data['suite_id'] = $suite->id;
+
+                Image::create($data);
             }
         }
 
@@ -96,49 +97,57 @@ class SuiteController extends Controller {
             "name" => "required",
             "price" => "required",
             "description" => "required",
-            "cover" => "required",
         ]);
-//        $suite = Suite::findOrFail($suite);
-//        if ($request->hasFile("cover")) {
-//            if (File::exists("cover/".$suite->cover)) {
-//                File::delete("/cover".$suite->cover);
-//            }
-        if ($request->hasFile("cover")) {
-            $file = $request->file("cover");
-            $newImageName = time() . '-' . $file->getClientOriginalName();
-            $file->move(public_path('cover/'), $newImageName);
-            $suite->cover = $newImageName;
-//            $image = Image::make(public_path("cover/{$newImageName}"))->fit(300, 300);
-//            $image->save();
+
+        foreach( $request->oldImagesDeleted as $x) {
+            if ($x !== "clone")  {
+                $image = Image::find($x);
+
+                // Supprime le fichier en lui-meme
+                if (Storage::disk('public')->exists($image->storage_path)) {
+                    Storage::disk('public')->delete($image->storage_path);
+                }
+
+                // Supprime l'entrée en base de données
+                $image->delete();
+            }
         }
 
+        if ($request->hasFile("cover")) {
+            // Delete previous image
+            if (Storage::disk('public')->exists($suite->cover)) {
+                Storage::disk('public')->delete($suite->cover);
+            }
+
+            $file = $request->file("cover");
+            $filename = $file->getRealPath();
+            $newImageName = time() . '-' . $file->getClientOriginalName();
+            $storage_path = "cover/{$newImageName}";
+
+            Storage::disk('public')->put($storage_path, file_get_contents($filename));
+            $suite->cover = $storage_path;
+        }
 
         $suite->update([
             "name" => $request->name,
             "price" => $request->price,
             "description" => $request->description,
-            "cover" => $suite->cover,
         ]);
 
         if ($request->hasFile("images")) {
-//            todo virer les images existentes (Cover + Images) => fichiers + BDD
-//                $images = Image::where('suite_id', '$images->suite_id');
-            $images = Image::where('suite_id', '$suite_id');
-            foreach ($images as $image) {
-                $image->delete();
-            }
-
             $files = $request->file("images");
             foreach ($files as $file) {
+
+                $filename = $file->getRealPath();
                 $newImageName = time() . '-' . $file->getClientOriginalName();
-                $file->move(public_path('images/'), $newImageName);
-                $request['image'] = $newImageName;
-                $request['suite_id'] = $suite->id;
+                $storage_path = "suites/{$suite->id}/{$newImageName}";
 
-//                $image = Image::make(public_path("images/{$newImageName}"))->fit(300, 300);
-//                $image->save();
+                Storage::disk('public')->put($storage_path, file_get_contents($filename));
 
-                Image::create($request->all());
+                $data['storage_path'] = $storage_path;
+                $data['suite_id'] = $suite->id;
+
+                Image::create($data);
             }
         }
 
@@ -153,5 +162,6 @@ class SuiteController extends Controller {
         return back()->with("successDelete", "La suite {$name} a été supprimée avec succès !");
 
     }
+
 
 }

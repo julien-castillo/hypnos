@@ -38,7 +38,6 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-<div class="background-public">
 
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     {{--        <symbol id="bootstrap" viewBox="0 0 118 94">--}}
@@ -245,6 +244,11 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
 
-</div>
+<!-- jQuery -->
+<script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="/js/jquery-ui.min.js"></script>
+
+@stack('scripts')
+
 </body>
 </html>

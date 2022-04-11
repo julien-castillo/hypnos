@@ -18,14 +18,16 @@ class HotelSeeder extends Seeder {
                 "city" => "Arcachon",
                 "address" => "9, route de la plage",
                 "description" => "Lorem ipsum dolor sit amet",
-                "image_path" => "chaton-seed.jpg"
+                "image_path" => "chaton-seed.jpg",
+                "user_id" => 3
             ]);
             Hotel::create([
                 "name" => "Hôtel des chips",
                 "city" => "ChipsLand",
                 "address" => "10 routes des frites",
                 "description" => "Lorem ipsum dolor sit amet",
-                "image_path" => "chaton-seed.jpg"
+                "image_path" => "chaton-seed.jpg",
+                "user_id" => 4
             ]);
         }
     }

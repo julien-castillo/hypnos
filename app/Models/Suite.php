@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Suite extends Model
 {
@@ -29,5 +30,12 @@ class Suite extends Model
         return $this->hasMany(Image::class);
     }
 
+    public function getCoverImageUrl() {
+
+        if (!empty($this->cover) && Storage::disk('public')->exists($this->cover)) {
+            return Storage::url($this->cover);
+        }
+        return '';
+    }
 
 }
