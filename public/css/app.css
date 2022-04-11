@@ -2,12 +2,15 @@
     box-sizing: border-box;
 }
 
-body{
+/*body{*/
+/*    background-image: url("/img/wallpaper-beach-2.jpg ");*/
+/*    background-size: cover;*/
+/*}*/
+
+.background-public {
     background-image: url("/img/wallpaper-beach-2.jpg ");
     background-size: cover;
-}
-.body-admin {
-background-image: url("/img/bg-admin1.jpg");
+    background-attachment: fixed;
 }
 
 .container {

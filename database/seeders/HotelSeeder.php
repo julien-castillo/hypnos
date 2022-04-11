@@ -20,5 +20,12 @@ class HotelSeeder extends Seeder {
                 "description" => "Lorem ipsum dolor sit amet",
                 "image_path" => "chaton-seed.jpg"
             ]);
+            Hotel::create([
+                "name" => "Hôtel des chips",
+                "city" => "ChipsLand",
+                "address" => "10 routes des frites",
+                "description" => "Lorem ipsum dolor sit amet",
+                "image_path" => "chaton-seed.jpg"
+            ]);
         }
     }
