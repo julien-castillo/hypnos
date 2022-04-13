@@ -99,8 +99,8 @@ class SuiteController extends Controller {
             "description" => "required",
         ]);
 
-        foreach( $request->oldImagesDeleted as $x) {
-            if ($x !== "clone")  {
+        foreach ($request->oldImagesDeleted as $x) {
+            if ($x !== "clone") {
                 $image = Image::find($x);
 
                 // Supprime le fichier en lui-meme
@@ -155,7 +155,13 @@ class SuiteController extends Controller {
         return redirect('/manager')->with("success", "La suite a été modifiée avec succès !");
     }
 
-    public function delete(Suite $suite) {
+    public function delete(Request $request, Suite $suite) {
+
+
+// todo ok pour suppression fichier cover mais pas images
+        Storage::disk('public')->delete($suite->cover);
+
+
         $name = $suite->name;
         $suite->delete();
 
