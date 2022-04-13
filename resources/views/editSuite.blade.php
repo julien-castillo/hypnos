@@ -1,6 +1,6 @@
 @extends("layouts.master")
 
-@section("editHotel")
+@section("content")
     <div class="my-3 p-3 bg-body rounded shadow-sm">
         <h3 class="update border-bottom pb-2 mb-4">Modification de la suite : {{ $suite->name }}</h3>
 

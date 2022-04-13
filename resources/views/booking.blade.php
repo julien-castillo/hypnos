@@ -1,5 +1,5 @@
 @extends("layouts.master")
-@section("booking")
+@section("content")
 
     <div class="block">
         {{-- Sidebar User --}}

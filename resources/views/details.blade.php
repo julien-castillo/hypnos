@@ -6,7 +6,7 @@
     </div>
 @endsection
 
-@section("cards-details")
+@section("content")
     <div class="card" style="width: 80%;">
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-indicators">

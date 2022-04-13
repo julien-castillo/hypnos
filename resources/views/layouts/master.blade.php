@@ -221,20 +221,7 @@
 
 <main class="container">
     @include('notifications')
-    @yield("home-title")
-    @yield("cards-hotel")
-    @yield("suites-title")
-    @yield("cards-suites")
-    @yield("details-title")
-    @yield("cards-details")
-    @yield("admin")
-    @yield("addHotel")
-    @yield("editHotel")
-    @yield("login")
-    @yield("register")
-    @yield("contact")
-    @yield("admin-contact")
-    @yield("booking")
+    @yield("content")
 </main>
 
 <footer>

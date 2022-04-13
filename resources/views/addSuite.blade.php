@@ -1,6 +1,6 @@
 @extends("layouts.master")
 
-@section("addHotel")
+@section("content")
     <div class="my-3 p-3 bg-body rounded shadow-sm">
         <h3 class="border-bottom pb-2 mb-4">Ajout d'une nouvelle suite</h3>
 

@@ -1,6 +1,6 @@
 @extends("layouts.master")
 
-@section("contact")
+@section("content")
     <div class="my-3 p-3 bg-body rounded shadow-sm" xmlns="http://www.w3.org/1999/html"
          xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
         <h3 class="border-bottom pb-2 mb-4">Formulaire de réservation</h3>

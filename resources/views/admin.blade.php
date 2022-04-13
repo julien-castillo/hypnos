@@ -1,6 +1,6 @@
 
 @extends("layouts.master")
-@section("admin")
+@section("content")
 
         <div class="block">
             {{-- Sidebar Admin --}}

@@ -1,12 +1,9 @@
 @extends("layouts.master")
 
-@section("home-title")
+@section("content")
     <div class="my-3 p-3 bg-body rounded shadow-sm">
         <h3 class="welcome border-bottom pb-2 mb-4">Bienvenue sur le groupe hôtelier Hypnos</h3>
     </div>
-@endsection
-
-@section("cards-hotel")
 
     <div class="row">
         @if($hotels->count() > 1)
