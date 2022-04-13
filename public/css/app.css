@@ -2,11 +2,6 @@
     box-sizing: border-box;
 }
 
-/*body{*/
-/*    background-image: url("/img/wallpaper-beach-2.jpg ");*/
-/*    background-size: cover;*/
-/*}*/
-
 .bg-public {
     background-image: url("/img/wallpaper-beach-2.jpg");
     background-size: cover;
@@ -16,12 +11,6 @@
     background-image: url("/img/wallpaper-admin1.jpg");
     background-size: cover;
 }
-
-/*.background-public {*/
-/*    background-image: url("/img/wallpaper-beach-2.jpg ");*/
-/*    background-size: cover;*/
-/*    background-attachment: fixed;*/
-/*}*/
 
 .container {
     padding-left: 0;
@@ -77,6 +66,7 @@ h3 {
 }
 
 .card {
+    margin: auto;
     width: 90%;
     max-width: 400px;
     padding: 2rem 2rem 0.5rem 2rem;
