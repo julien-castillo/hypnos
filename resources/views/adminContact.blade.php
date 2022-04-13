@@ -1,4 +1,4 @@
-@extends("layouts.master")
+@extends("layouts.master2")
 @section("content")
     <div class="block">
         {{-- Sidebar Admin --}}
@@ -6,7 +6,8 @@
             <h1 class="visually-hidden">Sidebars examples</h1>
 
             <div class="sidebar d-flex flex-column flex-shrink-0 p-3 text-white bg-dark">
-                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                <a href="/"
+                   class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                     <svg class="bi me-2" width="40" height="32">
                         <use xlink:href="#bootstrap"/>
                     </svg>
@@ -15,11 +16,11 @@
                 <hr>
                 <ul class="nav nav-pills flex-column mb-auto">
                     <li class="nav-item">
-                        <a href="#" class="nav-link active" aria-current="page">
+                        <a href="{{ route('admin.index') }}" class="nav-link active" aria-current="page">
                             <svg class="bi me-2" width="16" height="16">
                                 <use xlink:href="#home"/>
                             </svg>
-                            Home
+                            Hôtels ({{ $hotels->count() }})
                         </a>
                     </li>
                     <li>
@@ -27,7 +28,7 @@
                             <svg class="bi me-2" width="16" height="16">
                                 <use xlink:href="#speedometer2"/>
                             </svg>
-                            Dashboard
+                            Suites ({{ $suites->count() }})
                         </a>
                     </li>
                     <li>
@@ -35,15 +36,15 @@
                             <svg class="bi me-2" width="16" height="16">
                                 <use xlink:href="#table"/>
                             </svg>
-                            Orders
+                            Managers ({{ $managers->count() }})
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link text-white">
+                        <a href="{{ route('admin.adminContact.index') }}" class="nav-link text-white">
                             <svg class="bi me-2" width="16" height="16">
                                 <use xlink:href="#grid"/>
                             </svg>
-                            Products
+                            Messages <span class="message">({{ $contacts->count() }})</span>
                         </a>
                     </li>
                     <li>
@@ -51,11 +52,10 @@
                             <svg class="bi me-2" width="16" height="16">
                                 <use xlink:href="#people-circle"/>
                             </svg>
-                            Customers
+                            Clients ({{ $users->count() }})
                         </a>
                     </li>
                 </ul>
-                <hr>
                 {{--                <div class="dropdown">--}}
                 {{--                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"--}}
                 {{--                       id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">--}}

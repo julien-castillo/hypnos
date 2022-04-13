@@ -1,5 +1,6 @@
 
-@extends("layouts.master")
+@extends("layouts.master2")
+
 @section("content")
 
         <div class="block">
@@ -147,4 +148,5 @@
         </div>
 
 @endsection
+
 

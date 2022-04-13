@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Contact;
+use App\Models\Hotel;
+use App\Models\Suite;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller {
@@ -12,8 +15,12 @@ class ContactController extends Controller {
      * List of contact messages
      */
     public function index() {
+        $hotels = Hotel::orderBy("name", "asc")->paginate(10);
+        $suites = Suite::all();
+        $managers = User::where('role', 'manager');
+        $users = User::where('role', 'user');
         $contacts = Contact::orderBy("created_at", "asc")->paginate(10);
-        return view('adminContact', compact("contacts"));
+        return view('adminContact', compact("contacts", 'hotels', 'suites', 'managers', 'users'));
     }
 
     /**

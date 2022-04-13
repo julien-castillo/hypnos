@@ -1,4 +1,4 @@
-@extends("layouts.master")
+@extends("layouts.master1")
 
 @section("content")
     <div class="my-3 p-3 bg-body rounded shadow-sm">
@@ -6,7 +6,7 @@
     </div>
 
     <div class="row">
-        @if($suites->count() > 1)
+        @if($suites->count() > 0)
         @foreach($suites as $suite)
             <div class="col-md-3 d-flex justify-content-center mb-2">
                 <div class="card" style="width: 18rem;">

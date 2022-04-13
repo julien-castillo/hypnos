@@ -37,7 +37,7 @@
     <link href="{{ asset('css/headers.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+<body class="bg-admin">
 
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     {{--        <symbol id="bootstrap" viewBox="0 0 118 94">--}}
@@ -224,9 +224,7 @@
     @yield("content")
 </main>
 
-<footer>
-    @yield("footer")
-</footer>
+
 <script src="{{ asset('js/bootstrap.bundle.min.js') }}"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>

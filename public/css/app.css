@@ -2,8 +2,18 @@
     box-sizing: border-box;
 }
 
-body{
-    background-image: url("/img/wallpaper-beach-2.jpg ");
+/*body{*/
+/*    background-image: url("/img/wallpaper-beach-2.jpg ");*/
+/*    background-size: cover;*/
+/*}*/
+
+.bg-public {
+    background-image: url("/img/wallpaper-beach-2.jpg");
+    background-size: cover;
+}
+
+.bg-admin {
+    background-image: url("/img/wallpaper-admin1.jpg");
     background-size: cover;
 }
 

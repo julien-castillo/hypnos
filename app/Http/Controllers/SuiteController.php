@@ -161,7 +161,6 @@ class SuiteController extends Controller {
 // todo ok pour suppression fichier cover mais pas images
         Storage::disk('public')->delete($suite->cover);
 
-
         $name = $suite->name;
         $suite->delete();
 
