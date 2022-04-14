@@ -151,35 +151,5 @@
         </div>
     </div>
 @endsection
-@push('scripts')
-    <script>
-        (function ($) {
 
-            token = $('meta[name="csrf-token"]').attr('content');
-
-            var url = "/dashboard/update-stall-status";
-
-            $('select[name="status_change"]').on('change', function() {
-                var new_status = $(this).val();
-                var stall_element = $(this).parents('.stall');
-                var stall_id = stall_element.attr('data-stall');
-                var original_class = "element stall ";
-
-                $.ajax({
-                    type: "post",
-                    url: url,
-                    data: {
-                        _token: token,
-                        new_status: new_status,
-                        stall_id: stall_id,
-                    },
-                    success: function (response) {
-                        stall_element.attr('class', original_class + new_status);
-                    }
-                });
-            });
-
-        }(jQuery));
-    </script>
-@endpush
 

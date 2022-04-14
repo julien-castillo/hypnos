@@ -38,7 +38,10 @@
     left: 0;
     top: 0;
 }
-
+.error {
+    text-align: center;
+    color: red;
+}
 .border-bottom {
     border-bottom: 0!important;
 }

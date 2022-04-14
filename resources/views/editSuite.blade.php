@@ -92,7 +92,6 @@
                 $('#image-' + imageId).fadeOut(400, function () {
                     $(this).remove();
                 });
-                // console.log(clonedElement);
                 clonedElement.removeAttr('id').attr('value', imageId).insertAfter(clone);
             })
 
