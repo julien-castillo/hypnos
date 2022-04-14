@@ -8,6 +8,7 @@ use App\Http\Controllers\HotelController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\SuiteController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,7 +47,7 @@ Route::name('contact.')->prefix('contact')->group(function () {
 | Routes Admin
 |--------------------------------------------------------------------------
  */
-Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
+Route::name('admin.')->prefix('admin')->middleware('admin')->group(function () {
     Route::get('', [HotelController::class, "index"])->name('index');
 
     Route::name('adminContact.')->prefix('adminContact')->group(function () {
@@ -75,7 +76,7 @@ Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
 | Routes Manager
 |--------------------------------------------------------------------------
  */
-Route::name('manager.')->prefix('manager')->middleware('auth')->group(function () {
+Route::name('manager.')->prefix('manager')->middleware('manager')->group(function () {
     Route::get('', [SuiteController::class, "index"])->name('index');
 
     Route::name('suite.')->prefix('suite')->group(function () {
@@ -109,3 +110,4 @@ Route::name('booking.')->prefix('booking')->middleware('auth')->group(function (
 });
 
 Auth::routes();
+

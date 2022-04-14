@@ -24,7 +24,7 @@ class BookingController extends Controller {
         $hotels = Hotel::first();
         $suites = Suite::first();
 //        $hotels = Hotel::where('city', 'city');
-        $bookings = Booking::orderBy("startDate", "desc")->paginate(10);
+        $bookings = Booking::where('user_id', $user->id)->orderBy("startDate", "desc")->paginate(10);
         $users = User::all();
 
 
