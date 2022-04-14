@@ -7,6 +7,7 @@ use App\Models\Hotel;
 use App\Models\Suite;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller {
 
@@ -14,7 +15,8 @@ class AdminController extends Controller {
      * List of Managers
      */
     public function listManagers() {
-        $hotels = Hotel::orderBy("name", "asc")->paginate(10);
+        $user = Auth::user();
+        $hotels = Hotel::where('user_id', $user->id)->get();
         $suites = Suite::all();
         $contacts = Contact::all();
         $managers = User::where('role', 'manager')->get();

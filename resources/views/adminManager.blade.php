@@ -108,8 +108,7 @@
                                     <td>{{ $manager->lastname }}</td>
                                     <td>{{ $manager->firstname }}</td>
                                     <td>{{ $manager->email }}</td>
-                                    <td>{{ $manager->email }}</td>
-                                    <td>{{ $manager->id }}</td>
+                                    <td>{{ $manager->hotel->name }}</td>
                                     {{--                                <td>{{ $contact->user ? $hotel->user->displayFullName() : 'Non défini' }}</td>--}}
 
                                     <td>
