@@ -19,7 +19,7 @@
                     <hr>
                     <ul class="nav nav-pills flex-column mb-auto">
                         <li class="nav-item">
-                            <a href="#" class="nav-link active" aria-current="page">
+                            <a href="{{ route('admin.index') }}" class="nav-link active" aria-current="page">
                                 <svg class="bi me-2" width="16" height="16">
                                     <use xlink:href="#home"/>
                                 </svg>
@@ -27,7 +27,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link text-white">
+                            <a href="{{ route('admin.adminManager.listSuites') }}" class="nav-link text-white">
                                 <svg class="bi me-2" width="16" height="16">
                                     <use xlink:href="#speedometer2"/>
                                 </svg>
@@ -35,7 +35,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link text-white">
+                            <a href="{{ route('admin.adminManager.listManagers') }}" class="nav-link text-white">
                                 <svg class="bi me-2" width="16" height="16">
                                     <use xlink:href="#table"/>
                                 </svg>
@@ -51,7 +51,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link text-white">
+                            <a href="{{ route('admin.adminManager.listUsers') }}" class="nav-link text-white">
                                 <svg class="bi me-2" width="16" height="16">
                                     <use xlink:href="#people-circle"/>
                                 </svg>
@@ -81,7 +81,7 @@
 
             <div class="block1">
                 <div class="my-3 p-3 bg-body rounded shadow-sm">
-                    <h3 class="border-bottom pb-2 mb-4">Liste des établissements</h3>
+                    <h3 class="border-bottom pb-2 mb-4">Liste des établissements ( {{ $hotels->count() }} )</h3>
                     <div class="add-hotel">
                         <a href="{{ route('admin.hotel.create') }}" class="btn btn-primary">Ajouter un
                             établissement</a>

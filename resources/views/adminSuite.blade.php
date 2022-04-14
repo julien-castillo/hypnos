@@ -1,5 +1,8 @@
+
 @extends("layouts.master2")
+
 @section("content")
+
     <div class="block">
         {{-- Sidebar Admin --}}
         <div>
@@ -24,7 +27,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.adminManager.listSuites') }}" class="nav-link text-white">
+                        <a href="{{ route('admin.adminManager.listSuites') }}" class="nav-link active text-white">
                             <svg class="bi me-2" width="16" height="16">
                                 <use xlink:href="#speedometer2"/>
                             </svg>
@@ -40,7 +43,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.adminContact.index') }}" class="nav-link active text-white">
+                        <a href="{{ route('admin.adminContact.index') }}" class="nav-link text-white">
                             <svg class="bi me-2" width="16" height="16">
                                 <use xlink:href="#grid"/>
                             </svg>
@@ -78,13 +81,13 @@
 
         <div class="block1">
             <div class="my-3 p-3 bg-body rounded shadow-sm">
-                <h3 class="border-bottom pb-2 mb-4">Liste des messages reçus ( {{ $contacts->count() }} )</h3>
+                <h3 class="border-bottom pb-2 mb-4">Nombre de suites par établissement</h3>
 
-                @if($contacts->count() >= 1)
                 <div class="mt-4">
-{{--                    <div class="d-flex justify-content-end mb-2">--}}
+                    <div class="d-flex justify-content-end mb-2">
+                        {{ $hotels->links() }}
 
-{{--                    </div>--}}
+                    </div>
                     @if(session()->has("successDelete"))
                         <div class="alert alert-success">
                             <h3>{{ session()->get('successDelete') }}</h3>
@@ -95,31 +98,33 @@
                         <tr>
                             {{--                    <th scope="col">#</th>--}}
                             <th scope="col">Nom</th>
-                            <th scope="col">Prénom</th>
-                            <th scope="col">email</th>
-                            <th scope="col">Object</th>
-                            <th scope="col">Message</th>
-                            <th scope="col">Reçu le :</th>
+                            <th scope="col">Ville</th>
+                            <th scope="col">Nombre de suites</th>
+                            <th scope="col">Adresse</th>
+                            <th scope="col">Manager</th>
+                            <th scope="col">Photo</th>
                             <th scope="col">Action</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($contacts as $contact)
+                        @foreach($hotels as $hotel)
                             <tr>
                                 {{--                        <th scope="row">{{ $loop->index +1 }}</th>--}}
-                                <td>{{ $contact->lastname }}</td>
-                                <td>{{ $contact->firstname }}</td>
-                                <td>{{ $contact->email }}</td>
-                                <td>{{ $contact->subject }}</td>
-                                <td>{{ $contact->message }}</td>
-                                <td>{{ $contact->created_at->format('d/m/Y à H:i:s') }}</td>
-{{--                                <td>{{ $contact->user ? $hotel->user->displayFullName() : 'Non défini' }}</td>--}}
-
+                                <td>{{ $hotel->name }}</td>
+                                <td>{{ $hotel->city }}</td>
+                                <td>{{ $hotel->suites()->count() }}</td>
+                                <td>{{ $hotel->address }}</td>
+                                <td>{{ $hotel->user ? $hotel->user->displayFullName() : 'Non défini' }}</td>
                                 <td>
+                                    <img src="{{ asset('images/' .  $hotel->image_path) }}" alt="Photo de l'hôtel">
+                                </td>
+                                <td>
+                                    <a href="{{ route('admin.hotel.edit', ['hotel' => $hotel->id]) }}"
+                                       class="btn btn-warning">Editer</a>
                                     <a href="#" class="btn btn-danger"
-                                       onclick="if(confirm('Voulez-vous vraiment supprimer ce message ?')){document.getElementById('form-{{$contact->id}}').submit() }">Supprimer</a>
-                                    <form id="form-{{ $contact->id }}"
-                                          action="{{ route('admin.adminContact.delete', ['contact'=>$contact->id]) }}"
+                                       onclick="if(confirm('Voulez-vous vraiment supprimer cet établissement ?')){document.getElementById('form-{{$hotel->id}}').submit() }">Supprimer</a>
+                                    <form id="form-{{ $hotel->id }}"
+                                          action="{{ route('admin.hotel.delete', ['hotel'=>$hotel->id]) }}"
                                           method="post">
                                         @csrf
                                         <input type="hidden" name="_method" value="delete">
@@ -134,13 +139,11 @@
                     </table>
 
                 </div>
-                @else
-                    <div class="my-3 p-3 bg-body rounded shadow-sm">
-                        <h4 class="border-bottom pb-2 mb-4">Vous n'avez reçu aucun message</h4>
-                    </div>
-                @endif
 
             </div>
         </div>
     </div>
+
 @endsection
+
+

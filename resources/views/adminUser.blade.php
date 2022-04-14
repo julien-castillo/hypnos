@@ -40,7 +40,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.adminContact.index') }}" class="nav-link active text-white">
+                        <a href="{{ route('admin.adminContact.index') }}" class="nav-link text-white">
                             <svg class="bi me-2" width="16" height="16">
                                 <use xlink:href="#grid"/>
                             </svg>
@@ -48,7 +48,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('admin.adminManager.listUsers') }}" class="nav-link text-white">
+                        <a href="{{ route('admin.adminManager.listUsers') }}" class="nav-link active text-white">
                             <svg class="bi me-2" width="16" height="16">
                                 <use xlink:href="#people-circle"/>
                             </svg>
@@ -78,62 +78,57 @@
 
         <div class="block1">
             <div class="my-3 p-3 bg-body rounded shadow-sm">
-                <h3 class="border-bottom pb-2 mb-4">Liste des messages reçus ( {{ $contacts->count() }} )</h3>
+                <h3 class="border-bottom pb-2 mb-4">Liste des Clients ( {{ $managers->count() }} )</h3>
 
                 @if($contacts->count() >= 1)
-                <div class="mt-4">
-{{--                    <div class="d-flex justify-content-end mb-2">--}}
+                    <div class="mt-4">
+                        {{--                    <div class="d-flex justify-content-end mb-2">--}}
 
-{{--                    </div>--}}
-                    @if(session()->has("successDelete"))
-                        <div class="alert alert-success">
-                            <h3>{{ session()->get('successDelete') }}</h3>
-                        </div>
-                    @endif
-                    <table class="table table-bordered table-hover">
-                        <thead>
-                        <tr>
-                            {{--                    <th scope="col">#</th>--}}
-                            <th scope="col">Nom</th>
-                            <th scope="col">Prénom</th>
-                            <th scope="col">email</th>
-                            <th scope="col">Object</th>
-                            <th scope="col">Message</th>
-                            <th scope="col">Reçu le :</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($contacts as $contact)
+                        {{--                    </div>--}}
+                        @if(session()->has("successDelete"))
+                            <div class="alert alert-success">
+                                <h3>{{ session()->get('successDelete') }}</h3>
+                            </div>
+                        @endif
+                        <table class="table table-bordered table-hover">
+                            <thead>
                             <tr>
-                                {{--                        <th scope="row">{{ $loop->index +1 }}</th>--}}
-                                <td>{{ $contact->lastname }}</td>
-                                <td>{{ $contact->firstname }}</td>
-                                <td>{{ $contact->email }}</td>
-                                <td>{{ $contact->subject }}</td>
-                                <td>{{ $contact->message }}</td>
-                                <td>{{ $contact->created_at->format('d/m/Y à H:i:s') }}</td>
-{{--                                <td>{{ $contact->user ? $hotel->user->displayFullName() : 'Non défini' }}</td>--}}
-
-                                <td>
-                                    <a href="#" class="btn btn-danger"
-                                       onclick="if(confirm('Voulez-vous vraiment supprimer ce message ?')){document.getElementById('form-{{$contact->id}}').submit() }">Supprimer</a>
-                                    <form id="form-{{ $contact->id }}"
-                                          action="{{ route('admin.adminContact.delete', ['contact'=>$contact->id]) }}"
-                                          method="post">
-                                        @csrf
-                                        <input type="hidden" name="_method" value="delete">
-
-                                    </form>
-
-                                </td>
+                                <th scope="col">Nom</th>
+                                <th scope="col">Prénom</th>
+                                <th scope="col">email</th>
+                                <th scope="col">Action</th>
                             </tr>
-                        @endforeach
-                        </tbody>
+                            </thead>
+                            <tbody>
 
-                    </table>
+                            @foreach($users as $user)
 
-                </div>
+                                <tr>
+                                    <td>{{ $user->lastname }}</td>
+                                    <td>{{ $user->firstname }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $user->id }}</td>
+                                    {{--                                <td>{{ $contact->user ? $hotel->user->displayFullName() : 'Non défini' }}</td>--}}
+
+                                    <td>
+                                        <a href="#" class="btn btn-danger"
+                                           onclick="if(confirm('Voulez-vous vraiment supprimer ce message ?')){document.getElementById('form-{{$user->id}}').submit() }">Supprimer</a>
+                                        <form id="form-{{ $user->id }}"
+                                              action="{{ route('admin.adminManager.delete', ['contact'=>$user->id]) }}"
+                                              method="post">
+                                            @csrf
+                                            <input type="hidden" name="_method" value="delete">
+
+                                        </form>
+
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+
+                        </table>
+
+                    </div>
                 @else
                     <div class="my-3 p-3 bg-body rounded shadow-sm">
                         <h4 class="border-bottom pb-2 mb-4">Vous n'avez reçu aucun message</h4>

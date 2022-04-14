@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
@@ -51,6 +52,13 @@ Route::name('admin.')->prefix('admin')->middleware('auth')->group(function () {
     Route::name('adminContact.')->prefix('adminContact')->group(function () {
         Route::get('', [ContactController::class, "index"])->name('index');
         Route::delete('{contact}', [ContactController::class, "delete"])->name('delete');
+    });
+
+    Route::name('adminManager.')->prefix('adminManager')->group(function () {
+        Route::get('list-managers', [AdminController::class, "listManagers"])->name('listManagers');
+        Route::get('list-users', [AdminController::class, "listUsers"])->name('listUsers');
+        Route::get('list-suites', [AdminController::class, "listSuites"])->name('listSuites');
+        Route::delete('{contact}', [AdminController::class, "delete"])->name('delete');
     });
 
     Route::name('hotel.')->prefix('hotel')->group(function () {

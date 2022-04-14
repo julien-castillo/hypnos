@@ -19,8 +19,8 @@ class HotelController extends Controller {
         $hotels = Hotel::orderBy("name", "asc")->paginate(10);
         $suites = Suite::all();
         $contacts = Contact::all();
-        $managers = User::where('role', 'manager');
-        $users = User::where('role', 'user');
+        $managers = User::where('role', 'manager')->get();
+        $users = User::where('role', 'user')->get();
         return view('admin', compact("hotels", "suites", "contacts", "users", "managers"));
     }
 

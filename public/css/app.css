@@ -107,5 +107,6 @@ h4.border-bottom.pb-2.mb-4 {
 
 span.message {
     color: #d63384;
+    font-weight: bold;
 }
 
