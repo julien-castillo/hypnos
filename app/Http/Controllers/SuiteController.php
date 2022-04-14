@@ -155,11 +155,16 @@ class SuiteController extends Controller {
         return redirect('/manager')->with("success", "La suite a été modifiée avec succès !");
     }
 
-    public function delete(Request $request, Suite $suite) {
+    public function delete(Suite $suite) {
 
 
 // todo ok pour suppression fichier cover mais pas images
         Storage::disk('public')->delete($suite->cover);
+
+        foreach ($suite->images as $image) {
+            Storage::disk('public')->delete($image->storage_path);
+        }
+        Storage::disk('public')->deleteDirectory("suites/{$suite->id}");
 
         $name = $suite->name;
         $suite->delete();
