@@ -59,6 +59,7 @@ class ManagerController extends Controller {
         $suites = Suite::all();
         $managers = User::where('role', 'manager')->get();
         $contacts = Contact::all();
+
         $users = User::where('role', 'manager')->orderBy('lastname', 'asc')->get();
         return view("editManager", compact("hotels", "users", 'suites', 'managers', 'contacts', 'user'));
     }
@@ -81,7 +82,7 @@ class ManagerController extends Controller {
         return back()->with("success", "Etablissement modifié avec succès !");
 
     }
-//
+
 //    public function delete(Hotel $hotel) {
 //        $name = $hotel->name;
 //        $hotel->delete();
