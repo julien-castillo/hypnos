@@ -80,7 +80,7 @@
             <div class="my-3 p-3 bg-body rounded shadow-sm">
                 <h3 class="border-bottom pb-2 mb-4">Liste des Clients ( {{ $managers->count() }} )</h3>
 
-                @if($contacts->count() >= 1)
+                @if($users->count() >= 1)
                     <div class="mt-4">
                         {{--                    <div class="d-flex justify-content-end mb-2">--}}
 
@@ -107,7 +107,6 @@
                                     <td>{{ $user->lastname }}</td>
                                     <td>{{ $user->firstname }}</td>
                                     <td>{{ $user->email }}</td>
-                                    <td>{{ $user->id }}</td>
                                     {{--                                <td>{{ $contact->user ? $hotel->user->displayFullName() : 'Non défini' }}</td>--}}
 
                                     <td>

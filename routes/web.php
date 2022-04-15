@@ -6,6 +6,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\ManagerController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\SuiteController;
 use Illuminate\Support\Facades\Auth;
@@ -59,6 +60,8 @@ Route::name('admin.')->prefix('admin')->middleware('admin')->group(function () {
         Route::get('list-managers', [AdminController::class, "listManagers"])->name('listManagers');
         Route::get('list-users', [AdminController::class, "listUsers"])->name('listUsers');
         Route::get('list-suites', [AdminController::class, "listSuites"])->name('listSuites');
+        Route::get('create', [ManagerController::class, "create"])->name('create');
+        Route::post('store', [ManagerController::class, "store"])->name('store');
         Route::delete('{contact}', [AdminController::class, "delete"])->name('delete');
     });
 

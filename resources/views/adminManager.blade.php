@@ -80,7 +80,7 @@
             <div class="my-3 p-3 bg-body rounded shadow-sm">
                 <h3 class="border-bottom pb-2 mb-4">Liste des Managers ( {{ $managers->count() }} )</h3>
 
-                @if($contacts->count() >= 1)
+                @if($managers->count() >= 1)
                     <div class="mt-4">
                         {{--                    <div class="d-flex justify-content-end mb-2">--}}
 
@@ -93,8 +93,7 @@
                         <table class="table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th scope="col">Nom</th>
-                                <th scope="col">Prénom</th>
+                                <th scope="col">Nom complet</th>
                                 <th scope="col">email</th>
                                 <th scope="col">Hôtel</th>
                                 <th scope="col">Action</th>
@@ -105,8 +104,7 @@
                             @foreach($managers as $manager)
 
                                 <tr>
-                                    <td>{{ $manager->lastname }}</td>
-                                    <td>{{ $manager->firstname }}</td>
+                                    <td>{{ $manager->lastname . ' ' . $manager->firstname }}</td>
                                     <td>{{ $manager->email }}</td>
                                     <td>{{ $manager->hotel->name }}</td>
                                     {{--                                <td>{{ $contact->user ? $hotel->user->displayFullName() : 'Non défini' }}</td>--}}
@@ -132,7 +130,7 @@
                     </div>
                 @else
                     <div class="my-3 p-3 bg-body rounded shadow-sm">
-                        <h4 class="border-bottom pb-2 mb-4">Vous n'avez reçu aucun message</h4>
+                        <h4 class="border-bottom pb-2 mb-4">Il n'y a aucun manager</h4>
                     </div>
                 @endif
 
