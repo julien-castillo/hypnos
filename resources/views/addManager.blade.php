@@ -2,7 +2,7 @@
 
 @section("content")
     <div class="my-3 p-3 bg-body rounded shadow-sm">
-        <h3 class="border-bottom pb-2 mb-4">Ajout d'un nouveau Manager</h3>
+        <h3 class="border-bottom pb-2 mb-4">Ajouter un nouveau Manager</h3>
 
         <div class="mt-4">
             @if(session()->has("success"))
@@ -26,7 +26,7 @@
 
                 <div class="mb-3">
                     <label for="user_id" class="form-label">Etablissements</label>
-                    <select class="form-select" name="user_id">
+                    <select class="form-select" name="hotel_id">
                         <option value="">-- Aucun Hôtel --</option>
                         @foreach($hotels as $hotel)
                             <option value="{{ $hotel->id }}">{{ $hotel->name }}</option>
@@ -44,7 +44,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary">Enregistrer</button>
-                <a href="{{ route('admin.index') }}" class="btn btn-danger">Annuler</a>
+                <a href="{{ route('admin.index') }}" class="btn btn-danger">Annuler / retour</a>
             </form>
 
         </div>

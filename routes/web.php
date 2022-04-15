@@ -62,6 +62,8 @@ Route::name('admin.')->prefix('admin')->middleware('admin')->group(function () {
         Route::get('list-suites', [AdminController::class, "listSuites"])->name('listSuites');
         Route::get('create', [ManagerController::class, "create"])->name('create');
         Route::post('store', [ManagerController::class, "store"])->name('store');
+        Route::get('{user}', [ManagerController::class, "edit"])->name('edit');
+        Route::put('{user}', [ManagerController::class, "update"])->name('update');
         Route::delete('{contact}', [AdminController::class, "delete"])->name('delete');
     });
 
