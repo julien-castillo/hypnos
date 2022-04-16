@@ -19,7 +19,7 @@
                 <div class="carousel-item active">
                     <img src="{{ asset('storage/' . $suite->cover) }}" class="d-block w-100" alt="Photo cover de la suite">
                 </div>
-                @foreach($images as $image)
+                @foreach($suite->images as $image)
                     <div class="carousel-item">
                         <img src="{{ asset('storage/' . $image->storage_path) }}" class="d-block w-100" alt="Photo de la suite">
                     </div>
