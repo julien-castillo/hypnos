@@ -28,27 +28,18 @@
 
                 <div class="mb-3">
                     <label for="hotel" class="form-label">Hôtel :</label>
-                    <select class="form-select" name="hotel" required>
+                    <select class="form-select" name="hotel" id="hotel" required>
                         <option value="">-- Selectionner un hôtel --</option>
                         @foreach($hotels as $hotel)
-                            <option
-                                value="{{ $hotel->name }}">{{ $hotel->name }}</option>
+                            <option value="{{ $hotel->id }}">{{ $hotel->name }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="mb-3">
                     <label for="suite" class="form-label">Suite :</label>
-                    <select class="form-select" name="suite" required>
-                        <option value="">-- Selectionner une suite --</option>
-
-                            @if($suites->count() < 1)
-                                <option value="">-- Aucune suite disponible --</option>
-                            @else
-                            @foreach($suites as $suite)
-                            <option
-                                value="{{ $suite->id }}">{{ $suite->name }}</option>
-                        @endforeach
-                        @endif
+                    <select class="form-select" name="suite" id="suite" required>
+                        {{-- ajax/suites--}}
+                        @include('ajax.suites')
                     </select>
                 </div>
 {{--                <div class="mb-3">--}}
@@ -57,13 +48,14 @@
 {{--                </div>--}}
                 <div class="mb-3">
                     <label for="startDate" class="form-label">Date d'arrivée</label>
-                    <input type="date" class="form-control" value="" name="startDate" required>
+                    <input type="date" class="form-control" id="startDate" name="startDate" min="{{ date('Y-m-d') }}" required autocomplete="off">
                 </div>
                 <div class="mb-3">
                     <label for="endDate" class="form-label">Date de départ</label>
-                    <input type="date" class="form-control" value="" name="endDate" required>
+                    <input type="date" class="form-control" id="endDate" name="endDate" required autocomplete="off">
                 </div>
 
+                <div id="availability_response" class="alert alert-primary">Veuillez remplir tous les champs.</div>
 
                 <a href="" class="btn btn-danger">Annuler / Retour</a>
                 <button type="submit" class="btn btn-success">Réserver</button>
@@ -77,29 +69,73 @@
     <script>
         (function ($) {
 
-            token = $('meta[name="csrf-token"]').attr('content');
+            var token = $('meta[name="csrf-token"]').attr('content');
 
-            var url = "/dashboard/update-stall-status";
-
-            $('select[name="hotel"]').on('change', function() {
-                var new_status = $(this).val();
-                var stall_element = $(this).parents('.stall');
-                var stall_id = stall_element.attr('suite');
-                var original_class = "element stall ";
-
-                $.ajax({
-                    type: "post",
-                    url: url,
-                    data: {
-                        _token: token,
-                        new_status: new_status,
-                        stall_id: stall_id,
-                    },
-                    success: function (response) {
-                        stall_element.attr('class', original_class + new_status);
-                    }
-                });
+            // Get hotel's suites when hotel is selected.
+            $('#suite').on('change', function() {
+                checkAvailability();
             });
+
+            $('#hotel').on('change', function() {
+                var hotel = $(this).val();
+                if (hotel !== "") {
+                    $.ajax({
+                        type: "post",
+                        url: 'booking/get-suites',
+                        data: {
+                            _token: token,
+                            hotel: hotel,
+                        },
+                        success: function (response) {
+                            console.log(response);
+                            $('#suite').html(response);
+                        }
+                    });
+                }
+            });
+
+            // Set minimum date of end date when start date is selected.
+            $('#startDate').on('change', function() {
+                var date = $(this).val();
+                $('#endDate').attr('min', date).val('');
+            });
+
+            // Check for room availability when end date is selected.
+            $('#endDate').on('change', function() {
+                checkAvailability();
+            });
+
+            function checkAvailability() {
+                var hotel = $('#hotel').val();
+                var suite = $('#suite').val();
+                var start_date = $('#startDate').val();
+                var end_date = $('#endDate').val();
+
+                if (hotel !== "" && suite !== "" && start_date !== "") {
+                    $.ajax({
+                        type: "post",
+                        url: "/booking/check-availability",
+                        data: {
+                            _token: token,
+                            hotel: hotel,
+                            suite: suite,
+                            start_date: start_date,
+                            end_date: end_date,
+                        },
+                        success: function (response) {
+                            console.log(response);
+                            var message = 'La suite est disponible';
+                            var cssClass = 'alert alert-success';
+
+                            if (!response) {
+                                message = "La suite n'est PAS DISPONIBLE !";
+                                cssClass = 'alert alert-danger';
+                            }
+                            $('#availability_response').html(message).attr('class', cssClass);
+                        }
+                    });
+                }
+            }
 
         }(jQuery));
     </script>

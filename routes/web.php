@@ -103,6 +103,8 @@ Route::name('manager.')->prefix('manager')->middleware('manager')->group(functio
  */
 Route::name('booking.')->prefix('booking')->middleware('auth')->group(function () {
     Route::get('', [BookingController::class, 'index'])->name('index');
+    Route::post('/check-availability', [BookingController::class, 'checkAvailability'])->name('checkAvailability');
+    Route::post('/get-suites', [BookingController::class, 'getHotelSuites']);
     Route::get('create', [BookingController::class, "create"])->name("create");
     Route::post('create', [BookingController::class, 'store'])->name('store');
     Route::delete('{booking}', [BookingController::class, 'delete'])->name('delete');
