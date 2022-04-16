@@ -50,9 +50,9 @@
                                         <a href="{{ route('admin.adminManager.update', ['user' => $manager->id]) }}"
                                            class="btn btn-warning">Editer</a>
                                         <a href="#" class="btn btn-danger"
-                                           onclick="if(confirm('Voulez-vous vraiment supprimer ce manager ?')){document.getElementById('form-{{$user->id}}').submit() }">Supprimer</a>
-                                        <form id="form-{{ $user->id }}"
-                                              action="{{ route('admin.adminManager.delete', ['user'=> $user->id]) }}"
+                                           onclick="if(confirm('Voulez-vous vraiment supprimer ce manager ?')){document.getElementById('form-{{$manager->id}}').submit() }">Supprimer</a>
+                                        <form id="form-{{ $manager->id }}"
+                                              action="{{ route('admin.adminManager.delete', ['user'=> $manager->id]) }}"
                                               method="post">
                                             @csrf
                                             <input type="hidden" name="_method" value="delete">

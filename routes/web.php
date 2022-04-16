@@ -65,7 +65,7 @@ Route::name('admin.')->prefix('admin')->middleware('admin')->group(function () {
         Route::get('{user}', [ManagerController::class, "edit"])->name('edit');
         Route::put('{user}', [ManagerController::class, "update"])->name('update');
         Route::delete('{user}', [ManagerController::class, "delete"])->name('delete');
-        Route::delete('{contact}', [AdminController::class, "delete"])->name('delete');
+        Route::delete('message/{contact}', [AdminController::class, "delete"])->name('deleteMessage');
     });
 
     Route::name('hotel.')->prefix('hotel')->group(function () {
