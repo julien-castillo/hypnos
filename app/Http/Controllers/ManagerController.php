@@ -89,10 +89,10 @@ class ManagerController extends Controller {
 
     public function delete(User $user, Request $request) {
         $user->role = 'user';
-
         $user->save();
+        Hotel::where('user_id', $user->id)->update(['user_id' => NULL]);
 
-        return redirect('/admin/adminManager')->with("successDelete", "Le manager a été supprimé, il est désormais un simple client enregistré.");
+        return back()->with("successDelete", "Le manager a été supprimé, il est désormais un simple client enregistré.");
 
     }
 
