@@ -15,17 +15,17 @@ class PublicController extends Controller {
     }
 
     public function suite(Hotel $hotel, Suite $suite) {
-//        $images = Image::where('storage_path', $suite->id);
-        $images = Image::all();
-        return view('details', compact("suite", "hotel", 'images'));
+        return view('details', compact("suite", "hotel"));
     }
 
     public function contact() {
         return view('contact');
     }
 
-    public function booking() {
+    public function booking(Request $request) {
+      $selected_hotel = $request->hotel ?? NULL;
+      $selected_suite = $request->suite ?? NULL;
         $hotels = Hotel::all();
-        return view('addBooking', compact('hotels'));
+        return view('addBooking', compact('hotels', 'selected_hotel', 'selected_suite'));
     }
 }

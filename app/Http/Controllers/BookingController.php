@@ -77,6 +77,7 @@ class BookingController extends Controller {
 
         return View::make('ajax/suites', [
             'suites' => $suites,
+            'selected_suite' => $request->selected_suite
         ])->render();
     }
 

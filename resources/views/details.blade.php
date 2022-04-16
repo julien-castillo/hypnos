@@ -44,7 +44,7 @@
             <p class="card-text">{{ $suite->description }}</p>
         </div>
         <div class="card-body">
-            <a href="#" class="btn btn-success m-2">Réserver</a>
+            <a href="{{ route("addBooking") }}?hotel={{ $suite->hotel->id }}&suite={{ $suite->id }}" class="btn btn-success m-2">Réserver</a>
             <a href="{{ route('suites', ['hotel' => $hotel]) }}" class="btn btn-primary m-2">Voir les autres suites</a>
         </div>
     </div>

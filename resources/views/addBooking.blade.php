@@ -31,13 +31,15 @@
                     <select class="form-select" name="hotel" id="hotel" required>
                         <option value="">-- Selectionner un hôtel --</option>
                         @foreach($hotels as $hotel)
-                            <option value="{{ $hotel->id }}">{{ $hotel->name }}</option>
+                            <option
+                                value="{{ $hotel->id }}" {{ $selected_hotel == $hotel->id ? 'selected' : '' }}>{{ $hotel->name }}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="mb-3">
                     <label for="suite" class="form-label">Suite :</label>
-                    <select class="form-select" name="suite" id="suite" required>
+                    <select class="form-select" name="suite" id="suite" data-selected-suite="{{ $selected_suite }}"
+                            required>
                         {{-- ajax/suites--}}
                         @include('ajax.suites')
                     </select>
@@ -60,7 +62,7 @@
 
                 <a href="" class="btn btn-danger">Annuler / Retour</a>
 
-                        <button type="submit" class="btn btn-success">Réserver</button>
+                <button type="submit" class="btn btn-success">Réserver</button>
 
             </form>
 
@@ -73,6 +75,7 @@
         (function ($) {
 
             var token = $('meta[name="csrf-token"]').attr('content');
+            getHotelSuites();
 
             // Get hotel's suites when hotel is selected.
             $('#suite').on('change', function () {
@@ -80,21 +83,7 @@
             });
 
             $('#hotel').on('change', function () {
-                var hotel = $(this).val();
-                if (hotel !== "") {
-                    $.ajax({
-                        type: "post",
-                        url: 'booking/get-suites',
-                        data: {
-                            _token: token,
-                            hotel: hotel,
-                        },
-                        success: function (response) {
-                            console.log(response);
-                            $('#suite').html(response);
-                        }
-                    });
-                }
+                getHotelSuites();
             });
 
             // Set minimum date of end date when start date is selected.
@@ -107,6 +96,26 @@
             $('#endDate').on('change', function () {
                 checkAvailability();
             });
+
+            function getHotelSuites() {
+                var hotel = $('#hotel').val();
+                var selected_suite = $('#suite').attr('data-selected-suite');
+                if (hotel !== "") {
+                    $.ajax({
+                        type: "post",
+                        url: 'booking/get-suites',
+                        data: {
+                            _token: token,
+                            hotel: hotel,
+                            selected_suite: selected_suite
+                        },
+                        success: function (response) {
+                            console.log(response);
+                            $('#suite').html(response);
+                        }
+                    });
+                }
+            }
 
             function checkAvailability() {
                 var hotel = $('#hotel').val();
