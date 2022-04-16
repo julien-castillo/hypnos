@@ -20,7 +20,7 @@
                     </ul>
                 </div>
             @endif
-            @if( $hotels->user_id == null)
+            @if($hotelsSansManager > 0 or $noManager < 1)
                 <form style="width: 55%;" method="post" action="{{ route('admin.adminManager.store') }}"
                       enctype="multipart/form-data">
 

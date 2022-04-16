@@ -28,8 +28,11 @@ class ManagerController extends Controller {
      */
     public function create() {
         $users = User::where('role', 'user')->orderBy('lastname', 'asc')->get();
-        $hotels = Hotel::all();
-        return view('addManager', compact("users", "hotels"));
+        $hotels = Hotel::where('user_id', null)->get();
+
+        $hotelsSansManager = Hotel::where('user_id', null)->count();
+        $noManager = User::where('role', 'manager')->count();
+        return view('addManager', compact("users", "hotels", "hotelsSansManager", "noManager"));
     }
 
     public function store(Request $request) {
@@ -41,6 +44,7 @@ class ManagerController extends Controller {
 
         $user = User::find($request->get('user_id'));
         $hotel = Hotel::find($request->hotel_id);
+
 
         $user->role = 'manager';
 
@@ -83,13 +87,14 @@ class ManagerController extends Controller {
 
     }
 
-//    public function delete(Hotel $hotel) {
-//        $name = $hotel->name;
-//        $hotel->delete();
-//
-//        return back()->with("successDelete", "'$name' a été supprimé avec succès !");
-//
-//    }
+    public function delete(User $user, Request $request) {
+        $user->role = 'user';
+
+        $user->save();
+
+        return redirect('/admin/adminManager')->with("successDelete", "Le manager a été supprimé, il est désormais un simple client enregistré.");
+
+    }
 
 
 }
