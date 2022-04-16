@@ -1,4 +1,4 @@
-@extends("layouts.master2")
+@extends("layouts.masterAdmin")
 @section("content")
     <div class="block">
         {{-- Sidebar Admin --}}
@@ -78,7 +78,7 @@
 
         <div class="block1">
             <div class="my-3 p-3 bg-body rounded shadow-sm">
-                <h3 class="border-bottom pb-2 mb-4">Liste des Clients ( {{ $managers->count() }} )</h3>
+                <h3 class="border-bottom pb-2 mb-4">Liste des Clients ( {{ $users->count() }} )</h3>
 
                 @if($users->count() >= 1)
                     <div class="mt-4">
@@ -96,7 +96,7 @@
                                 <th scope="col">Nom</th>
                                 <th scope="col">Prénom</th>
                                 <th scope="col">email</th>
-                                <th scope="col">Action</th>
+{{--                                <th scope="col">Action</th>--}}
                             </tr>
                             </thead>
                             <tbody>
@@ -109,18 +109,18 @@
                                     <td>{{ $user->email }}</td>
                                     {{--                                <td>{{ $contact->user ? $hotel->user->displayFullName() : 'Non défini' }}</td>--}}
 
-                                    <td>
-                                        <a href="#" class="btn btn-danger"
-                                           onclick="if(confirm('Voulez-vous vraiment supprimer ce message ?')){document.getElementById('form-{{$user->id}}').submit() }">Supprimer</a>
-                                        <form id="form-{{ $user->id }}"
-                                              action="{{ route('admin.adminManager.delete', ['contact'=>$user->id]) }}"
-                                              method="post">
-                                            @csrf
-                                            <input type="hidden" name="_method" value="delete">
+{{--                                    <td>--}}
+{{--                                        <a href="#" class="btn btn-danger"--}}
+{{--                                           onclick="if(confirm('Voulez-vous vraiment supprimer ce message ?')){document.getElementById('form-{{$user->id}}').submit() }">Supprimer</a>--}}
+{{--                                        <form id="form-{{ $user->id }}"--}}
+{{--                                              action="{{ route('admin.adminManager.delete', ['contact'=>$user->id]) }}"--}}
+{{--                                              method="post">--}}
+{{--                                            @csrf--}}
+{{--                                            <input type="hidden" name="_method" value="delete">--}}
 
-                                        </form>
+{{--                                        </form>--}}
 
-                                    </td>
+{{--                                    </td>--}}
                                 </tr>
                             @endforeach
                             </tbody>

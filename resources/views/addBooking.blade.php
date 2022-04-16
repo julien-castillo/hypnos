@@ -1,4 +1,4 @@
-@extends("layouts.master1")
+@extends("layouts.master")
 
 @section("content")
     <div class="my-3 p-3 bg-body rounded shadow-sm" xmlns="http://www.w3.org/1999/html"
@@ -42,13 +42,14 @@
                         @include('ajax.suites')
                     </select>
                 </div>
-{{--                <div class="mb-3">--}}
-{{--                    <label for="user" class="form-label">Client</label>--}}
-{{--                    <input type="text" class="form-control" value="{{ $user->id }}" name="user" required>--}}
-{{--                </div>--}}
+                {{--                <div class="mb-3">--}}
+                {{--                    <label for="user" class="form-label">Client</label>--}}
+                {{--                    <input type="text" class="form-control" value="{{ $user->id }}" name="user" required>--}}
+                {{--                </div>--}}
                 <div class="mb-3">
                     <label for="startDate" class="form-label">Date d'arrivée</label>
-                    <input type="date" class="form-control" id="startDate" name="startDate" min="{{ date('Y-m-d') }}" required autocomplete="off">
+                    <input type="date" class="form-control" id="startDate" name="startDate" min="{{ date('Y-m-d') }}"
+                           required autocomplete="off">
                 </div>
                 <div class="mb-3">
                     <label for="endDate" class="form-label">Date de départ</label>
@@ -58,7 +59,9 @@
                 <div id="availability_response" class="alert alert-primary">Veuillez remplir tous les champs.</div>
 
                 <a href="" class="btn btn-danger">Annuler / Retour</a>
-                <button type="submit" class="btn btn-success">Réserver</button>
+
+                        <button type="submit" class="btn btn-success">Réserver</button>
+
             </form>
 
         </div>
@@ -72,11 +75,11 @@
             var token = $('meta[name="csrf-token"]').attr('content');
 
             // Get hotel's suites when hotel is selected.
-            $('#suite').on('change', function() {
+            $('#suite').on('change', function () {
                 checkAvailability();
             });
 
-            $('#hotel').on('change', function() {
+            $('#hotel').on('change', function () {
                 var hotel = $(this).val();
                 if (hotel !== "") {
                     $.ajax({
@@ -95,13 +98,13 @@
             });
 
             // Set minimum date of end date when start date is selected.
-            $('#startDate').on('change', function() {
+            $('#startDate').on('change', function () {
                 var date = $(this).val();
                 $('#endDate').attr('min', date).val('');
             });
 
             // Check for room availability when end date is selected.
-            $('#endDate').on('change', function() {
+            $('#endDate').on('change', function () {
                 checkAvailability();
             });
 

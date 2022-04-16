@@ -1,4 +1,4 @@
-@extends("layouts.master1")
+@extends("layouts.master")
 
 @section("content")
     <div class="my-3 p-3 bg-body rounded shadow-sm">
@@ -10,9 +10,10 @@
         @foreach($suites as $suite)
             <div class="col-md-3 d-flex justify-content-center mb-2">
                 <div class="card" style="width: 18rem;">
-                    <img src="/cover/{{ $suite->cover }}" class="card-img-top" alt="...">
+                    <img src="{{ asset('storage/' . $suite->cover) }}" class="card-img-top" alt="Photo cover de la suite">
                     <div class="card-body">
                         <h5 class="card-title">{{ $suite->name }}</h5>
+                        <h5 class="card-title">{{ $suite->price . ' ' . '€' }}</h5>
                         <p class="card-text">{{ $suite->description }}</p>
                         <a href="{{ route('details',['hotel' => $hotel, 'suite' => $suite]) }}" class="btn btn-primary">Détails
                             de la suite</a>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Hotel;
+use App\Models\Image;
 use App\Models\Suite;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,9 @@ class PublicController extends Controller {
     }
 
     public function suite(Hotel $hotel, Suite $suite) {
-        return view('details', compact("suite", "hotel"));
+//        $images = Image::where('storage_path', $suite->id);
+        $images = Image::all();
+        return view('details', compact("suite", "hotel", 'images'));
     }
 
     public function contact() {

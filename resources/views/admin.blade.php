@@ -1,5 +1,5 @@
 
-@extends("layouts.master2")
+@extends("layouts.masterAdmin")
 
 @section("content")
 

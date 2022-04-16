@@ -1,4 +1,4 @@
-@extends("layouts.master1")
+@extends("layouts.master")
 
 @section("content")
     <div class="my-3 p-3 bg-body rounded shadow-sm">

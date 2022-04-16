@@ -16,7 +16,8 @@ class AdminController extends Controller {
      */
     public function listManagers() {
         $user = Auth::user();
-        $hotels = Hotel::where('user_id', $user->id)->get();
+//        $hotels = Hotel::where('user_id', $user->id)->get();
+        $hotels = Hotel::all();
         $suites = Suite::all();
         $contacts = Contact::all();
         $managers = User::where('role', 'manager')->get();
