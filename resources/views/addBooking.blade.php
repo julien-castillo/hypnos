@@ -62,7 +62,7 @@
 
                 <a href="" class="btn btn-danger">Annuler / Retour</a>
 
-                <button type="submit" class="btn btn-success">Réserver</button>
+                <button type="submit" class="btn btn-success" id="btn_reserver" hidden >Réserver</button>
 
             </form>
 
@@ -138,10 +138,12 @@
                             console.log(response);
                             var message = 'La suite est disponible';
                             var cssClass = 'alert alert-success';
+                            $("#btn_reserver").prop('hidden', false);
 
                             if (!response) {
                                 message = "La suite n'est PAS DISPONIBLE !";
                                 cssClass = 'alert alert-danger';
+                                $("#btn_reserver").prop('hidden', true);
                             }
                             $('#availability_response').html(message).attr('class', cssClass);
                         }
