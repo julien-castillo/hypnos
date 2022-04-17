@@ -56,22 +56,6 @@
                         </a>
                     </li>
                 </ul>
-                {{--                <div class="dropdown">--}}
-                {{--                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"--}}
-                {{--                       id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">--}}
-                {{--                        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">--}}
-                {{--                        <strong>mdo</strong>--}}
-                {{--                    </a>--}}
-                {{--                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">--}}
-                {{--                        <li><a class="dropdown-item" href="#">New project...</a></li>--}}
-                {{--                        <li><a class="dropdown-item" href="#">Settings</a></li>--}}
-                {{--                        <li><a class="dropdown-item" href="#">Profile</a></li>--}}
-                {{--                        <li>--}}
-                {{--                            <hr class="dropdown-divider">--}}
-                {{--                        </li>--}}
-                {{--                        <li><a class="dropdown-item" href="#">Sign out</a></li>--}}
-                {{--                    </ul>--}}
-                {{--                </div>--}}
             </div>
         </div>
         {{-- End of Sidebar Admin --}}
@@ -82,9 +66,6 @@
 
                 @if($users->count() >= 1)
                     <div class="mt-4">
-                        {{--                    <div class="d-flex justify-content-end mb-2">--}}
-
-                        {{--                    </div>--}}
                         @if(session()->has("successDelete"))
                             <div class="alert alert-success">
                                 <h3>{{ session()->get('successDelete') }}</h3>
@@ -93,10 +74,9 @@
                         <table class="table table-bordered table-hover">
                             <thead>
                             <tr>
-                                <th scope="col">Nom</th>
-                                <th scope="col">Prénom</th>
+                                <th scope="col">Client (Prénom Nom)</th>
                                 <th scope="col">email</th>
-{{--                                <th scope="col">Action</th>--}}
+                                <th scope="col">Client depuis le</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -104,23 +84,9 @@
                             @foreach($users as $user)
 
                                 <tr>
-                                    <td>{{ $user->lastname }}</td>
-                                    <td>{{ $user->firstname }}</td>
+                                    <td>{{ $user->firstname . ' ' . $user->lastname }}</td>
                                     <td>{{ $user->email }}</td>
-                                    {{--                                <td>{{ $contact->user ? $hotel->user->displayFullName() : 'Non défini' }}</td>--}}
-
-{{--                                    <td>--}}
-{{--                                        <a href="#" class="btn btn-danger"--}}
-{{--                                           onclick="if(confirm('Voulez-vous vraiment supprimer ce message ?')){document.getElementById('form-{{$user->id}}').submit() }">Supprimer</a>--}}
-{{--                                        <form id="form-{{ $user->id }}"--}}
-{{--                                              action="{{ route('admin.adminManager.delete', ['contact'=>$user->id]) }}"--}}
-{{--                                              method="post">--}}
-{{--                                            @csrf--}}
-{{--                                            <input type="hidden" name="_method" value="delete">--}}
-
-{{--                                        </form>--}}
-
-{{--                                    </td>--}}
+                                    <td>{{ $user->created_at->format('d/m/Y à H:i:s') }}</td>
                                 </tr>
                             @endforeach
                             </tbody>
@@ -137,4 +103,5 @@
             </div>
         </div>
     </div>
+    @include("layouts.footer")
 @endsection

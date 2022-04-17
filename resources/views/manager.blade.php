@@ -25,11 +25,12 @@
                     <th scope="col">Prix</th>
                     <th scope="col">Description</th>
                     <th scope="col">Cover</th>
+                    <th scope="col">Action</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($suites as $suite)
-                    <tr><th scope="row">{{ $loop->index +1 }}</th>
+                    <tr>
                         <td>{{ $suite->name }}</td>
                         <td>{{ $suite->price . ' '. '€' }}</td>
                         <td>{{ $suite->description }}</td>
@@ -55,4 +56,5 @@
         </div>
 
     </div>
+    @include("layouts.footer")
 @endsection

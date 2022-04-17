@@ -5,21 +5,6 @@
         <h3 class="update border-bottom pb-2 mb-4">Modification de l'établissement : {{ $hotel->name }}</h3>
 
         <div class="mt-4">
-            @if(session()->has("success"))
-                <div class="alert alert-success">
-                    <h3>{{ session()->get('success') }}</h3>
-                </div>
-            @endif
-
-            @if ($errors->any())
-                <div class=" alert alert-danger">
-                    <ul>
-                        @foreach($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
             <form style="width: 65%;" method="post" action="{{ route('admin.hotel.update', ['hotel'=>$hotel->id]) }}" enctype="multipart/form-data">
 
                 @csrf
@@ -65,4 +50,5 @@
         </div>
 
     </div>
+    @include("layouts.footer")
 @endsection

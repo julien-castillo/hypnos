@@ -1,25 +1,111 @@
-* {
+html, body {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
 .bg-public {
-    background-image: url("/img/wallpaper-beach-2.jpg");
+    background-image: url("/storage/images/wallpaper-sea.jpg");
     background-size: cover;
+    /*height: 100vh*/
+    /*height: 100vh;*/
+    /*background: #D0E4F5 none no-repeat scroll 0 0;*/
+    /*background: radial-gradient(circle, rgba(2,0,36,0.12648809523809523) 0%, rgba(0,212,255,1) 0%, rgba(9,9,121,1) 79%);*/
+    /*background: radial-gradient(circle, rgba(252,118,70,0.227328431372549) 0%, rgba(252,118,70,1) 100%);*/
+    /*background: linear-gradient(0deg, rgba(77,0,200,1) 19%, rgba(255,174,0,1) 100%);*/
+    /*background: radial-gradient(circle, rgba(21,181,177,1) 0%, rgba(9,94,121,1) 100%, rgba(0,0,0,0.12648809523809523) 100%);*/
+    /*background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1005%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='rgba(20%2c 193%2c 195%2c 1)'%3e%3c/rect%3e%3cpath d='M 0%2c195 C 57.6%2c173.4 172.8%2c79.6 288%2c87 C 403.2%2c94.4 460.8%2c239.6 576%2c232 C 691.2%2c224.4 748.8%2c41.6 864%2c49 C 979.2%2c56.4 1036.8%2c277.2 1152%2c269 C 1267.2%2c260.8 1382.4%2c60.2 1440%2c8L1440 560L0 560z' fill='rgba(13%2c 130%2c 137%2c 1)'%3e%3c/path%3e%3cpath d='M 0%2c429 C 96%2c426.4 288%2c397.6 480%2c416 C 672%2c434.4 768%2c536 960%2c521 C 1152%2c506 1344%2c377 1440%2c341L1440 560L0 560z' fill='rgba(74%2c 164%2c 175%2c 1)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1005'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");*/
+    /*background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1000%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='%230e2a47'%3e%3c/rect%3e%3cpath d='M0%2c676.995C123.459%2c648.193%2c175.521%2c504.719%2c270.139%2c420.344C346.441%2c352.303%2c446.928%2c315.376%2c502.062%2c229.284C562.217%2c135.351%2c597.766%2c26.073%2c594.025%2c-85.408C590.034%2c-204.361%2c559.043%2c-326.932%2c480.401%2c-416.27C402%2c-505.334%2c281.718%2c-538.325%2c167.388%2c-570.071C54.525%2c-601.409%2c-64.588%2c-635.458%2c-175.722%2c-598.454C-285.442%2c-561.921%2c-344.474%2c-450.691%2c-428.802%2c-371.559C-524.721%2c-281.549%2c-691.274%2c-232.199%2c-705.388%2c-101.42C-719.608%2c30.34%2c-553.175%2c107.059%2c-493.211%2c225.242C-436.81%2c336.403%2c-457.346%2c484.42%2c-365.426%2c568.614C-269.797%2c656.204%2c-126.289%2c706.457%2c0%2c676.995' fill='%230b2239'%3e%3c/path%3e%3cpath d='M1440 1028.555C1526.19 1018.125 1561.851 910.094 1636.464 865.7049999999999 1715.193 818.867 1833.584 838.915 1885.562 763.481 1937.399 688.252 1901.234 585.909 1891.879 495.03 1882.132 400.337 1887.371 298.042 1829.844 222.19799999999998 1771.083 144.72699999999998 1676.413 95.19999999999999 1579.864 83.668 1489.189 72.83800000000002 1410.995 137.11399999999998 1323.039 161.66699999999997 1233.504 186.66000000000003 1124.588 164.08499999999998 1058.305 229.26 991.514 294.935 987.619 400.894 984.534 494.514 981.688 580.873 1000.688 665.821 1041.406 742.032 1080.437 815.085 1143.147 868.921 1210.4 917.265 1280.887 967.933 1353.821 1038.984 1440 1028.555' fill='%23113255'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1000'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");*/
+
 }
 
 .bg-admin {
-    background-image: url("/img/wallpaper-admin1.jpg");
+    background-image: url("/storage/images/wallpaper-admin2.jpg");
     background-size: cover;
+    background-repeat: no-repeat;
+
 }
+
+.footer {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 100%;
+}
+
+h5 {
+    text-align: center;
+}
+
+a.nav-link {
+    color: white;
+    transition: all 0.4s ease;
+}
+
+a.btn {
+    margin: 6px;
+}
+
+.nav-link:focus, .nav-link:hover {
+    color: white;
+}
+
+.btn-link {
+    color: black;
+    text-decoration: none;
+}
+
+.btn-welcome {
+    display: flex;
+    justify-content: center;
+}
+
+.card-header {
+    text-align: center;
+}
+
+.card-text {
+    text-align: center;
+}
+
+.login {
+    padding-bottom: 20px;
+}
+
+.card-login, .card-register {
+    margin: auto;
+    padding: 1rem 1rem 1rem 1rem;
+    backdrop-filter: blur(1rem);
+    box-shadow: 1.3rem 1.3rem 1.3rem rgb(0 0 0 / 50%);
+    background-color: rgba(225, 225, 225, 0.05);
+    border: 1px solid rgba(225, 225, 225, 0.5);
+    border-right-color: rgba(225, 225, 225, 0.1);
+    border-bottom-color: rgba(225, 225, 225, 0.1);
+}
+
+.link-register {
+    text-align: center;
+    padding: 10px 10px 0 10px;
+}
+
+.col-form-label {
+    padding-right: 10px;
+}
+
 
 .container {
     padding-left: 0;
     margin-left: 0;
     display: inline;
+    min-height: 100%;
+    position: relative;
 }
 
 .row {
     --bs-gutter-x: 0;
+    justify-content: center;
 }
 
 .bg-body {
@@ -31,6 +117,10 @@
     justify-content: center;
 }
 
+.block1-admin-hotel {
+    width: 70%;
+}
+
 .sidebar {
     position: fixed;
     width: 200px;
@@ -38,24 +128,28 @@
     left: 0;
     top: 0;
 }
+
 .error {
     text-align: center;
     color: red;
 }
+
 .border-bottom {
-    border-bottom: 0!important;
+    border-bottom: 0 !important;
 }
- .py-2 {
-     padding-bottom: 0!important;
- }
+
+.py-2 {
+    padding-bottom: 0 !important;
+}
+
 .py-3 {
-    padding-top: 0!important;
-    padding-bottom: 0!important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
 }
 
 .my-4 {
-    margin-top: 0!important;
-    margin-bottom: 0!important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
 }
 
 .mt-4 {
@@ -63,26 +157,79 @@
     justify-content: center;
 }
 
+.mb-4 {
+    margin-bottom: 0 !important;
+}
+
 
 h3 {
     text-align: center;
 }
 
+p.success {
+    text-align: center;
+    color: green;
+}
+
+p.error {
+    text-align: center;
+    color: red;
+}
+
+.table {
+    text-align: center;
+}
+
+a.nav-link-footer {
+    text-decoration: none;
+}
+
+a.nav-link-footer:hover {
+    color: black !important;
+    text-decoration: underline;
+}
+
 .card {
     margin: auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     width: 90%;
-    max-width: 400px;
+    /*max-width: 400px;*/
     padding: 2rem 2rem 0.5rem 2rem;
     backdrop-filter: blur(1rem);
-    box-shadow: 1.3rem 1.3rem 1.3rem rgba(0,0,0,0.5);
-    background-color: rgba(225,225,225,0.05);
-    border: 1px solid rgba(225, 225, 225, 0.5);
-    border-right-color: rgba(225, 225, 225, 0.1);
-    border-bottom-color: rgba(225, 225, 225, 0.1);
+    box-shadow: 1.3rem 1.3rem 1.3rem rgba(0, 0, 0, 0.5);
+    background-color: rgba(225, 225, 225, 0.05);
+    /*border: 1px solid rgba(225, 225, 225, 0.5);*/
+    /*border-right-color: rgba(225, 225, 225, 0.1);*/
+    /*border-bottom-color: rgba(225, 225, 225, 0.1);*/
+    transition: all 0.4s ease;
+    opacity: 0.9;
+    border: 1px solid black;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    opacity: 1;
+    border: 1px solid white;
+}
+
+.card-title {
+    text-align: center;
 }
 
 .card-body {
     padding: 1rem 1rem 0.5rem 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.suites {
+    padding: 1rem 1rem 0.5rem 1rem;
+    display: contents;
+}
+
+.welcome {
+    display: block;
 }
 
 .update {
@@ -111,5 +258,23 @@ h4.border-bottom.pb-2.mb-4 {
 span.message {
     color: #d63384;
     font-weight: bold;
+}
+
+.swiper {
+    width: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.swiper-slide {
+    background-position: center;
+    background-size: cover;
+    width: 300px;
+    height: 300px;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
 }
 

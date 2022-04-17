@@ -18,7 +18,7 @@ class SuiteSeeder extends Seeder
             "name" => "Suite n°1",
             "price" => "100",
             "description" => "Lorem ipsum dolor sit amet",
-            "cover" => "chaton-seed.jpg",
+            "cover" => "coverHotel/chaton-seed.jpg",
             "hotel_id" => 1
         ]);
 
@@ -26,7 +26,7 @@ class SuiteSeeder extends Seeder
             "name" => "Suite n°2",
             "price" => "200",
             "description" => "Lorem ipsum dolor sit amet",
-            "cover" => "chaton-seed.jpg",
+            "cover" => "coverHotel/chaton-seed.jpg",
             "hotel_id" => 1
 
         ]);
@@ -34,7 +34,7 @@ class SuiteSeeder extends Seeder
             "name" => "Suite n°3",
             "price" => "300",
             "description" => "Lorem ipsum dolor sit amet",
-            "cover" => "chaton-seed.jpg",
+            "cover" => "coverHotel/chaton-seed.jpg",
             "hotel_id" => 1
 
         ]);

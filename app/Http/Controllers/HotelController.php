@@ -96,32 +96,32 @@ class HotelController extends Controller {
             "photo" => "mimes:jpg,png,jpeg|max:5048"
         ]);
 
-        $file = $request->file("photo");
-        $filename = $file->getRealPath();
-        $newImageName = time() . '-' . $file->getClientOriginalName();
-        $image_path = "coverHotel/{$newImageName}";
+        if($request->hasFile('photo')) {
+            if (Storage::disk('public')->exists($hotel->image_path)) {
+                Storage::disk('public')->delete($hotel->image_path);
+            }
+            $file = $request->file('photo');
+            $filename = $file->getRealPath();
 
-        Storage::disk('public')->put($image_path, file_get_contents($filename));
+            $newImageName = time() . '-' . $file->getClientOriginalName();
+            $image_path = "coverHotel/{$newImageName}";
+            $hotel->image_path = $newImageName;
 
-        $img = Image::make('storage/'. $image_path);
-        $img->resize(150, NULL, function ($constraint) {
-            $constraint->aspectRatio();
-            $constraint->upsize();
-        });
-            $img->save('storage/'. $image_path);
+            Storage::disk('public')->put($image_path, file_get_contents($filename));
 
-
-//        $newImageName = time() . '-' . $request->city . '.' . $request->photo->extension();
-//        $request->photo->move(public_path('images'), $newImageName);
-//        $image = SuiteImage::make(public_path("images/{$newImageName}"))->fit(150, 150);
-//        $image->save();
+            $img = Image::make('storage/'. $image_path);
+            $img->fit(150, 150, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            });
+            $img->save('storage/' . $image_path);
+        }
 
         $hotel->update([
             "name" => $request->name,
             "city" => $request->city,
             "address" => $request->address,
             "description" => $request->description,
-            "image_path" => $newImageName,
         ]);
         $user = User::find($request->user_id);
         $hotel->user()->associate($user);

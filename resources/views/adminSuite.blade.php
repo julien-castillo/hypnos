@@ -1,4 +1,3 @@
-
 @extends("layouts.masterAdmin")
 
 @section("content")
@@ -59,22 +58,6 @@
                         </a>
                     </li>
                 </ul>
-                {{--                <div class="dropdown">--}}
-                {{--                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"--}}
-                {{--                       id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">--}}
-                {{--                        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">--}}
-                {{--                        <strong>mdo</strong>--}}
-                {{--                    </a>--}}
-                {{--                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">--}}
-                {{--                        <li><a class="dropdown-item" href="#">New project...</a></li>--}}
-                {{--                        <li><a class="dropdown-item" href="#">Settings</a></li>--}}
-                {{--                        <li><a class="dropdown-item" href="#">Profile</a></li>--}}
-                {{--                        <li>--}}
-                {{--                            <hr class="dropdown-divider">--}}
-                {{--                        </li>--}}
-                {{--                        <li><a class="dropdown-item" href="#">Sign out</a></li>--}}
-                {{--                    </ul>--}}
-                {{--                </div>--}}
             </div>
         </div>
         {{-- End of Sidebar Admin --}}
@@ -82,21 +65,14 @@
         <div class="block1">
             <div class="my-3 p-3 bg-body rounded shadow-sm">
                 <h3 class="border-bottom pb-2 mb-4">Nombre de suites par établissement</h3>
-
                 <div class="mt-4">
                     <div class="d-flex justify-content-end mb-2">
                         {{ $hotels->links() }}
 
                     </div>
-                    @if(session()->has("successDelete"))
-                        <div class="alert alert-success">
-                            <h3>{{ session()->get('successDelete') }}</h3>
-                        </div>
-                    @endif
                     <table class="table table-bordered table-hover">
                         <thead>
                         <tr>
-                            {{--                    <th scope="col">#</th>--}}
                             <th scope="col">Nom</th>
                             <th scope="col">Ville</th>
                             <th scope="col">Nombre de suites</th>
@@ -109,14 +85,13 @@
                         <tbody>
                         @foreach($hotels as $hotel)
                             <tr>
-                                {{--                        <th scope="row">{{ $loop->index +1 }}</th>--}}
                                 <td>{{ $hotel->name }}</td>
                                 <td>{{ $hotel->city }}</td>
                                 <td>{{ $hotel->suites()->count() }}</td>
                                 <td>{{ $hotel->address }}</td>
                                 <td>{{ $hotel->user ? $hotel->user->displayFullName() : 'Non défini' }}</td>
                                 <td>
-                                    <img src="{{ asset('images/' .  $hotel->image_path) }}" alt="Photo de l'hôtel">
+                                    <img src="{{ asset('storage/coverHotel/' .  $hotel->image_path) }}" alt="Photo de l'hôtel">
                                 </td>
                                 <td>
                                     <a href="{{ route('admin.hotel.edit', ['hotel' => $hotel->id]) }}"
@@ -143,7 +118,7 @@
             </div>
         </div>
     </div>
-
+    @include("layouts.footer")
 @endsection
 
 

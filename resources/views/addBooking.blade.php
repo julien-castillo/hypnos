@@ -6,21 +6,21 @@
         <h3 class="border-bottom pb-2 mb-4">Formulaire de réservation</h3>
 
         <div class="mt-4">
-            @if(session()->has("success"))
-                <div class="alert alert-success">
-                    <h3>{{ session()->get('success') }}</h3>
-                </div>
-            @endif
+{{--            @if(session()->has("success"))--}}
+{{--                <div class="alert alert-success">--}}
+{{--                    <h3>{{ session()->get('success') }}</h3>--}}
+{{--                </div>--}}
+{{--            @endif--}}
 
-            @if ($errors->any())
-                <div class=" alert alert-danger">
-                    <ul>
-                        @foreach($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+{{--            @if ($errors->any())--}}
+{{--                <div class=" alert alert-danger">--}}
+{{--                    <ul>--}}
+{{--                        @foreach($errors->all() as $error)--}}
+{{--                            <li>{{ $error }}</li>--}}
+{{--                        @endforeach--}}
+{{--                    </ul>--}}
+{{--                </div>--}}
+{{--            @endif--}}
             <form style="width: 45%;" method="post" action="{{ route('booking.store') }}">
 
                 @csrf
@@ -60,7 +60,7 @@
 
                 <div id="availability_response" class="alert alert-primary">Veuillez remplir tous les champs.</div>
 
-                <a href="" class="btn btn-danger">Annuler / Retour</a>
+                <a href="{{ route('home') }}" class="btn btn-danger">Annuler / Retour</a>
 
                 <button type="submit" class="btn btn-success" id="btn_reserver" hidden >Réserver</button>
 
@@ -69,6 +69,7 @@
         </div>
 
     </div>
+    @include("layouts.footer")
 @endsection
 @push('scripts')
     <script>

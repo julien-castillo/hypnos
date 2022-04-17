@@ -17,7 +17,11 @@
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
+    {{--Swiper--}}
 
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+
+{{--    Custom css--}}
     <link href="{{ asset('css/headers.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -56,158 +60,160 @@
             d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
     </symbol>
 </svg>
+<div>
+    <nav>
+        <header>
+            <div class="px-3 py-2 bg-dark text-white">
+                <div class="container">
+                    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                        <a href="/"
+                           class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+                            <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+                                <use xlink:href="#bootstrap"/>
+                            </svg>
+                        </a>
 
-<nav>
-    <header>
-        <div class="px-3 py-2 bg-dark text-white">
-            <div class="container">
-                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                    <a href="/"
-                       class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
-                        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
-                            <use xlink:href="#bootstrap"/>
-                        </svg>
-                    </a>
-
-                    <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
-                        <li>
-                            <a href="{{ route('home') }}" class="nav-link text-white">
-                                <svg class="bi d-block mx-auto mb-1" width="24" height="24">
-                                    <use xlink:href="#home"/>
-                                </svg>
-                                Accueil
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('contact') }}" class="nav-link text-white">
-                                <svg class="bi d-block mx-auto mb-1" width="24" height="24">
-                                    <use xlink:href="#email"/>
-                                </svg>
-                                Contactez-nous
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{ route('addBooking') }}" class="nav-link text-white">
-                                <svg class="bi d-block mx-auto mb-1" width="24" height="24">
-                                    <use xlink:href="#table"/>
-                                </svg>
-                                Réserver
-                            </a>
-                        </li>
-                        {{--                        <li>--}}
-                        {{--                            <a href="#" class="nav-link text-white">--}}
-                        {{--                                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#grid"/></svg>--}}
-                        {{--                                Products--}}
-                        {{--                            </a>--}}
-                        {{--                        </li>--}}
-                        {{--                        <li>--}}
-                        {{--                            <a href="#" class="nav-link text-white">--}}
-                        {{--                                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"/></svg>--}}
-                        {{--                                Mon profil--}}
-                        {{--                            </a>--}}
-                        {{--                        </li>--}}
-                        @auth
-                            @if(auth()->user()->role == 'admin')
-                                <div class="dashboard">
+                        <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+                            <li>
+                                <a href="{{ route('home') }}" class="nav-link text-white">
+                                    <svg class="bi d-block mx-auto mb-1" width="24" height="24">
+                                        <use xlink:href="#home"/>
+                                    </svg>
+                                    Accueil
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('contact') }}" class="nav-link text-white">
+                                    <svg class="bi d-block mx-auto mb-1" width="24" height="24">
+                                        <use xlink:href="#email"/>
+                                    </svg>
+                                    Contactez-nous
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('addBooking') }}" class="nav-link text-white">
+                                    <svg class="bi d-block mx-auto mb-1" width="24" height="24">
+                                        <use xlink:href="#table"/>
+                                    </svg>
+                                    Réserver
+                                </a>
+                            </li>
+                            {{--                        <li>--}}
+                            {{--                            <a href="#" class="nav-link text-white">--}}
+                            {{--                                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#grid"/></svg>--}}
+                            {{--                                Products--}}
+                            {{--                            </a>--}}
+                            {{--                        </li>--}}
+                            {{--                        <li>--}}
+                            {{--                            <a href="#" class="nav-link text-white">--}}
+                            {{--                                <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#people-circle"/></svg>--}}
+                            {{--                                Mon profil--}}
+                            {{--                            </a>--}}
+                            {{--                        </li>--}}
+                            @auth
+                                @if(auth()->user()->role == 'admin')
+                                    <div class="dashboard">
+                                        <li>
+                                            <a href="{{ route('admin.index') }}" class="nav-link text-white">
+                                                <svg class="bi d-block mx-auto mb-1" width="24" height="24">
+                                                    <use xlink:href="#speedometer2"/>
+                                                </svg>
+                                                Admin Dashboard
+                                            </a>
+                                        </li>
+                                    </div>
+                                @endif
+                                @if(auth()->user()->role == 'manager')
                                     <li>
-                                        <a href="{{ route('admin.index') }}" class="nav-link text-white">
+                                        <a href="{{ route('manager.index') }}" class="nav-link text-white">
                                             <svg class="bi d-block mx-auto mb-1" width="24" height="24">
                                                 <use xlink:href="#speedometer2"/>
                                             </svg>
-                                            Admin Dashboard
+                                            Manager Dashboard
                                         </a>
                                     </li>
-                                </div>
-                            @endif
-                            @if(auth()->user()->role == 'manager')
-                                <li>
-                                    <a href="{{ route('manager.index') }}" class="nav-link text-white">
-                                        <svg class="bi d-block mx-auto mb-1" width="24" height="24">
-                                            <use xlink:href="#speedometer2"/>
-                                        </svg>
-                                        Manager Dashboard
+
+                                @endif
+
+
+                                @if(auth()->user()->role == 'user')
+                                    <li>
+                                        <a href="{{ route('booking.index') }}" class="nav-link text-white">
+                                            <svg class="bi d-block mx-auto mb-1" width="24" height="24">
+                                                <use xlink:href="#people-circle"/>
+                                            </svg>
+                                            Mon profil
+                                        </a>
+                                    </li>
+                                @endif
+                            @endauth
+
+
+                        </ul>
+                        <!-- Right Side Of Navbar -->
+                        <ul class="navbar-nav ms-auto">
+                            <!-- Authentication Links -->
+                            @guest
+                                @if (Route::has('login'))
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('login') }}">{{ __('Se connecter') }}</a>
+                                    </li>
+                                @endif
+
+                                @if (Route::has('register'))
+                                    <li class="nav-item">
+                                        <a class="nav-link"
+                                           href="{{ route('register') }}">{{ __('Créer un compte') }}</a>
+                                    </li>
+                                @endif
+                            @else
+                                {{--                            <li>--}}
+                                {{--                                <a href="#" class="nav-link text-white">--}}
+                                {{--                                    <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#speedometer2"/></svg>--}}
+                                {{--                                    Dashboard--}}
+                                {{--                                </a>--}}
+                                {{--                            </li>--}}
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                                       data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        {{ Auth::user()->displayFullName() }}
                                     </a>
-                                </li>
 
-                            @endif
-
-
-                            @if(auth()->user()->role == 'user')
-                                <li>
-                                    <a href="{{ route('booking.index') }}" class="nav-link text-white">
-                                        <svg class="bi d-block mx-auto mb-1" width="24" height="24">
-                                            <use xlink:href="#people-circle"/>
-                                        </svg>
-                                        Mon profil
-                                    </a>
-                                </li>
-                            @endif
-                        @endauth
-
-
-                    </ul>
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            {{--                            <li>--}}
-                            {{--                                <a href="#" class="nav-link text-white">--}}
-                            {{--                                    <svg class="bi d-block mx-auto mb-1" width="24" height="24"><use xlink:href="#speedometer2"/></svg>--}}
-                            {{--                                    Dashboard--}}
-                            {{--                                </a>--}}
-                            {{--                            </li>--}}
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                   data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->displayFullName() }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                                            {{ __('Logout') }}
+                                        </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                          class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                              class="d-none">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </li>
+                            @endguest
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="px-3 py-2 border-bottom mb-3">
-            <div class="container d-flex flex-wrap justify-content-end">
+            <div class="px-3 py-2 border-bottom mb-3">
+                <div class="container d-flex flex-wrap justify-content-end">
 
 
+                </div>
             </div>
-        </div>
-    </header>
+        </header>
 
 
-    {{--    <div class="b-example-divider"></div>--}}
-</nav>
+        {{--    <div class="b-example-divider"></div>--}}
+    </nav>
 
-<main class="container">
-    @include('notifications')
-    @yield("content")
-</main>
+    <main class="container">
+        @include('notifications')
+        @yield("content")
+    </main>
+</div>
 
 
 <script src="{{ asset('js/bootstrap.bundle.min.js') }}"
@@ -217,6 +223,30 @@
 <!-- jQuery -->
 <script type="text/javascript" src="/js/jquery-3.4.1.min.js"></script>
 <script type="text/javascript" src="/js/jquery-ui.min.js"></script>
+
+<!-- Swiper JS -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+    var swiper = new Swiper(".mySwiper", {
+        effect: "coverflow",
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: "auto",
+        coverflowEffect: {
+            rotate: 80,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows: true,
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+    });
+</script>
 
 @stack('scripts')
 
