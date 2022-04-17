@@ -42,11 +42,24 @@ class HotelController extends Controller {
             "photo" => "required|mimes:jpg,png,jpeg|max:5048"
         ]);
 
-        $newImageName = time() . '-' . $request->city . '.' . $request->photo->extension();
-        $request->photo->move(public_path('images'), $newImageName);
+        $file = $request->file("photo");
+        $filename = $file->getRealPath();
+        $newImageName = time() . '-' . $file->getClientOriginalName();
+        $image_path = "coverHotel/{$newImageName}";
 
-        $image = Image::make(public_path("images/{$newImageName}"))->fit(150, 150);
-        $image->save();
+        Storage::disk('public')->put($image_path, file_get_contents($filename));
+
+        $img = Image::make('storage/'. $image_path);
+        $img->fit(150, 150, function ($constraint) {
+            $constraint->aspectRatio();
+            $constraint->upsize();
+        });
+        $img->save('storage/' . $image_path);
+
+//        $newImageName = time() . '-' . $request->city . '.' . $request->photo->extension();
+//        $request->photo->move(public_path('images'), $newImageName);
+//        $image = SuiteImage::make(public_path("images/{$newImageName}"))->fit(150, 150);
+//        $image->save();
 
 
 
@@ -83,11 +96,25 @@ class HotelController extends Controller {
             "photo" => "mimes:jpg,png,jpeg|max:5048"
         ]);
 
-        $newImageName = time() . '-' . $request->city . '.' . $request->photo->extension();
-        $request->photo->move(public_path('images'), $newImageName);
+        $file = $request->file("photo");
+        $filename = $file->getRealPath();
+        $newImageName = time() . '-' . $file->getClientOriginalName();
+        $image_path = "coverHotel/{$newImageName}";
 
-        $image = Image::make(public_path("images/{$newImageName}"))->fit(150, 150);
-        $image->save();
+        Storage::disk('public')->put($image_path, file_get_contents($filename));
+
+        $img = Image::make('storage/'. $image_path);
+        $img->resize(150, NULL, function ($constraint) {
+            $constraint->aspectRatio();
+            $constraint->upsize();
+        });
+            $img->save('storage/'. $image_path);
+
+
+//        $newImageName = time() . '-' . $request->city . '.' . $request->photo->extension();
+//        $request->photo->move(public_path('images'), $newImageName);
+//        $image = SuiteImage::make(public_path("images/{$newImageName}"))->fit(150, 150);
+//        $image->save();
 
         $hotel->update([
             "name" => $request->name,

@@ -6,10 +6,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
-class Image extends Model
-{
+class SuiteImage extends Model {
+
     use HasFactory;
-    protected $fillable= [
+
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'images';
+
+    protected $fillable = [
         'storage_path',
         'suite_id',
     ];
@@ -30,4 +38,5 @@ class Image extends Model
 
         return '';
     }
+
 }

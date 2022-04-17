@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Image;
+use App\Models\SuiteImage;
 use Illuminate\Http\Request;
 
 class ImageController extends Controller {
@@ -12,7 +12,7 @@ class ImageController extends Controller {
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index() {
-        $images = Image::all();
+        $images = SuiteImage::all();
         return view('editSuite', compact('images'));
     }
 }

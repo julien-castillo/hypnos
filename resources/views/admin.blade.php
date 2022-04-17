@@ -119,7 +119,7 @@
                                     <td>{{ $hotel->description }}</td>
                                     <td>{{ $hotel->user ? $hotel->user->displayFullName() : 'Non défini' }}</td>
                                     <td>
-                                        <img src="{{ asset('images/' .  $hotel->image_path) }}" alt="Photo de l'hôtel">
+                                        <img src="{{ asset('storage/coverHotel/' .  $hotel->image_path) }}" alt="Photo de l'hôtel">
                                     </td>
                                     <td>
                                         <a href="{{ route('admin.hotel.edit', ['hotel' => $hotel->id]) }}"

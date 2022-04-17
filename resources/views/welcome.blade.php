@@ -11,7 +11,7 @@
 
                 <div class="col-md-3 d-flex justify-content-center mb-2">
                     <div class="card" style="width: 18rem;">
-                        <img src="{{ asset('images/' .  $hotel->image_path) }}" class="card-img-top" alt="...">
+                        <img src="{{ asset('storage/coverHotel/' .  $hotel->image_path) }}" class="card-img-top" alt="photo cover de l'hôtel">
                         <div class="card-body">
                             <h5 class="card-title">{{ $hotel->name }}</h5>
                             <p class="card-text">{{ $hotel->city }}</p>

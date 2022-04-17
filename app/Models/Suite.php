@@ -27,7 +27,7 @@ class Suite extends Model
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function images() {
-        return $this->hasMany(Image::class);
+        return $this->hasMany(SuiteImage::class);
     }
 
     public function getCoverImageUrl() {

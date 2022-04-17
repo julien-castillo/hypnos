@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Suite;
-use App\Models\Image;
+use App\Models\SuiteImage;
 use Illuminate\Http\File;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
-//use Intervention\Image\Facades\Image;
+use Intervention\Image\Facades\Image;
 
 class SuiteController extends Controller {
 
@@ -51,6 +51,13 @@ class SuiteController extends Controller {
             $storage_path = "cover/{$newImageName}";
 
             Storage::disk('public')->put($storage_path, file_get_contents($filename));
+
+            $img = Image::make('storage/'. $storage_path);
+            $img->fit(150, 150, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            });
+            $img->save('storage/' . $storage_path);
         }
 
 
@@ -76,10 +83,17 @@ class SuiteController extends Controller {
 
                 Storage::disk('public')->put($storage_path, file_get_contents($filename));
 
+                $img = Image::make('storage/'. $storage_path);
+                $img->fit(150, 150, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                });
+                $img->save('storage/' . $storage_path);
+
                 $data['storage_path'] = $storage_path;
                 $data['suite_id'] = $suite->id;
 
-                Image::create($data);
+                SuiteImage::create($data);
             }
         }
 
@@ -101,7 +115,7 @@ class SuiteController extends Controller {
 
         foreach ($request->oldImagesDeleted as $x) {
             if ($x !== "clone") {
-                $image = Image::find($x);
+                $image = SuiteImage::find($x);
 
                 // Supprime le fichier en lui-meme
                 if (Storage::disk('public')->exists($image->storage_path)) {
@@ -125,6 +139,13 @@ class SuiteController extends Controller {
             $storage_path = "cover/{$newImageName}";
 
             Storage::disk('public')->put($storage_path, file_get_contents($filename));
+
+            $img = Image::make('storage/'. $storage_path);
+            $img->fit(150, 150, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            });
+            $img->save('storage/' . $storage_path);
             $suite->cover = $storage_path;
         }
 
@@ -144,10 +165,17 @@ class SuiteController extends Controller {
 
                 Storage::disk('public')->put($storage_path, file_get_contents($filename));
 
+                $img = Image::make('storage/'. $storage_path);
+                $img->fit(150, 150, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                });
+                $img->save('storage/' . $storage_path);
+
                 $data['storage_path'] = $storage_path;
                 $data['suite_id'] = $suite->id;
 
-                Image::create($data);
+                SuiteImage::create($data);
             }
         }
 
