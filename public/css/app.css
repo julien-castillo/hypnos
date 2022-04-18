@@ -13,6 +13,10 @@ th {
     vertical-align: middle;
 }
 
+.logo {
+    width: 50px;
+}
+
 .bg-public {
     background-image: url("/storage/images/wallpaper-sea.jpg");
     background-size: cover;
