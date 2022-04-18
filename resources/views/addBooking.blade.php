@@ -42,7 +42,7 @@
 
                 <a href="{{ route('home') }}" class="btn btn-danger">Annuler / Retour</a>
 
-                <button type="submit" class="btn btn-success" id="btn_reserver" hidden >Réserver</button>
+                <button type="submit" class="btn btn-success" id="btn_reserver" hidden>Réserver</button>
 
             </form>
 
