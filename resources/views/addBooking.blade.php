@@ -6,30 +6,14 @@
         <h3 class="border-bottom pb-2 mb-4">Formulaire de réservation</h3>
 
         <div class="mt-4">
-{{--            @if(session()->has("success"))--}}
-{{--                <div class="alert alert-success">--}}
-{{--                    <h3>{{ session()->get('success') }}</h3>--}}
-{{--                </div>--}}
-{{--            @endif--}}
-
-{{--            @if ($errors->any())--}}
-{{--                <div class=" alert alert-danger">--}}
-{{--                    <ul>--}}
-{{--                        @foreach($errors->all() as $error)--}}
-{{--                            <li>{{ $error }}</li>--}}
-{{--                        @endforeach--}}
-{{--                    </ul>--}}
-{{--                </div>--}}
-{{--            @endif--}}
             <form style="width: 45%;" method="post" action="{{ route('booking.store') }}">
 
                 @csrf
-                {{--                <input type="hidden" name="_method" value="put">--}}
 
                 <div class="mb-3">
                     <label for="hotel" class="form-label">Hôtel :</label>
                     <select class="form-select" name="hotel" id="hotel" required>
-                        <option value="">-- Selectionner un hôtel --</option>
+                        <option value="">Selectionner</option>
                         @foreach($hotels as $hotel)
                             <option
                                 value="{{ $hotel->id }}" {{ $selected_hotel == $hotel->id ? 'selected' : '' }}>{{ $hotel->name }}</option>
@@ -44,10 +28,6 @@
                         @include('ajax.suites')
                     </select>
                 </div>
-                {{--                <div class="mb-3">--}}
-                {{--                    <label for="user" class="form-label">Client</label>--}}
-                {{--                    <input type="text" class="form-control" value="{{ $user->id }}" name="user" required>--}}
-                {{--                </div>--}}
                 <div class="mb-3">
                     <label for="startDate" class="form-label">Date d'arrivée</label>
                     <input type="date" class="form-control" id="startDate" name="startDate" min="{{ date('Y-m-d') }}"
@@ -69,7 +49,6 @@
         </div>
 
     </div>
-    @include("layouts.footer")
 @endsection
 @push('scripts')
     <script>

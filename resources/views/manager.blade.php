@@ -4,15 +4,15 @@
     <div class="my-3 p-3 bg-body rounded shadow-sm">
         <h3 class="border-bottom pb-2 mb-4">Liste des suites de l'hotel : {{ $hotel->name }}</h3>
         <div class="add-suite">
-            <a href="{{ route('manager.suite.create') }}" class="btn btn-outline-success">Ajouter une suite</a>
+            <a href="{{ route('manager.suite.create') }}" class="btn btn-success">Ajouter une suite</a>
         </div>
 
         <div class="mt-4">
 
-            <div class="d-flex justify-content-end mb-2">
-                {{ $suites->links() }}
+{{--            <div class="d-flex justify-content-end mb-2">--}}
+{{--                {{ $suites->links() }}--}}
 
-            </div>
+{{--            </div>--}}
             @if(session()->has("successDelete"))
                 <div class="alert alert-success">
                     <h3>{{ session()->get('successDelete') }}</h3>
@@ -23,8 +23,7 @@
                 <tr>
                     <th scope="col">Nom</th>
                     <th scope="col">Prix</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Cover</th>
+                    <th class="th-cover" scope="col">Cover</th>
                     <th scope="col">Action</th>
                 </tr>
                 </thead>
@@ -33,8 +32,7 @@
                     <tr>
                         <td>{{ $suite->name }}</td>
                         <td>{{ $suite->price . ' '. '€' }}</td>
-                        <td>{{ $suite->description }}</td>
-                        <td>
+                        <td class="td-cover">
                             <img src="{{ $suite->getCoverImageUrl() }}" class="cover" alt="Photo de la suite">
                         </td>
                         <td>
@@ -56,5 +54,5 @@
         </div>
 
     </div>
-    @include("layouts.footer")
+{{--    @include("layouts.footer")--}}
 @endsection

@@ -221,6 +221,79 @@
     {{--    <div class="b-example-divider"></div>--}}
 </nav>
 
+
+{{--    Test admin Menu--}}
+@auth
+    @if(auth()->user()->role == 'admin')
+        <nav class="admin-menu">
+            <header>
+                <div class="px-3 py-2 bg-dark text-white">
+                    <div class="container">
+                        <div
+                            class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                            <a href="/"
+                               class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+                                <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+                                    <use xlink:href="#bootstrap"/>
+                                </svg>
+                            </a>
+
+                            <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+                                <li class="nav-item">
+                                    <a href="{{ route('admin.index') }}" class="nav-link active" aria-current="page">
+                                        <svg class="bi me-2" width="16" height="16">
+                                            <use xlink:href="#home"/>
+                                        </svg>
+                                        Hôtels ({{ $hotels->count() }})
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('admin.adminManager.listSuites') }}" class="nav-link text-white">
+                                        <svg class="bi me-2" width="16" height="16">
+                                            <use xlink:href="#speedometer2"/>
+                                        </svg>
+                                        Suites ({{ $suites->count() }})
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('admin.adminManager.listManagers') }}" class="nav-link text-white">
+                                        <svg class="bi me-2" width="16" height="16">
+                                            <use xlink:href="#table"/>
+                                        </svg>
+                                        Managers ({{ $managers->count() }})
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('admin.adminContact.index') }}" class="nav-link text-white">
+                                        <svg class="bi me-2" width="16" height="16">
+                                            <use xlink:href="#grid"/>
+                                        </svg>
+                                        Messages <span class="message">({{ $contacts->count() }})</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('admin.adminManager.listUsers') }}" class="nav-link text-white">
+                                        <svg class="bi me-2" width="16" height="16">
+                                            <use xlink:href="#people-circle"/>
+                                        </svg>
+                                        Clients ({{ $users->count() }})
+                                    </a>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="px-3 py-2 border-bottom mb-3">
+                </div>
+            </header>
+        </nav>
+    @endif
+@endauth
+
+
+{{--    Fin Admin Menu--}}
+
 <main class="container">
     @include('notifications')
     @yield("content")

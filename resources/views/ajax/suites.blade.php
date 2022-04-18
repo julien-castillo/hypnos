@@ -1,4 +1,4 @@
-<option value="">-- Sélectionner une suite --</option>
+<option value="">Sélectionner</option>
 
 @if (isset($suites))
     @if($suites->count() < 1)

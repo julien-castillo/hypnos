@@ -1,8 +1,8 @@
 @extends("layouts.masterAdmin")
 @section("content")
-    <div class="block">
+    <div class="block admin-user">
         {{-- Sidebar Admin --}}
-        <div>
+        <div class="sidebar-admin">
             <h1 class="visually-hidden">Sidebars examples</h1>
 
             <div class="sidebar d-flex flex-column flex-shrink-0 p-3 text-white bg-dark">
@@ -103,5 +103,5 @@
             </div>
         </div>
     </div>
-    @include("layouts.footer")
+{{--    @include("layouts.footer")--}}
 @endsection

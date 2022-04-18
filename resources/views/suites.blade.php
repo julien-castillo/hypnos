@@ -5,6 +5,14 @@
         <h3 class="border-bottom pb-2 mb-4">Découvrez les suites de luxe de l'hôtel : {{ $hotel->name }}</h3>
         <h5>{{ $hotel->address }}, {{ $hotel->city }}</h5>
     </div>
+@if(isset($hotel->description))
+    <div class="card description">
+        <div class="card-body">
+            <p class="card-text">{{ $hotel->description }}</p>
+        </div>
+        <div class="card-body"></div>
+    </div>
+@endif
 
     <div class="row">
         @if($suites->count() > 0)
@@ -15,7 +23,6 @@
                     <div class="card-body suites">
                         <h5 class="card-title">{{ $suite->name }}</h5>
                         <h5 class="card-title">{{ $suite->price . ' ' . '€' }}</h5>
-                        <p class="card-text">{{ $suite->description }}</p>
                         <a href="{{ route('details',['hotel' => $hotel, 'suite' => $suite]) }}" class="btn btn-primary">Détails
                             de la suite</a>
                         <a href="{{ route("addBooking") }}?hotel={{ $suite->hotel->id }}&suite={{ $suite->id }}" class="btn btn-success">Réserver</a>
@@ -30,6 +37,5 @@
             </div>
             @endif
     </div>
-    @include("layouts.footer")
 
 @endsection

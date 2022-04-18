@@ -42,7 +42,7 @@
                 <div class="mb-3">
                     <label for="subject" class="form-label">Objet :</label>
                     <select class="form-select" name="subject" required>
-                        <option value="">Merci de selectionner un sujet</option>
+                        <option value="">Sujet</option>
                         <option value="Réclamation">Je souhaite poser une réclamation</option>
                         <option value="Service supplémentaire">Je souhaite commander un service supplémentaire</option>
                         <option value="Demande de renseignements">Je souhaite en savoir plus sur une suite</option>
@@ -61,5 +61,5 @@
 
         </div>
     </div>
-    @include("layouts.footer")
+{{--    @include("layouts.footer")--}}
 @endsection

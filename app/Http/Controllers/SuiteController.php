@@ -25,7 +25,7 @@ class SuiteController extends Controller {
             return back()->withErrors("Vous n'avez accès à aucun hôtel");
         }
 
-        $suites = $hotel->suites()->orderBy("name", "asc")->paginate(10);
+        $suites = $hotel->suites()->orderBy("name", "asc")->get();
         return view('manager', compact("suites", "hotel"));
     }
 

@@ -2,9 +2,9 @@
 
 @section("content")
 
-    <div class="block">
+    <div class="block admin-suite">
         {{-- Sidebar Admin --}}
-        <div>
+        <div class="sidebar-admin">
             <h1 class="visually-hidden">Sidebars examples</h1>
 
             <div class="sidebar d-flex flex-column flex-shrink-0 p-3 text-white bg-dark">
@@ -66,20 +66,14 @@
             <div class="my-3 p-3 bg-body rounded shadow-sm">
                 <h3 class="border-bottom pb-2 mb-4">Nombre de suites par établissement</h3>
                 <div class="mt-4">
-                    <div class="d-flex justify-content-end mb-2">
-                        {{ $hotels->links() }}
-
-                    </div>
                     <table class="table table-bordered table-hover">
                         <thead>
                         <tr>
                             <th scope="col">Nom</th>
                             <th scope="col">Ville</th>
-                            <th scope="col">Nombre de suites</th>
                             <th scope="col">Adresse</th>
                             <th scope="col">Manager</th>
-                            <th scope="col">Photo</th>
-                            <th scope="col">Action</th>
+                            <th scope="col">Nombre de suites</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -87,26 +81,9 @@
                             <tr>
                                 <td>{{ $hotel->name }}</td>
                                 <td>{{ $hotel->city }}</td>
-                                <td>{{ $hotel->suites()->count() }}</td>
                                 <td>{{ $hotel->address }}</td>
                                 <td>{{ $hotel->user ? $hotel->user->displayFullName() : 'Non défini' }}</td>
-                                <td>
-                                    <img src="{{ asset('storage/coverHotel/' .  $hotel->image_path) }}" alt="Photo de l'hôtel">
-                                </td>
-                                <td>
-                                    <a href="{{ route('admin.hotel.edit', ['hotel' => $hotel->id]) }}"
-                                       class="btn btn-warning">Editer</a>
-                                    <a href="#" class="btn btn-danger"
-                                       onclick="if(confirm('Voulez-vous vraiment supprimer cet établissement ?')){document.getElementById('form-{{$hotel->id}}').submit() }">Supprimer</a>
-                                    <form id="form-{{ $hotel->id }}"
-                                          action="{{ route('admin.hotel.delete', ['hotel'=>$hotel->id]) }}"
-                                          method="post">
-                                        @csrf
-                                        <input type="hidden" name="_method" value="delete">
-
-                                    </form>
-
-                                </td>
+                                <td>{{ $hotel->suites()->count() }}</td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -118,7 +95,6 @@
             </div>
         </div>
     </div>
-    @include("layouts.footer")
 @endsection
 
 
