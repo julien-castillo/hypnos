@@ -2,7 +2,8 @@
 
 @section("content")
     <div class="my-3 p-3 bg-body rounded shadow-sm">
-        <h3 class="border-bottom pb-2 mb-4">{{ $suite->name }} ({{ $hotel->name }}, {{ $hotel->city }}) : {{ $suite->price . ' ' . '€ / nuit ' }}</h3>
+        <h3 class="border-bottom pb-2 mb-4">{{ $suite->name }} ({{ $hotel->name }}, {{ $hotel->city }})
+            : {{ $suite->price . ' ' . '€ / nuit ' }}</h3>
     </div>
 
     <!-- Swiper -->
@@ -30,5 +31,4 @@
             <a href="{{ route('suites', ['hotel' => $hotel]) }}" class="btn btn-outline-primary m-2">Booking.com</a>
         </div>
     </div>
-
 @endsection

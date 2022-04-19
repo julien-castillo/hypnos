@@ -5,7 +5,8 @@
         <h3 class="update border-bottom pb-2 mb-4">Modification de l'établissement : {{ $hotel->name }}</h3>
 
         <div class="mt-4">
-            <form style="width: 65%;" method="post" action="{{ route('admin.hotel.update', ['hotel'=>$hotel->id]) }}" enctype="multipart/form-data">
+            <form style="width: 65%;" method="post" action="{{ route('admin.hotel.update', ['hotel'=>$hotel->id]) }}"
+                  enctype="multipart/form-data">
 
                 @csrf
                 <input type="hidden" name="_method" value="put">
@@ -50,5 +51,4 @@
         </div>
 
     </div>
-{{--    @include("layouts.footer")--}}
 @endsection

@@ -20,17 +20,9 @@ class BookingController extends Controller {
      */
     public function index() {
         $user = Auth::user();
-//        $booking = $user->booking;
-
         $today = Carbon::now();
         $expDate = Carbon::now()->addDays(3);
-
-//        $suites = Suite::where('id', $booking->suite_id)->get();
-//        $hotels = Hotel::where('id', $suites->hotel_id)->get();
-//        $hotels = Hotel::first();
-//        $suites = Suite::first();
         $bookings = Booking::where('user_id', $user->id)->orderBy("startDate", "desc")->paginate(10);
-//        $users = User::all();
 
         return view('booking', compact('bookings', 'expDate', 'today'));
     }

@@ -6,25 +6,10 @@
         <h3 class="border-bottom pb-2 mb-4">Formulaire de contact</h3>
 
         <div class="mt-4">
-{{--            @if(session()->has("success"))--}}
-{{--                <div class="alert alert-success">--}}
-{{--                    <h3>{{ session()->get('success') }}</h3>--}}
-{{--                </div>--}}
-{{--            @endif--}}
-
-{{--            @if ($errors->any())--}}
-{{--                <div class=" alert alert-danger">--}}
-{{--                    <ul>--}}
-{{--                        @foreach($errors->all() as $error)--}}
-{{--                            <li>{{ $error }}</li>--}}
-{{--                        @endforeach--}}
-{{--                    </ul>--}}
-{{--                </div>--}}
-{{--            @endif--}}
             <form style="width: 45%;" method="post" action="{{ route('contact.store') }}" enctype="multipart/form-data">
 
                 @csrf
-{{--                <input type="hidden" name="_method" value="put">--}}
+                {{--                <input type="hidden" name="_method" value="put">--}}
 
                 <div class="mb-3">
                     <label for="lastname" class="form-label">Nom</label>
@@ -61,5 +46,4 @@
 
         </div>
     </div>
-{{--    @include("layouts.footer")--}}
 @endsection

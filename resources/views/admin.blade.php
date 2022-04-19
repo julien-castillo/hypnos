@@ -79,7 +79,6 @@
                             <th scope="col">Ville</th>
                             <th scope="col">Nom</th>
                             <th scope="col">Adresse</th>
-{{--                            <th scope="col">Description</th>--}}
                             <th scope="col">Manager</th>
                             <th class="th-cover" scope="col">Photo</th>
                             <th scope="col">Action</th>
@@ -91,7 +90,6 @@
                                 <td>{{ $hotel->city }}</td>
                                 <td>{{ $hotel->name }}</td>
                                 <td>{{ $hotel->address }}</td>
-{{--                                <td>{{ $hotel->description }}</td>--}}
                                 <td>{{ $hotel->user ? $hotel->user->displayFullName() : 'Non défini' }}</td>
                                 <td class="td-cover">
                                     <img src="{{ asset('storage/coverHotel/' .  $hotel->image_path) }}"
@@ -122,7 +120,6 @@
             </div>
         </div>
     </div>
-{{--    @include("layouts.footer")--}}
 @endsection
 
 

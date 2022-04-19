@@ -8,10 +8,6 @@
                 <h3 class="border-bottom pb-2 mb-4">Mes réservations</h3>
 
                 <div class="mt-4">
-{{--                    <div class="d-flex justify-content-end mb-2">--}}
-
-
-{{--                    </div>--}}
                     @if($bookings->count() > 0)
                         <table class="table table-bordered table-hover">
                             <thead>
@@ -29,32 +25,32 @@
                             <div class="row">
 
                                 @foreach($bookings as $booking)
-                                        <td>{{ $booking->suite->hotel->city }}</td>
-                                        <td>{{ $booking->suite->hotel->name }}</td>
-                                        <td>{{ $booking->suite->name }}</td>
-                                        <td>{{ $booking->startDate->format('d/m/Y') }}</td>
-                                        <td>{{ $booking->endDate->format('d/m/Y') }}</td>
-                                        <td>
-                                            @if( $booking->startDate > $expDate)
-                                                <a href="#" class="btn btn-outline-danger"
-                                                   onclick="if(confirm('Voulez-vous vraiment annuler cette réservation ?')){document.getElementById('form-{{$booking->id}}').submit() }">Annuler</a>
-                                                <form id="form-{{ $booking->id }}"
-                                                      action="{{ route('booking.delete', ['booking'=>$booking->id]) }}"
-                                                      method="post">
-                                                    @csrf
-                                                    <input type="hidden" name="_method" value="delete">
-                                                </form>
-                                            @elseif ( $booking->startDate > $today and $booking->startDate < $expDate)
-                                                <a href="#" class="btn btn-danger"
-                                                   onclick="if(confirm('Votre réservation commence dans moins de trois jours, il est malheureusement impossible de l\'annuler.')){document.getElementById('form-{{$booking->id}}').submit() }">Impossible
-                                                    d'annuler</a>
+                                    <td>{{ $booking->suite->hotel->city }}</td>
+                                    <td>{{ $booking->suite->hotel->name }}</td>
+                                    <td>{{ $booking->suite->name }}</td>
+                                    <td>{{ $booking->startDate->format('d/m/Y') }}</td>
+                                    <td>{{ $booking->endDate->format('d/m/Y') }}</td>
+                                    <td>
+                                        @if( $booking->startDate > $expDate)
+                                            <a href="#" class="btn btn-outline-danger"
+                                               onclick="if(confirm('Voulez-vous vraiment annuler cette réservation ?')){document.getElementById('form-{{$booking->id}}').submit() }">Annuler</a>
+                                            <form id="form-{{ $booking->id }}"
+                                                  action="{{ route('booking.delete', ['booking'=>$booking->id]) }}"
+                                                  method="post">
+                                                @csrf
+                                                <input type="hidden" name="_method" value="delete">
+                                            </form>
+                                        @elseif ( $booking->startDate > $today and $booking->startDate < $expDate)
+                                            <a href="#" class="btn btn-danger"
+                                               onclick="if(confirm('Votre réservation commence dans moins de trois jours, il est malheureusement impossible de l\'annuler.')){document.getElementById('form-{{$booking->id}}').submit() }">Impossible
+                                                d'annuler</a>
 
-                                            @elseif ( $booking->startDate < $today )
-                                                <a href="#" class="btn btn-outline-success"
-                                                   onclick="if(confirm('Merci d\'avoir effectué cette réservation, nous espérons vous revoir très prochainement')){document.getElementById('form-{{$booking->id}}').submit() }">Ancienne
-                                                    réservation</a>
-                                            @endif
-                                        </td>
+                                        @elseif ( $booking->startDate < $today )
+                                            <a href="#" class="btn btn-outline-success"
+                                               onclick="if(confirm('Merci d\'avoir effectué cette réservation, nous espérons vous revoir très prochainement')){document.getElementById('form-{{$booking->id}}').submit() }">Ancienne
+                                                réservation</a>
+                                        @endif
+                                    </td>
                                     </tr>
                                 @endforeach
 
@@ -71,7 +67,6 @@
             </div>
         </div>
     </div>
-    {{--    @include("layouts.footer")--}}
 @endsection
 
 

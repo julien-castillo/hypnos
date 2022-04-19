@@ -20,7 +20,8 @@
                     </ul>
                 </div>
             @endif
-            <form style="width: 65%;" method="post" action="{{ route('manager.suite.store') }}" enctype="multipart/form-data">
+            <form style="width: 65%;" method="post" action="{{ route('manager.suite.store') }}"
+                  enctype="multipart/form-data">
 
                 @csrf
 
@@ -42,7 +43,8 @@
                 </div>
                 <div class="mb-3">
                     <label for="Images" class="form-label">Images</label>
-                    <input type="file" accept="image/png, image/jpeg, image/jpg" class="form-control" name="images[]" multiple>
+                    <input type="file" accept="image/png, image/jpeg, image/jpg" class="form-control" name="images[]"
+                           multiple>
                 </div>
 
                 <button type="submit" class="btn btn-primary">Enregistrer</button>
@@ -52,5 +54,4 @@
         </div>
 
     </div>
-{{--    @include("layouts.footer")--}}
 @endsection

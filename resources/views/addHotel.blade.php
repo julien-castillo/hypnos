@@ -5,7 +5,8 @@
         <h3 class="border-bottom pb-2 mb-4">Ajout d'un nouvel établissement</h3>
 
         <div class="mt-4">
-            <form style="width: 55%;" method="post" action="{{ route('admin.hotel.store') }}" enctype="multipart/form-data">
+            <form style="width: 55%;" method="post" action="{{ route('admin.hotel.store') }}"
+                  enctype="multipart/form-data">
 
                 @csrf
 
@@ -42,9 +43,6 @@
                 <button type="submit" class="btn btn-primary">Enregistrer</button>
                 <a href="{{ route('admin.index') }}" class="btn btn-danger">Annuler</a>
             </form>
-
         </div>
-
     </div>
-{{--    @include("layouts.footer")--}}
 @endsection

@@ -78,7 +78,6 @@
         </div>
 
     </div>
-{{--    @include("layouts.footer")--}}
 @endsection
 
 @push('scripts')
