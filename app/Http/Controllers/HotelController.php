@@ -28,8 +28,12 @@ class HotelController extends Controller {
      * Shows form for hotel creation.
      */
     public function create() {
+        $hotels = Hotel::all();
         $users = User::where('role', 'manager')->orderBy('lastname', 'asc')->get();
-        return view('addHotel', compact("users"));
+        $suites = Suite::all();
+        $managers = User::where('role', 'manager')->get();
+        $contacts = Contact::all();
+        return view('addHotel', compact("users", 'hotels', 'suites', 'managers', 'contacts'));
     }
 
     public function store(Request $request) {
@@ -82,8 +86,12 @@ class HotelController extends Controller {
     }
 
     public function edit(Hotel $hotel) {
+        $hotels = Hotel::all();
         $users = User::where('role', 'manager')->orderBy('lastname', 'asc')->get();
-        return view("editHotel", compact("hotel", "users"));
+        $suites = Suite::all();
+        $managers = User::where('role', 'manager')->get();
+        $contacts = Contact::all();
+        return view("editHotel", compact("hotel", "users", 'suites', 'managers', 'contacts', 'hotels'));
     }
 
     public function update(Request $request, Hotel $hotel) {

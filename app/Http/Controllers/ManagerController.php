@@ -29,10 +29,13 @@ class ManagerController extends Controller {
     public function create() {
         $users = User::where('role', 'user')->orderBy('lastname', 'asc')->get();
         $hotels = Hotel::where('user_id', null)->get();
+        $suites = Suite::all();
+        $contacts = Contact::all();
+        $managers = User::where('role', 'manager')->get();
 
         $hotelsSansManager = Hotel::where('user_id', null)->count();
         $noManager = User::where('role', 'manager')->count();
-        return view('addManager', compact("users", "hotels", "hotelsSansManager", "noManager"));
+        return view('addManager', compact("users", "hotels", "hotelsSansManager", "noManager", 'suites', 'contacts', 'managers'));
     }
 
     public function store(Request $request) {

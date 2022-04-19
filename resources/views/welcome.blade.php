@@ -17,7 +17,7 @@
                             <h5 class="card-title">{{ $hotel->name }}</h5>
                             <p class="card-text">{{ $hotel->city }}</p>
                             <a href="{{ route('suites', ['hotel' => $hotel]) }}"
-                               class="btn btn-outline-light btn-welcome">Découvrir
+                               class="btn btn-outline-dark btn-welcome">Découvrir
                                 les
                                 suites</a>
                         </div>

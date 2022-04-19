@@ -1,69 +1,127 @@
-@extends("layouts.master")
-
+@extends("layouts.masterAdmin")
 @section("content")
-    <div class="my-3 p-3 bg-body rounded shadow-sm">
-        <h3 class="border-bottom pb-2 mb-4">Ajouter un nouveau Manager</h3>
+    {{-- Sidebar Admin --}}
+    <div class="sidebar-admin">
+        <h1 class="visually-hidden">Sidebars examples</h1>
 
-        <div class="mt-4">
-            @if(session()->has("success"))
-                <div class="alert alert-success">
-                    <h3>{{ session()->get('success') }}</h3>
-                </div>
-            @endif
-
-            @if ($errors->any())
-                <div class=" alert alert-danger">
-                    <ul>
-                        @foreach($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
-            @if($hotelsSansManager > 0 or $noManager < 1)
-                <form style="width: 55%;" method="post" action="{{ route('admin.adminManager.store') }}"
-                      enctype="multipart/form-data">
-
-                    @csrf
-
-                    <div class="mb-3">
-                        <label for="user_id" class="form-label">Etablissements</label>
-                        <select class="form-select" name="hotel_id">
-                            <option value="">-- Aucun Hôtel --</option>
-
-                            @foreach($hotels as $hotel)
-
-                                <option value="{{ $hotel->id }}">{{ $hotel->name }}</option>
-
-                            @endforeach
-
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="user_id" class="form-label">Manager</label>
-                        <select class="form-select" name="user_id">
-                            <option value="">-- Aucun manager --</option>
-                            @foreach($users as $user)
-                                <option value="{{ $user->id }}">{{ $user->displayFullName() }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">Enregistrer</button>
-                    <a href="{{ route('admin.index') }}" class="btn btn-danger">Annuler / retour</a>
-                </form>
-            @else
-                <div>
-                    <p class="addManager-error">Tous les hôtels ont un manager. Veuillez d'abord créer un
-                        établissement.</p>
-                    <div class="add-hotel">
-                        <a href="{{ route('admin.hotel.create') }}" class="btn btn-primary">Ajouter un
-                            établissement</a>
-                    </div>
-                </div>
-            @endif
-
+        <div class="sidebar d-flex flex-column flex-shrink-0 p-3 text-white bg-dark">
+            <a href="/"
+               class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                <svg class="bi me-2" width="40" height="32">
+                    <use xlink:href="#bootstrap"/>
+                </svg>
+                <span class="fs-4">Admin Panel</span>
+            </a>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item">
+                    <a href="{{ route('admin.index') }}" class="nav-link text-white" aria-current="page">
+                        <svg class="bi me-2" width="16" height="16">
+                            <use xlink:href="#home"/>
+                        </svg>
+                        Hôtels ({{ $hotels->count() }})
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.adminManager.listSuites') }}" class="nav-link text-white">
+                        <svg class="bi me-2" width="16" height="16">
+                            <use xlink:href="#speedometer2"/>
+                        </svg>
+                        Suites ({{ $suites->count() }})
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.adminManager.listManagers') }}" class="nav-link active text-white">
+                        <svg class="bi me-2" width="16" height="16">
+                            <use xlink:href="#table"/>
+                        </svg>
+                        Managers ({{ $managers->count() }})
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.adminContact.index') }}" class="nav-link text-white">
+                        <svg class="bi me-2" width="16" height="16">
+                            <use xlink:href="#grid"/>
+                        </svg>
+                        Messages <span class="message">({{ $contacts->count() }})</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('admin.adminManager.listUsers') }}" class="nav-link text-white">
+                        <svg class="bi me-2" width="16" height="16">
+                            <use xlink:href="#people-circle"/>
+                        </svg>
+                        Clients ({{ $users->count() }})
+                    </a>
+                </li>
+            </ul>
         </div>
+    </div>
+    {{-- End of Sidebar Admin --}}
 
+    <div class="block1">
+        <div class="my-3 p-3 bg-body rounded shadow-sm">
+            <h3 class="border-bottom pb-2 mb-4">Ajouter un nouveau Manager</h3>
+
+            <div class="mt-4">
+                @if(session()->has("success"))
+                    <div class="alert alert-success">
+                        <h3>{{ session()->get('success') }}</h3>
+                    </div>
+                @endif
+
+                @if ($errors->any())
+                    <div class=" alert alert-danger">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                @if($hotelsSansManager > 0 or $noManager < 1)
+                    <form style="width: 55%;" method="post" action="{{ route('admin.adminManager.store') }}"
+                          enctype="multipart/form-data">
+
+                        @csrf
+
+                        <div class="mb-3">
+                            <label for="user_id" class="form-label">Etablissements</label>
+                            <select class="form-select" name="hotel_id">
+                                <option value="">-- Aucun Hôtel --</option>
+
+                                @foreach($hotels as $hotel)
+
+                                    <option value="{{ $hotel->id }}">{{ $hotel->name }}</option>
+
+                                @endforeach
+
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="user_id" class="form-label">Manager</label>
+                            <select class="form-select" name="user_id">
+                                <option value="">-- Aucun manager --</option>
+                                @foreach($users as $user)
+                                    <option value="{{ $user->id }}">{{ $user->displayFullName() }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                        <a href="{{ route('admin.index') }}" class="btn btn-danger">Annuler / retour</a>
+                    </form>
+                @else
+                    <div>
+                        <p class="addManager-error">Tous les hôtels ont un manager. Veuillez d'abord créer un
+                            établissement.</p>
+                        <div class="add-hotel">
+                            <a href="{{ route('admin.hotel.create') }}" class="btn btn-primary">Ajouter un
+                                établissement</a>
+                        </div>
+                    </div>
+                @endif
+            </div>
+        </div>
     </div>
 @endsection
