@@ -29,11 +29,11 @@
                             <div class="row">
 
                                 @foreach($bookings as $booking)
-                                        <td>{{ $hotels->city }}</td>
-                                        <td>{{ $hotels->name }}</td>
-                                        <td>{{ $booking->suite_id }}</td>
-                                        <td>{{ $booking->startDate }}</td>
-                                        <td>{{ $booking->endDate }}</td>
+                                        <td>{{ $booking->suite->hotel->city }}</td>
+                                        <td>{{ $booking->suite->hotel->name }}</td>
+                                        <td>{{ $booking->suite->name }}</td>
+                                        <td>{{ $booking->startDate->format('d/m/Y') }}</td>
+                                        <td>{{ $booking->endDate->format('d/m/Y') }}</td>
                                         <td>
                                             @if( $booking->startDate > $expDate)
                                                 <a href="#" class="btn btn-outline-danger"

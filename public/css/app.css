@@ -315,7 +315,7 @@ span.message {
 
 @media screen and (max-width: 591px) {
     a.btn {
-        display: flex;
+        display: block;
         align-items: center;
     }
     .th-cover, .td-cover {
@@ -326,6 +326,9 @@ span.message {
     }
     .py-2 {
         padding-top: 0 !important;
+    }
+    .card-body {
+        display: block;
     }
 }
 
