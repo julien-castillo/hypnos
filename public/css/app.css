@@ -5,6 +5,10 @@ html, body {
     height: 100%;
 }
 
+* {
+    font-family: Optima, sans-serif;
+}
+
 td {
     vertical-align: middle;
 }
