@@ -28,16 +28,51 @@ class UserSeeder extends Seeder {
             "role" => "admin"
         ]);
         User::create([
-            "firstname" => "Carine",
-            "lastname" => "Pic",
-            "email" => "carine.pic@niji.fr",
-            "password" => Hash::make("test"),
+            "firstname" => "Manager",
+            "lastname" => "1",
+            "email" => "manager1@manager.fr",
+            "password" => Hash::make("manager"),
             "role" => "manager"
         ]);
         User::create([
             "firstname" => "Manager",
-            "lastname" => "1",
-            "email" => "manager@manager.fr",
+            "lastname" => "2",
+            "email" => "manager2@manager.fr",
+            "password" => Hash::make("manager"),
+            "role" => "manager"
+        ]);
+        User::create([
+            "firstname" => "Manager",
+            "lastname" => "3",
+            "email" => "manager3@manager.fr",
+            "password" => Hash::make("manager"),
+            "role" => "manager"
+        ]);
+        User::create([
+            "firstname" => "Manager",
+            "lastname" => "4",
+            "email" => "manager4@manager.fr",
+            "password" => Hash::make("manager"),
+            "role" => "manager"
+        ]);
+        User::create([
+            "firstname" => "Manager",
+            "lastname" => "5",
+            "email" => "manager5@manager.fr",
+            "password" => Hash::make("manager"),
+            "role" => "manager"
+        ]);
+        User::create([
+            "firstname" => "Manager",
+            "lastname" => "6",
+            "email" => "manager6@manager.fr",
+            "password" => Hash::make("manager"),
+            "role" => "manager"
+        ]);
+        User::create([
+            "firstname" => "Manager",
+            "lastname" => "7",
+            "email" => "manager7@manager.fr",
             "password" => Hash::make("manager"),
             "role" => "manager"
         ]);

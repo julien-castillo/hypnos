@@ -3,7 +3,7 @@
 @section("content")
     <div class="my-3 p-3 bg-body rounded shadow-sm">
         <h3 class="border-bottom pb-2 mb-4">Découvrez les suites de luxe de l'hôtel : {{ $hotel->name }}</h3>
-        <h5>{{ $hotel->address }}, {{ $hotel->city }}</h5>
+        <h5>{{ $hotel->address }} {{ $hotel->city }}</h5>
     </div>
     @if(isset($hotel->description))
         <div class="card description">
