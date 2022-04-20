@@ -2,7 +2,7 @@
 
 @section("content")
     <div class="my-3 p-3 bg-body rounded shadow-sm">
-        <h3 class="welcome border-bottom pb-2 mb-4">Bienvenue sur le groupe hôtelier Hypnos</h3>
+        <h1 class="welcome border-bottom pb-2 mb-4">Bienvenue sur le groupe hôtelier Hypnos</h1>
     </div>
 
     <div class="row">

@@ -9,6 +9,11 @@ html, body {
     font-family: Optima, sans-serif;
 }
 
+h1 {
+    font-size: 36px;
+    text-align: center;
+}
+
 h3 {
     font-size: 32px;
 }
