@@ -23,7 +23,7 @@
                              alt="Photo cover de la suite">
                         <div class="card-body suites">
                             <h5 class="card-title">{{ $suite->name }}</h5>
-                            <h5 class="card-title">{{ $suite->price . ' ' . '€' }}</h5>
+                            <h5 class="card-title">{{ $suite->price . ' ' . '€' . ' / nuit' }}</h5>
                             <a href="{{ route('details',['hotel' => $hotel, 'suite' => $suite]) }}"
                                class="btn btn-primary">Détails
                                 de la suite</a>
