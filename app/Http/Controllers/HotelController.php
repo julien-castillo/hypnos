@@ -54,7 +54,7 @@ class HotelController extends Controller {
         Storage::disk('public')->put($image_path, file_get_contents($filename));
 
         $img = Image::make('storage/'. $image_path);
-        $img->fit(150, 150, function ($constraint) {
+        $img->fit(300, 300, function ($constraint) {
             $constraint->aspectRatio();
             $constraint->upsize();
         });

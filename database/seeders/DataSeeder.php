@@ -31,7 +31,7 @@ class DataSeeder extends Seeder {
       Storage::disk('public')->put($image_path, $file_content);
 
       $img = Image::make('storage/app/public/' . $image_path);
-      $img->fit(150, 150, function ($constraint) {
+      $img->fit(300, 300, function ($constraint) {
         $constraint->aspectRatio();
         $constraint->upsize();
       });
