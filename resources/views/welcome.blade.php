@@ -3,6 +3,14 @@
 @section("content")
     <div class="my-3 p-3 bg-body rounded shadow-sm">
         <h1 class="welcome border-bottom pb-2 mb-4">Bienvenue sur le groupe hôtelier Hypnos</h1>
+        <br>
+        <h5>Nous vous proposons {{ $hotels->count() }} établissements répartis sur toute la France. Chaque hôtel vous offrira un large choix de suites plus luxueuses les unes que les autres afin de rendre votre séjour inoubliable. <br>
+        <br>
+            Découvrez vite nos établissements ainsi que les prestations haut de gamme qui vous attendent.
+            <br>
+            <br>
+            Laissez-vous séduire par l'une des {{ $suites->count() }} suites au style raffiné, chic & romantique.
+        </h5>
     </div>
 
     <div class="row">
