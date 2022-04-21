@@ -56,16 +56,18 @@ class DataSeeder extends Seeder {
                             $images[] = $file;
                         }
                     }
-                    $cover = false;
+                    $cover = FALSE;
                     $nb_images = 5;
-                    shuffle($images);
-                    $suite_images = array_slice($images, 0, $nb_images);
+                    do {
+                        shuffle($images);
+                        $suite_images = array_slice($images, 0, $nb_images);
+                        $diff = array_diff($suite_images, $used_suite_covers);
+                    } while (count($diff) === 0);
                     foreach ($suite_images as $filename) {
-                        dump($used_suite_covers);
                         if (!$cover && !in_array($filename, $used_suite_covers, TRUE)) {
                             // cover
                             $storage_path = "cover/{$filename}";
-                            Storage::disk('public')->put($storage_path, file_get_contents($directory.'/'.$filename));
+                            Storage::disk('public')->put($storage_path, file_get_contents($directory . '/' . $filename));
                             $img = Image::make('storage/app/public/' . $storage_path);
                             $img->fit(300, 300, function ($constraint) {
                                 $constraint->aspectRatio();
@@ -78,7 +80,7 @@ class DataSeeder extends Seeder {
                             $cover = TRUE;
                         }
                         $storage_path = "suites/{$suite->id}/{$filename}";
-                        Storage::disk('public')->put($storage_path, file_get_contents($directory.'/'.$filename));
+                        Storage::disk('public')->put($storage_path, file_get_contents($directory . '/' . $filename));
                         $img = Image::make('storage/app/public/' . $storage_path);
                         $img->fit(150, 150, function ($constraint) {
                             $constraint->aspectRatio();
