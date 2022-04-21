@@ -57,6 +57,10 @@ A list of technologies used within the project:
   <a name="docs"></a>
 ### Docs
 * Graphic Chart & wireframes :
-[Document.pdf](https://github.com/julien-castillo/hypnos/blob/master/Charte_Graphique_Hypnos.pdf)
+[Document.pdf](https://github.com/julien-castillo/hypnos/blob/master/Documents/Charte_Graphique_Hypnos.pdf)
 * Maquettes :
-[Document.pdf](https://github.com/julien-castillo/hypnos/blob/master/Maquettes%20_%20ECF_Studi_HYPNOS.pdf)
+[Document.pdf](https://github.com/julien-castillo/hypnos/blob/master/Documents/Maquettes%20_%20ECF_Studi_HYPNOS.pdf)
+* Documentation technique :
+[Document.pdf](https://github.com/julien-castillo/hypnos/blob/master/Documents/Documentation_Technique.pdf)
+* Manuel d'utilisation :
+[Document.pdf](https://github.com/julien-castillo/hypnos/blob/master/Documents/Manuel_hypnos.pdf)
