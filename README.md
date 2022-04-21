@@ -9,7 +9,8 @@
 ***
 <a name="description"></a>
 ### Description du projet
-The main goal is to create a complete website of an hotel group. 7 main functionnalties are required, with 4 types of people using the website. The Admin, the Manager, the user and the Visitor. <br>
+L'objectif principal est de créer une application web complète pour un groupe hôtelier. 7 fonctionnalités principales sont nécessaires avec 4 types de comptes utilisateurs : Admin, Manager, client, visiteur. 
+
 ***
 <a name="local"></a>
 ### Deploiement local
